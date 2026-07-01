@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
-      <title>Portfolio site template</title>
+      <meta name="description" content="Personal portfolio of José Pinheiro, software engineer.">
+      <meta name="theme-color" content="#00a9e2">
+      <meta property="og:title" content="José Pinheiro — Software Engineer">
+      <meta property="og:description" content="Personal portfolio of José Pinheiro, software engineer.">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://github.com/pinheirojose/personal-page">
+      <title>José Pinheiro — Software Engineer</title>
       <link href="style.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-      <link rel="icon" href="images/favicon.ico">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="script.js"></script>
+      <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+      <link rel="icon" href="images/favicon.ico" sizes="any">
   </head>
     <body>
 	  
@@ -21,17 +26,17 @@
               <img src="images/favicon.ico" alt="logo" />
 		</a> -->
 		<nav>	
-		 <ul class="nav-bar"><div class="bg"></div>
+		 <ul class="nav-bar">
 			<li><a class="nav-link active" href="#home">Home</a></li>
 			<li><a class="nav-link" href="#projects">Projects</a></li>
 			<li><a class="nav-link" href="#contact">Contact</a></li>
 		 </ul>
 			
-			<div class="hamburger">
+			<button class="hamburger" type="button" aria-label="Menu" aria-expanded="false">
 				<div class="line1"></div>
             <div class="line2"></div>
 				<div class="line3"></div>
-			</div>
+			</button>
 		</nav>
 	</header>
 	<main>
@@ -47,9 +52,9 @@
 		  <!--────social media links─────-->
 			 
 		  <div class="social-media">
-			  <a href="#" target="_blank"><i class='fab fa-twitter'></i></a>
-			  <a href="#" target="_blank"><i class='fab fa-github'></i></a>
-			  <a href="#" target="_blank"><i class='fab fa-linkedin-in'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter profile"><i class='fab fa-twitter'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class='fab fa-github'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class='fab fa-linkedin-in'></i></a>
 		    </div>
 			 
 		 </section> 
@@ -63,32 +68,32 @@
 		  <div class="work">
 		<!--───────────────card───────────────-->
 			<div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1518611507436-f9221403cca2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1225&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1518611507436-f9221403cca2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1225&q=80" alt="Project 1" loading="lazy" decoding="async">
 			    <a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div>
 			<div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1462642109801-4ac2971a3a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1462642109801-4ac2971a3a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80" alt="Project 2" loading="lazy" decoding="async">
 				<a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div>
             <div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1485815457792-d1a966f9bde0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1485815457792-d1a966f9bde0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Project 3" loading="lazy" decoding="async">
 				<a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div>
             <div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Project 4" loading="lazy" decoding="async">
 				<a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div> 
 			<div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1535556116002-6281ff3e9f36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=781&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1535556116002-6281ff3e9f36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=781&q=80" alt="Project 5" loading="lazy" decoding="async">
 				<a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div>
 			<div class="card">
-			    <img class="work-img" src="https://images.unsplash.com/photo-1483546416237-76fd26bbcdd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
+			    <img class="work-img" src="https://images.unsplash.com/photo-1483546416237-76fd26bbcdd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Project 6" loading="lazy" decoding="async">
 				<a href="" target="_blank"> <!--Link to project-->
 				<div class="work-content">Lorem ipsum dolor sit amet consectetur.</div></a>
             </div> 	  
@@ -102,15 +107,16 @@
 		   <h3>Contact.<hr></h3>
 		   <p>Feel free to contact me on my social media.</p>
 		    <div class="social-media">
-			  <a href="#" target="_blank"><i class='fab fa-twitter'></i></a>
-			  <a href="#" target="_blank"><i class='fab fa-github'></i></a>
-			  <a href="#" target="_blank"><i class='fab fa-linkedin-in'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter profile"><i class='fab fa-twitter'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class='fab fa-github'></i></a>
+			  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class='fab fa-linkedin-in'></i></a>
 		    </div>
 		  </div>
 
 	</main>
-	  <footer class="copyright">© 2023 
-		  <a href="https://github.com/pinheirojose" target="_blank"> José Pinheiro</a>
+	  <footer class="copyright">© 2026 
+		  <a href="https://github.com/pinheirojose" target="_blank" rel="noopener noreferrer"> José Pinheiro</a>
      </footer>
+     <script src="script.js" defer></script>
   </body>
 </html>

@@ -93,7 +93,7 @@ a.nav-link{
 }
 
 #home .filter{
-	background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') no-repeat;
+	background: url('images/hero.jpg') no-repeat;
 	background-size: cover;
 	background-position:center;
     position: absolute;
@@ -124,7 +124,7 @@ a.nav-link{
     letter-spacing: normal;
     font-family: var(--main-font-family);
 	font-style: normal;
-	font-size: 60px;
+	font-size: clamp(2rem, 8vw, 3.75rem);
 	color: var(--main-fonts-color);
 	text-shadow: 0px 0px 40px var(--main-decor-color);
 }
@@ -313,6 +313,9 @@ hr {
 ──────────────────*/
 .hamburger {
 	display: none;
+	border: none;
+	background: transparent;
+	padding: 0;
 }
 
 .hamburger div{
@@ -361,6 +364,12 @@ hr {
     }
 }
 
+@media only screen and (max-width: 768px) {
+	.card{
+		margin: 12px;
+		width: min(200px, 45vw);
+	}
+}
 
 @media only screen and (max-width: 500px) {
 
