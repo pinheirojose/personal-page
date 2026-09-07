@@ -7,7 +7,7 @@
 // Content — edit these arrays rather than the markup in index.html
 // ---------------------------------------------------------------------------
 
-const EMAIL = 'jose@example.com'; // Placeholder — replace before going live
+const EMAIL = 'jbernardopinheiro@gmail.com'; // Placeholder — replace before going live
 
 // Primary navigation (header, drawer, and footer reuse this)
 const NAV = [
@@ -80,19 +80,19 @@ const PROJECTS = [
 // Employer names are still placeholders ("Company")
 const TIMELINE = [
   {
-    period: '2023 — PRESENT',
+    period: '2021 — PRESENT',
     title: 'Technical Lead / Delivery',
     org: 'Company / Client projects',
     summary: 'Owning delivery end to end: scoping with clients, guiding the technical approach, and keeping the team unblocked. Still writing code, mostly where it matters most.',
   },
   {
-    period: '2021 — 2023',
-    title: 'DevOps & Platform',
+    period: '2018 — PRESENT',
+    title: 'DevOps & Release Management',
     org: 'Company',
     summary: 'Containerised legacy services, built CI/CD pipelines, and made environments reproducible. Reduced the number of things that could only be done by one person.',
   },
   {
-    period: '2018 — 2021',
+    period: '2018 — PRESENT',
     title: 'Database Management',
     org: 'Company',
     summary: 'Oracle and PostgreSQL administration, performance work, integrations and the occasional 2 a.m. investigation. Learned to read a query plan before blaming the application.',
@@ -101,15 +101,15 @@ const TIMELINE = [
     period: '2015 — 2018',
     title: 'Software Development',
     org: 'Company',
-    summary: 'Java and JavaScript applications, internal tools and client features. Where the habit of asking “who maintains this next year?” started.',
+    summary: 'Java  applications, internal tools and client features.',
   },
 ];
 
 // Skills grouped by category
 const TOOLBOX = [
-  { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Angular', 'APIs'] },
+  { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
   { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
-  { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment', 'Infrastructure'] },
+  { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment'] },
   { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
 ];
 
