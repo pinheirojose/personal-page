@@ -36,9 +36,14 @@
     };
   }
   function parseDcText(src) {
-    const openMatch = /<x-dc(?:\s[^>]*)?>/.exec(src);
+    src = String(src);
+    // Same length as the source so slice offsets stay valid, but comment
+    // bodies cannot match as <x-dc> / </x-dc> (those tags in comments
+    // would otherwise pick the wrong template bounds).
+    const scanned = src.replace(/<!--[\s\S]*?-->/g, (m) => " ".repeat(m.length));
+    const openMatch = /<x-dc(?:\s[^>]*)?>/.exec(scanned);
     if (!openMatch) return null;
-    const close = src.lastIndexOf("</x-dc>");
+    const close = scanned.lastIndexOf("</x-dc>");
     if (close === -1 || close < openMatch.index) return null;
     const template = src.slice(openMatch.index + openMatch[0].length, close);
     const doc = new DOMParser().parseFromString(src, "text/html");

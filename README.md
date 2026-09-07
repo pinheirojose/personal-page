@@ -6,8 +6,9 @@ Personal website built to showcase my work, skills, and projects.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Page markup and the logic that drives it. |
+| `index.html` | Page markup. |
 | `style.css` | All styling. Design tokens are custom properties on `:root`. |
+| `page.js` | Content arrays and the `Component` class. Edit this to change copy. |
 | `script.js` | Generated `dc-runtime` bundle. Do not edit by hand. |
 
 ## Running it
@@ -25,11 +26,12 @@ python3 -m http.server 8000
 - `<head>` — metadata, Google Fonts and `style.css`.
 - `<x-dc>` — the template. `sc-for` loops render the repeated sections and
   `sc-if` gates the hero illustration and contact form.
-- `<script data-dc-script>` — page content as plain arrays (`PROJECTS`,
-  `TIMELINE`, `TOOLBOX`, …) plus the `Component` class holding the small amount
-  of state the page needs.
+- `page.js` — content arrays (`PROJECTS`, `TIMELINE`, `TOOLBOX`, …) plus the
+  `Component` class. The page fetches it into `<script data-dc-script>` before
+  `script.js` boots (the runtime only reads that tag’s text, not an external
+  `src`).
 
-To change content, edit the arrays at the top of the script rather than the
+To change content, edit the arrays at the top of `page.js` rather than the
 markup. Styling is class-based, so the markup carries almost no inline styles.
 
 One runtime quirk: interpolated `{{ … }}` values render wrapped in an HTML
