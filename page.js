@@ -19,8 +19,8 @@ const NAV = [
 
 // Footer + contact list (placeholder URLs)
 const SOCIAL = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/jose' },
-  { label: 'GitHub', href: 'https://github.com/jose' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jose-pinheiro/' },
+  { label: 'GitHub', href: 'https://github.com/pinheirojose' },
 ];
 
 // Rows in the contact panel (email, LinkedIn, GitHub)
@@ -36,6 +36,8 @@ const PILLARS = [
   { label: 'SOLVE', text: 'Databases, integrations, troubleshooting and technical problems.' },
   { label: 'DELIVER', text: 'Projects, Agile delivery, support and client communication.' },
   { label: 'LEAD', text: 'Technical leadership, coordination and helping teams move forward.' },
+  { label: 'CLIENT SUCCESS', text: 'Making sure what shipped actually works for the people using it.' },
+  { label: 'SERVE', text: 'Building solutions for everyday problems — useful to someone, not just technically interesting.' },
 ];
 
 // href is still a placeholder (#projects) until each project has a real URL
