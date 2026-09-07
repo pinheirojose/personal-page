@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>José — Software Engineer</title>
+<meta name="description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
+<meta property="og:title" content="José — Software Engineer">
+<meta property="og:description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="./style.css">
+<script src="./script.js"></script>
+</head>
+<body>
+<x-dc>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#171717" opacity="0.10"></circle>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="header">
+  <div class="shell header__bar">
+    <a class="header__mark" href="#top">José</a>
+    <nav class="header__nav" aria-label="Primary">
+      <div class="nav-links">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+          <a href="{{ item.href }}">{{ item.label }}</a>
+        </sc-for>
+      </div>
+      <a class="btn btn--pill header__cta" href="#contact">Let’s talk →</a>
+      <button class="nav-toggle" type="button" onClick="{{ toggleMenu }}"
+              aria-label="Menu" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">≡</button>
+    </nav>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="drawer" id="mobile-menu">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+        <a href="{{ item.href }}" onClick="{{ closeMenu }}">{{ item.label }}</a>
+      </sc-for>
+    </div>
+  </sc-if>
+</header>
+
+<main class="shell" id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="reveal">
+      <p class="eyebrow">SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY</p>
+      <h1 class="hero__title" id="hero-title">Hi, I’m José.</h1>
+      <p class="hero__tagline">I build things, fix things, and occasionally <span style="color:var(--accent);">argue with databases</span>.</p>
+      <p class="prose prose--lead" style="margin-top:clamp(20px,3vw,28px);">Software Engineer working across software development, databases, DevOps and project delivery.</p>
+      <div class="hero__actions">
+        <a class="btn btn--ink" href="#projects">See my work →</a>
+        <a class="btn btn--outline" href="#contact">Let’s talk →</a>
+      </div>
+    </div>
+
+    <sc-if value="{{ heroVisual }}" hint-placeholder-val="{{ true }}">
+      <div class="hero__visual" aria-hidden="true">
+        <svg viewBox="0 0 380 480">
+          <rect x="18" y="18" width="344" height="444" fill="url(#dots)"></rect>
+          <path d="M78 74 C 78 140, 208 128, 208 186" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
+          <path d="M208 186 C 208 250, 92 244, 92 306" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
+          <path d="M92 306 C 92 366, 246 356, 246 406" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
+          <path d="M246 406 C 246 450, 150 448, 118 434" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
+          <path d="M78 74 C 300 120, 300 330, 118 434" fill="none" stroke="#C65D3A" stroke-width="1" stroke-dasharray="3 9" opacity="0.75" style="animation:dash 18s linear infinite;"></path>
+          <circle cx="78" cy="74" r="5" fill="#171717"></circle>
+          <circle cx="208" cy="186" r="5" fill="#171717"></circle>
+          <circle cx="92" cy="306" r="5" fill="#C65D3A"></circle>
+          <circle cx="246" cy="406" r="5" fill="#171717"></circle>
+          <circle cx="118" cy="434" r="5" fill="#171717"></circle>
+          <circle cx="92" cy="306" r="11" fill="none" stroke="#C65D3A" stroke-width="1" style="animation:pulse 5s ease-in-out infinite; transform-origin:92px 306px;"></circle>
+          <rect x="256" y="112" width="9" height="9" fill="none" stroke="#71806A" stroke-width="1"></rect>
+          <rect x="44" y="212" width="9" height="9" fill="none" stroke="#71806A" stroke-width="1"></rect>
+          <rect x="292" y="286" width="9" height="9" fill="none" stroke="#71806A" stroke-width="1"></rect>
+          <g font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.6" fill="#171717" opacity="0.62">
+            <text x="92" y="78">CODE</text>
+            <text x="222" y="190">DATA</text>
+            <text x="106" y="310" fill="#C65D3A" opacity="1">INFRA</text>
+            <text x="260" y="410">DELIVERY</text>
+            <text x="132" y="438">PEOPLE</text>
+          </g>
+        </svg>
+      </div>
+    </sc-if>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="split reveal">
+      <div>
+        <p class="eyebrow">ABOUT / 01</p>
+        <h2 class="section-title" id="about-title">More than a job title.</h2>
+      </div>
+      <div style="max-width:52ch;">
+        <p style="margin:0; font-size:clamp(18px,2.1vw,23px); line-height:1.45; letter-spacing:-0.015em;">Software Engineer by profession, problem solver by habit.</p>
+        <p class="prose" style="margin-top:18px; font-size:16.5px;">My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.</p>
+      </div>
+    </div>
+
+    <div class="rule-grid reveal" style="margin-top:clamp(40px,6vw,80px);">
+      <sc-for list="{{ pillars }}" as="pillar" hint-placeholder-count="4">
+        <div class="pillar">
+          <p class="eyebrow eyebrow--accent">{{ pillar.label }}</p>
+          <p>{{ pillar.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="reveal" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px;">
+      <div>
+        <p class="eyebrow">PROJECTS / 02</p>
+        <h2 class="section-title" id="projects-title">Things I’ve built.</h2>
+      </div>
+      <p class="prose" style="max-width:44ch;">A few projects, experiments and solutions I’ve worked on — professionally and independently.</p>
+    </div>
+
+    <div class="projects">
+      <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
+        <article class="project reveal">
+          <div class="project__frame">
+            <div class="project__media">
+              <span class="project__caption" aria-hidden="true">{{ project.caption }}</span>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow project__meta">
+              <span>PROJECT / {{ project.number }}</span>
+              <span class="eyebrow--accent">{{ project.kind }}</span>
+            </p>
+            <h3 class="project__title"><a href="{{ project.href }}">{{ project.title }}</a></h3>
+            <p class="prose project__summary">{{ project.summary }}</p>
+            <dl class="project__facts">
+              <div><dt>ROLE</dt><dd>{{ project.role }}</dd></div>
+              <div><dt>AREAS</dt><dd>{{ project.areas }}</dd></div>
+              <div><dt>RESULT</dt><dd>{{ project.result }}</dd></div>
+            </dl>
+            <p class="project__cta" aria-hidden="true">VIEW PROJECT <span class="project__arrow">→</span></p>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="experience-title">
+    <div class="reveal">
+      <p class="eyebrow">EXPERIENCE / 03</p>
+      <h2 class="section-title" id="experience-title">The road so far.</h2>
+    </div>
+
+    <ol class="timeline">
+      <sc-for list="{{ timeline }}" as="role" hint-placeholder-count="4">
+        <li class="timeline__item reveal">
+          <div class="timeline__row">
+            <div>
+              <p class="eyebrow">{{ role.period }}</p>
+              <h3 class="timeline__role">{{ role.title }}</h3>
+              <p class="timeline__org">{{ role.org }}</p>
+            </div>
+            <p class="prose">{{ role.summary }}</p>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section class="section" aria-labelledby="toolbox-title">
+    <div class="split reveal">
+      <div>
+        <p class="eyebrow">TOOLBOX / 04</p>
+        <h2 class="section-title" id="toolbox-title">Tools of the trade.</h2>
+      </div>
+      <div class="toolbox">
+        <sc-for list="{{ toolbox }}" as="group" hint-placeholder-count="4">
+          <div>
+            <p class="eyebrow eyebrow--accent">{{ group.label }}</p>
+            <ul>
+              <sc-for list="{{ group.items }}" as="tool" hint-placeholder-count="4">
+                <li>{{ tool }}</li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="notes-title">
+    <div class="reveal">
+      <p class="eyebrow">NOTES / 05</p>
+      <h2 class="section-title" id="notes-title">A few things I’ve learned.</h2>
+    </div>
+    <div class="rule-grid reveal" style="--rule-grid-min:260px; margin-top:clamp(32px,4vw,56px);">
+      <p class="note">Most problems are simpler than they first appear.</p>
+      <p class="note">Most “quick fixes” aren’t.</p>
+      <p class="note">Good software is software people can maintain.</p>
+      <p class="note note--interactive" tabindex="0">Sometimes the database is innocent.<span class="note__aside"> …but not always.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title" style="padding-bottom:clamp(48px,6vw,80px);">
+    <div class="split reveal" style="gap:clamp(32px,5vw,80px);">
+      <div>
+        <p class="eyebrow">CONTACT / 06</p>
+        <h2 class="section-title" id="contact-title" style="max-width:14ch; font-size:clamp(32px,5vw,62px); line-height:1.03; letter-spacing:-0.032em;">Got a problem worth solving?</h2>
+        <p class="prose prose--lead" style="margin-top:22px;">Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.</p>
+        <a class="btn btn--accent" href="{{ primaryContact }}" style="margin-top:28px;">Let’s talk →</a>
+        <div class="contact-list">
+          <sc-for list="{{ contactLinks }}" as="link" hint-placeholder-count="3">
+            <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}">
+              <span>{{ link.text }}</span>
+              <span class="eyebrow eyebrow--faint">{{ link.label }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <form class="form" onSubmit="{{ submit }}">
+          <h3 class="sr-only">Send a message</h3>
+          <label class="field">
+            <span class="eyebrow eyebrow--faint">NAME</span>
+            <input type="text" name="name" autocomplete="name" required="required" />
+          </label>
+          <label class="field">
+            <span class="eyebrow eyebrow--faint">EMAIL</span>
+            <input type="email" name="email" autocomplete="email" required="required" />
+          </label>
+          <label class="field">
+            <span class="eyebrow eyebrow--faint">MESSAGE</span>
+            <textarea name="message" rows="4" required="required"></textarea>
+          </label>
+          <button class="btn btn--outline" type="submit" disabled="{{ sent }}">{{ sendLabel }}</button>
+          <p class="form__status" aria-live="polite">{{ sentMessage }}</p>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <p style="margin:0; font-size:17px; font-weight:500;">José</p>
+      <p class="eyebrow eyebrow--faint" style="margin-top:8px;">SOFTWARE ENGINEER</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+        <a href="{{ item.href }}">{{ item.label }}</a>
+      </sc-for>
+      <sc-for list="{{ social }}" as="item" hint-placeholder-count="2">
+        <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+    <p class="footer__copy">© {{ year }} JOSÉ</p>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showContactForm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+const EMAIL = 'jose@example.com';
+
+const NAV = [
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const SOCIAL = [
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/jose' },
+  { label: 'GitHub', href: 'https://github.com/jose' },
+];
+
+const CONTACT_LINKS = [
+  { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL },
+  { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
+  { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
+];
+
+const PILLARS = [
+  { label: 'BUILD', text: 'Software and application development.' },
+  { label: 'SOLVE', text: 'Databases, integrations, troubleshooting and technical problems.' },
+  { label: 'DELIVER', text: 'Projects, Agile delivery, support and client communication.' },
+  { label: 'LEAD', text: 'Technical leadership, coordination and helping teams move forward.' },
+];
+
+const PROJECTS = [
+  {
+    number: '01',
+    kind: 'PERSONAL · WEB',
+    title: 'Évora Serviços',
+    href: '#projects',
+    caption: 'SCREENSHOT / ÉVORA SERVIÇOS',
+    summary: 'Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.',
+    role: 'Design, build, run',
+    areas: 'Web · Database · Hosting',
+    result: 'Live, growing listings',
+  },
+  {
+    number: '02',
+    kind: 'PROFESSIONAL · DATABASE',
+    title: 'A migration nobody wanted to attempt',
+    href: '#projects',
+    caption: 'DIAGRAM / MIGRATION PATH',
+    summary: 'A fifteen-year-old Oracle schema held the business together and nobody fully understood it. I mapped it, rewrote the reporting layer, and moved it to PostgreSQL in stages, with a rollback path at every step. Nothing was switched off until it was proven twice.',
+    role: 'Technical lead',
+    areas: 'Oracle · PostgreSQL · SQL',
+    result: 'Zero data loss, faster reports',
+  },
+  {
+    number: '03',
+    kind: 'PROFESSIONAL · DEVOPS',
+    title: 'Releases that stopped being events',
+    href: '#projects',
+    caption: 'DIAGRAM / DEPLOY PIPELINE',
+    summary: 'Deployments happened on Friday evenings, by hand, with a checklist in a shared document. I containerised the stack and moved it to GitLab CI/CD with automated checks and repeatable environments. Releases became a normal Tuesday.',
+    role: 'Engineer & owner',
+    areas: 'Docker · GitLab CI · Infra',
+    result: 'Minutes, not evenings',
+  },
+];
+
+const TIMELINE = [
+  {
+    period: '2023 — PRESENT',
+    title: 'Technical Lead / Delivery',
+    org: 'Company / Client projects',
+    summary: 'Owning delivery end to end: scoping with clients, guiding the technical approach, and keeping the team unblocked. Still writing code, mostly where it matters most.',
+  },
+  {
+    period: '2021 — 2023',
+    title: 'DevOps & Platform',
+    org: 'Company',
+    summary: 'Containerised legacy services, built CI/CD pipelines, and made environments reproducible. Reduced the number of things that could only be done by one person.',
+  },
+  {
+    period: '2018 — 2021',
+    title: 'Database Management',
+    org: 'Company',
+    summary: 'Oracle and PostgreSQL administration, performance work, integrations and the occasional 2 a.m. investigation. Learned to read a query plan before blaming the application.',
+  },
+  {
+    period: '2015 — 2018',
+    title: 'Software Development',
+    org: 'Company',
+    summary: 'Java and JavaScript applications, internal tools and client features. Where the habit of asking “who maintains this next year?” started.',
+  },
+];
+
+const TOOLBOX = [
+  { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Angular', 'APIs'] },
+  { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
+  { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment', 'Infrastructure'] },
+  { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
+];
+
+class Component extends DCLogic {
+  state = { menuOpen: false, sent: false };
+
+  componentDidMount() {
+    this.wide = window.matchMedia('(min-width: 720px)');
+    this.onWide = (e) => { if (e.matches) this.setState({ menuOpen: false }); };
+    this.wide.addEventListener('change', this.onWide);
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('reveal-on');
+      this.reveals = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('is-in');
+          this.reveals.unobserve(entry.target);
+        }
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      this.observeReveals();
+    }
+  }
+
+  componentDidUpdate() {
+    this.observeReveals();
+  }
+
+  componentWillUnmount() {
+    this.wide.removeEventListener('change', this.onWide);
+    this.reveals?.disconnect();
+    document.documentElement.classList.remove('reveal-on');
+  }
+
+  /** `sc-if` branches mount after the first pass, so this reruns on every update. */
+  observeReveals() {
+    if (!this.reveals) return;
+    for (const node of document.querySelectorAll('.reveal:not([data-observed])')) {
+      node.setAttribute('data-observed', '');
+      this.reveals.observe(node);
+    }
+  }
+
+  renderVals() {
+    return {
+      nav: NAV,
+      social: SOCIAL,
+      contactLinks: CONTACT_LINKS,
+      primaryContact: 'mailto:' + EMAIL,
+      pillars: PILLARS,
+      projects: PROJECTS,
+      timeline: TIMELINE,
+      toolbox: TOOLBOX,
+      year: new Date().getFullYear(),
+
+      heroVisual: this.props.heroVisual ?? true,
+      showForm: this.props.showContactForm ?? true,
+
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+
+      sent: this.state.sent,
+      sendLabel: this.state.sent ? 'Message sent ✓' : 'Send message →',
+      sentMessage: this.state.sent ? 'Thanks — I’ll get back to you.' : '',
+      // Acknowledges locally only; nothing is delivered until this posts to a form endpoint.
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>
