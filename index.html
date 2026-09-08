@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
   <!-- Page identity — title, description, and social previews -->
   <meta charset="utf-8">
@@ -7,12 +7,13 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#F5F3EE">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>José — Software Engineer</title>
-  <meta name="description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
-  <meta property="og:title" content="José — Software Engineer">
-  <meta property="og:description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
+  <title>José — Engenheiro de software</title>
+  <meta name="description" content="Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.">
+  <meta property="og:title" content="José — Engenheiro de software">
+  <meta property="og:description" content="Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:locale:alternate" content="en_GB">
 
   <!-- Fonts load first so text does not flash a fallback face -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,12 +24,12 @@
 </head>
 <body>
 <noscript>
-  <p class="noscript">This site needs JavaScript to render. You can still write to <a href="mailto:jbernardopinheiro@gmail.com">jbernardopinheiro@gmail.com</a>.</p>
+  <p class="noscript">Este sítio precisa de JavaScript. Pode escrever para <a href="mailto:jbernardopinheiro@gmail.com">jbernardopinheiro@gmail.com</a>.</p>
 </noscript>
 <!-- Everything inside <x-dc> is the page template. Bindings come from page.js. -->
 <x-dc>
 <!-- Keyboard users jump past the sticky header -->
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">{{ copy.skip }}</a>
 
 <!-- Shared SVG pattern used by the hero diagram (hidden; referenced via url(#dots)) -->
 <svg class="svg-defs" aria-hidden="true">
@@ -43,13 +44,17 @@
 <header class="header">
   <div class="shell header__bar">
     <a class="header__mark" href="#top">José</a>
-    <nav class="header__nav" aria-label="Primary">
+    <nav class="header__nav" aria-label="{{ copy.navAria }}">
       <div class="nav-links">
         <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
           <a href="{{ item.href }}">{{ item.label }}</a>
         </sc-for>
       </div>
-      <a class="btn btn--pill header__cta" href="#contact">Let’s talk →</a>
+      <div class="lang" role="group" aria-label="{{ copy.langLabel }}">
+        <button type="button" class="lang__btn {{ ptClass }}" onClick="{{ setPt }}" aria-pressed="{{ isPt }}">PT</button>
+        <button type="button" class="lang__btn {{ enClass }}" onClick="{{ setEn }}" aria-pressed="{{ isEn }}">EN</button>
+      </div>
+      <a class="btn btn--pill header__cta" href="#contact">{{ copy.talk }}</a>
       <!-- Shown below 720px; CSS hides .nav-links at that breakpoint -->
       <button class="nav-toggle" type="button" onClick="{{ toggleMenu }}"
               aria-label="{{ menuLabel }}" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">
@@ -72,13 +77,13 @@
   <!-- 00 — Intro -->
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="reveal">
-      <p class="eyebrow">SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY</p>
-      <h1 class="hero__title" id="hero-title">Hi, I’m José.</h1>
-      <p class="hero__tagline">I build things, fix things, and occasionally <em class="mark">argue with databases</em>.</p>
-      <p class="prose prose--lead hero__lead">Software Engineer working across software development, databases, DevOps and project delivery.</p>
+      <p class="eyebrow">{{ copy.heroEyebrow }}</p>
+      <h1 class="hero__title" id="hero-title">{{ copy.heroTitle }}</h1>
+      <p class="hero__tagline">{{ copy.taglineBefore }} <em class="mark">{{ copy.taglineMark }}</em>{{ copy.taglineAfter }}</p>
+      <p class="prose prose--lead hero__lead">{{ copy.heroLead }}</p>
       <div class="hero__actions">
-        <a class="btn btn--ink" href="#projects">See my work →</a>
-        <a class="btn btn--outline" href="#contact">Let’s talk →</a>
+        <a class="btn btn--ink" href="#projects">{{ copy.seeWork }}</a>
+        <a class="btn btn--outline" href="#contact">{{ copy.talk }}</a>
       </div>
     </div>
 
@@ -117,12 +122,12 @@
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="split reveal">
       <div>
-        <p class="eyebrow">ABOUT / 01</p>
-        <h2 class="section-title" id="about-title">More than a job title.</h2>
+        <p class="eyebrow">{{ copy.aboutEyebrow }}</p>
+        <h2 class="section-title" id="about-title">{{ copy.aboutTitle }}</h2>
       </div>
       <div class="about-copy">
-        <p class="lede">Software Engineer by profession, problem solver by habit.</p>
-        <p class="prose about-copy__body">My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.</p>
+        <p class="lede">{{ copy.aboutLede }}</p>
+        <p class="prose about-copy__body">{{ copy.aboutBody }}</p>
       </div>
     </div>
 
@@ -140,10 +145,10 @@
   <section class="section" id="projects" aria-labelledby="projects-title">
     <div class="section-head reveal">
       <div>
-        <p class="eyebrow">PROJECTS / 02</p>
-        <h2 class="section-title" id="projects-title">Things I’ve built.</h2>
+        <p class="eyebrow">{{ copy.projectsEyebrow }}</p>
+        <h2 class="section-title" id="projects-title">{{ copy.projectsTitle }}</h2>
       </div>
-      <p class="prose section-head__aside">A few projects, experiments and solutions I’ve worked on — professionally and independently.</p>
+      <p class="prose section-head__aside">{{ copy.projectsLead }}</p>
     </div>
 
     <div class="projects">
@@ -157,17 +162,17 @@
           </div>
           <div>
             <p class="eyebrow project__meta">
-              <span>PROJECT / {{ project.number }}</span>
+              <span>{{ copy.projectLabel }} / {{ project.number }}</span>
               <span class="eyebrow--accent">{{ project.kind }}</span>
             </p>
             <h3 class="project__title"><a href="{{ project.href }}">{{ project.title }}</a></h3>
             <p class="prose project__summary">{{ project.summary }}</p>
             <dl class="project__facts">
-              <div><dt>ROLE</dt><dd>{{ project.role }}</dd></div>
-              <div><dt>AREAS</dt><dd>{{ project.areas }}</dd></div>
-              <div><dt>RESULT</dt><dd>{{ project.result }}</dd></div>
+              <div><dt>{{ copy.roleLabel }}</dt><dd>{{ project.role }}</dd></div>
+              <div><dt>{{ copy.areasLabel }}</dt><dd>{{ project.areas }}</dd></div>
+              <div><dt>{{ copy.resultLabel }}</dt><dd>{{ project.result }}</dd></div>
             </dl>
-            <p class="project__cta" aria-hidden="true">VIEW PROJECT <span class="project__arrow">→</span></p>
+            <p class="project__cta" aria-hidden="true">{{ copy.viewProject }} <span class="project__arrow">→</span></p>
           </div>
         </article>
       </sc-for>
@@ -177,8 +182,8 @@
   <!-- 03 — Experience (TIMELINE) -->
   <section class="section" id="experience" aria-labelledby="experience-title">
     <div class="reveal">
-      <p class="eyebrow">EXPERIENCE / 03</p>
-      <h2 class="section-title" id="experience-title">The road so far.</h2>
+      <p class="eyebrow">{{ copy.experienceEyebrow }}</p>
+      <h2 class="section-title" id="experience-title">{{ copy.experienceTitle }}</h2>
     </div>
 
     <ol class="timeline">
@@ -201,8 +206,8 @@
   <section class="section" id="toolbox" aria-labelledby="toolbox-title">
     <div class="split reveal">
       <div>
-        <p class="eyebrow">TOOLBOX / 04</p>
-        <h2 class="section-title" id="toolbox-title">Tools of the trade.</h2>
+        <p class="eyebrow">{{ copy.toolboxEyebrow }}</p>
+        <h2 class="section-title" id="toolbox-title">{{ copy.toolboxTitle }}</h2>
       </div>
       <div class="toolbox">
         <sc-for list="{{ toolbox }}" as="group" hint-placeholder-count="4">
@@ -222,16 +227,15 @@
   <!-- 05 — Short notes; the last one reveals extra copy on hover/focus -->
   <section class="section" id="notes" aria-labelledby="notes-title">
     <div class="reveal">
-      <p class="eyebrow">NOTES / 05</p>
-      <h2 class="section-title" id="notes-title">A few things I’ve learned.</h2>
+      <p class="eyebrow">{{ copy.notesEyebrow }}</p>
+      <h2 class="section-title" id="notes-title">{{ copy.notesTitle }}</h2>
     </div>
     <ul class="rule-grid rule-grid--notes reveal">
-      <li><p class="note">Most problems are simpler than they first appear.</p></li>
-      <li><p class="note">Most “quick fixes” aren’t.</p></li>
-      <li><p class="note">Good software is software people can maintain.</p></li>
-      <li>
-        <p class="note note--interactive">Sometimes the database is innocent.<span class="note__aside"> …but not always.</span></p>
-      </li>
+      <sc-for list="{{ notes }}" as="note" hint-placeholder-count="4">
+        <li>
+          <p class="{{ note.className }}">{{ note.text }}<span class="note__aside">{{ note.aside }}</span></p>
+        </li>
+      </sc-for>
     </ul>
   </section>
 
@@ -239,10 +243,10 @@
   <section class="section section--contact" id="contact" aria-labelledby="contact-title">
     <div class="split split--contact reveal">
       <div>
-        <p class="eyebrow">CONTACT / 06</p>
-        <h2 class="section-title contact-title" id="contact-title">Got a problem worth solving?</h2>
-        <p class="prose prose--lead contact-lead">Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.</p>
-        <a class="btn btn--accent contact-cta" href="{{ primaryContact }}">Let’s talk →</a>
+        <p class="eyebrow">{{ copy.contactEyebrow }}</p>
+        <h2 class="section-title contact-title" id="contact-title">{{ copy.contactTitle }}</h2>
+        <p class="prose prose--lead contact-lead">{{ copy.contactLead }}</p>
+        <a class="btn btn--accent contact-cta" href="{{ primaryContact }}">{{ copy.talk }}</a>
         <ul class="contact-list">
           <sc-for list="{{ contactLinks }}" as="link" hint-placeholder-count="3">
             <li>
@@ -258,17 +262,17 @@
       <!-- Local acknowledgement only until submit posts to a real endpoint -->
       <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
         <form class="form" onSubmit="{{ submit }}">
-          <h3 class="sr-only">Send a message</h3>
+          <h3 class="sr-only">{{ copy.formHeading }}</h3>
           <label class="field">
-            <span class="eyebrow eyebrow--faint">NAME</span>
+            <span class="eyebrow eyebrow--faint">{{ copy.formName }}</span>
             <input type="text" name="name" autocomplete="name" required="required" maxlength="120" />
           </label>
           <label class="field">
-            <span class="eyebrow eyebrow--faint">EMAIL</span>
+            <span class="eyebrow eyebrow--faint">{{ copy.formEmail }}</span>
             <input type="email" name="email" autocomplete="email" inputmode="email" required="required" maxlength="254" />
           </label>
           <label class="field">
-            <span class="eyebrow eyebrow--faint">MESSAGE</span>
+            <span class="eyebrow eyebrow--faint">{{ copy.formMessage }}</span>
             <textarea name="message" rows="4" required="required" maxlength="4000" enterkeyhint="send"></textarea>
           </label>
           <button class="btn btn--outline" type="submit" disabled="{{ sent }}">{{ sendLabel }}</button>
@@ -284,9 +288,9 @@
   <div class="shell footer__inner">
     <div>
       <p class="footer__name">José</p>
-      <p class="eyebrow eyebrow--faint footer__role">SOFTWARE ENGINEER</p>
+      <p class="eyebrow eyebrow--faint footer__role">{{ copy.footerRole }}</p>
     </div>
-    <nav class="footer__links" aria-label="Footer">
+    <nav class="footer__links" aria-label="{{ copy.footerAria }}">
       <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
         <a href="{{ item.href }}">{{ item.label }}</a>
       </sc-for>

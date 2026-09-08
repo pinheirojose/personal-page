@@ -178,6 +178,30 @@ input, textarea, button { font-family: inherit; }
 .nav-links { display: flex; gap: clamp(18px, 2.6vw, 34px); }
 .nav-links a { font-size: 14px; color: var(--ink); opacity: .72; }
 .nav-links a:hover { opacity: 1; color: var(--accent); }
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.lang__btn {
+  min-height: 28px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.lang__btn.is-active {
+  background: var(--ink);
+  color: var(--bg);
+}
 .nav-toggle {
   display: none;
   width: 40px;
@@ -234,7 +258,7 @@ input, textarea, button { font-family: inherit; }
 }
 .hero__tagline {
   margin: clamp(14px, 2vw, 20px) 0 0;
-  max-width: 15ch;
+  max-width: 22ch;
   font-size: clamp(21px, 2.9vw, 36px);
   line-height: 1.25;
   letter-spacing: -.02em;

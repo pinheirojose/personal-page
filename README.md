@@ -8,7 +8,7 @@ Personal website built to showcase my work, skills, and projects.
 | --- | --- |
 | `index.html` | Page markup. |
 | `style.css` | All styling. Design tokens are custom properties on `:root`. |
-| `page.js` | Content arrays and the `Component` class. Edit this to change copy. |
+| `page.js` | Copy in `pt-PT` (default) and `en`, plus the `Component` class. |
 | `script.js` | Generated `dc-runtime` bundle. Do not edit by hand. |
 
 ## Running it

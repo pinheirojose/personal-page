@@ -3,122 +3,329 @@
 // normal browser script. index.html fetches this file into <script data-dc-script>
 // before loading script.js.
 
-// ---------------------------------------------------------------------------
-// Content — edit these arrays rather than the markup in index.html
-// ---------------------------------------------------------------------------
+const EMAIL = 'jbernardopinheiro@gmail.com';
+const DEFAULT_LANG = 'pt-PT';
+const LANG_KEY = 'jose-lang';
 
-const EMAIL = 'jbernardopinheiro@gmail.com'; // Placeholder — replace before going live
-
-// Primary navigation (header, drawer, and footer reuse this)
-const NAV = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
-];
-
-// Footer + contact list (placeholder URLs)
 const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jose-pinheiro/' },
   { label: 'GitHub', href: 'https://github.com/pinheirojose' },
 ];
 
-// Rows in the contact panel (email, LinkedIn, GitHub)
-const CONTACT_LINKS = [
-  { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
-  { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
-  { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
-];
+const COPY = {
+  'pt-PT': {
+    htmlLang: 'pt-PT',
+    ogLocale: 'pt_PT',
+    docTitle: 'José — Engenheiro de software',
+    docDescription: 'Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.',
+    skip: 'Saltar para o conteúdo',
+    navAria: 'Principal',
+    footerAria: 'Rodapé',
+    langLabel: 'Idioma',
+    menuOpen: 'Abrir menu',
+    menuClose: 'Fechar menu',
+    talk: 'Vamos falar →',
+    formHeading: 'Enviar mensagem',
+    nav: [
+      { label: 'Sobre', href: '#about' },
+      { label: 'Projetos', href: '#projects' },
+      { label: 'Experiência', href: '#experience' },
+      { label: 'Contacto', href: '#contact' },
+    ],
+    heroEyebrow: 'ENGENHEIRO DE SOFTWARE · BASES DE DADOS · DESENVOLVIMENTO · DEVOPS · ENTREGA',
+    heroTitle: 'Olá, sou o José.',
+    taglineBefore: 'Construo coisas, corrijo coisas e, de vez em quando,',
+    taglineMark: 'discuto com bases de dados',
+    taglineAfter: '.',
+    heroLead: 'Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.',
+    seeWork: 'Ver o meu trabalho →',
+    aboutEyebrow: 'SOBRE / 01',
+    aboutTitle: 'Mais do que um cargo.',
+    aboutLede: 'Engenheiro de software de profissão; resolver problemas é o hábito.',
+    aboutBody: 'O meu trabalho fica entre software, bases de dados, infraestrutura e fazer as coisas chegar ao fim. Gosto de transformar problemas complicados em soluções práticas — de preferência que ainda façam sentido daqui a seis meses.',
+    pillars: [
+      { label: 'CONSTRUIR', text: 'Desenvolvimento de software e aplicações.' },
+      { label: 'RESOLVER', text: 'Bases de dados, integrações, diagnóstico e problemas técnicos.' },
+      { label: 'ENTREGAR', text: 'Projetos, entrega Agile, suporte e comunicação com clientes.' },
+      { label: 'LIDERAR', text: 'Liderança técnica, coordenação e ajudar as equipas a avançar.' },
+      { label: 'SUCESSO DO CLIENTE', text: 'Garantir que o que foi entregue funciona para quem o usa.' },
+      { label: 'SERVIR', text: 'Construir soluções para problemas do dia a dia — úteis para alguém, não só tecnicamente interessantes.' },
+    ],
+    projectsEyebrow: 'PROJETOS / 02',
+    projectsTitle: 'Coisas que construí.',
+    projectsLead: 'Alguns projetos, experiências e soluções em que trabalhei — profissionalmente e por conta própria.',
+    projectLabel: 'PROJETO',
+    roleLabel: 'FUNÇÃO',
+    areasLabel: 'ÁREAS',
+    resultLabel: 'RESULTADO',
+    viewProject: 'VER PROJETO',
+    projects: [
+      {
+        number: '01',
+        kind: 'PESSOAL · WEB',
+        title: 'Évora Serviços',
+        href: '#projects',
+        caption: 'CAPTURA / ÉVORA SERVIÇOS',
+        summary: 'Encontrar um profissional de confiança em Évora era perguntar à volta. Construí uma plataforma onde os residentes procuram serviços locais e as empresas aparecem sem precisarem de um site próprio.',
+        role: 'Conceber, construir, gerir',
+        areas: 'Web · Base de dados · Alojamento',
+        result: 'Listagens ativas, a crescer',
+      },
+      {
+        number: '02',
+        kind: 'PROFISSIONAL · BASE DE DADOS',
+        title: 'Uma migração que ninguém queria tentar',
+        href: '#projects',
+        caption: 'DIAGRAMA / PERCURSO DE MIGRAÇÃO',
+        summary: 'Um esquema Oracle com quinze anos sustentava o negócio e ninguém o percebia bem. Mapeei-o, reescrevi a camada de reporting e passei-o para PostgreSQL por fases, com um caminho de rollback em cada passo. Nada foi desligado até estar comprovado duas vezes.',
+        role: 'Responsável técnico',
+        areas: 'Oracle · PostgreSQL · SQL',
+        result: 'Sem perda de dados, relatórios mais rápidos',
+      },
+      {
+        number: '03',
+        kind: 'PROFISSIONAL · DEVOPS',
+        title: 'Entregas que deixaram de ser um acontecimento',
+        href: '#projects',
+        caption: 'DIAGRAMA / PIPELINE DE PUBLICAÇÃO',
+        summary: 'As publicações eram à sexta à noite, à mão, com uma checklist num documento partilhado. Contentorizei a stack e passei-a para GitLab CI/CD, com verificações automáticas e ambientes repetíveis. As entregas passaram a ser uma terça-feira normal.',
+        role: 'Engenheiro e responsável',
+        areas: 'Docker · GitLab CI · Infra',
+        result: 'Minutos, não noites',
+      },
+    ],
+    experienceEyebrow: 'EXPERIÊNCIA / 03',
+    experienceTitle: 'O caminho até aqui.',
+    timeline: [
+      {
+        period: '2021 — PRESENTE',
+        title: 'Líder técnico / Entrega',
+        org: 'Empresa / Projetos de clientes',
+        summary: 'Entrega de ponta a ponta: definir o âmbito com o cliente, orientar a abordagem técnica e manter a equipa desbloqueada. Continuo a escrever código, sobretudo onde mais importa.',
+      },
+      {
+        period: '2018 — PRESENTE',
+        title: 'DevOps e gestão de releases',
+        org: 'Empresa',
+        summary: 'Contentorizei serviços antigos, construí pipelines CI/CD e tornei os ambientes reproduzíveis. Reduzi o número de coisas que só uma pessoa sabia fazer.',
+      },
+      {
+        period: '2018 — PRESENTE',
+        title: 'Gestão de bases de dados',
+        org: 'Empresa',
+        summary: 'Administração Oracle e PostgreSQL, desempenho, integrações e a ocasional investigação às duas da manhã. Aprendi a ler um plano de execução antes de culpar a aplicação.',
+      },
+      {
+        period: '2015 — 2018',
+        title: 'Desenvolvimento de software',
+        org: 'Empresa',
+        summary: 'Aplicações em Java, ferramentas internas e funcionalidades para clientes.',
+      },
+    ],
+    toolboxEyebrow: 'FERRAMENTAS / 04',
+    toolboxTitle: 'Ferramentas do ofício.',
+    toolbox: [
+      { label: 'DESENVOLVIMENTO', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
+      { label: 'BASES DE DADOS', items: ['Oracle', 'PostgreSQL', 'SQL', 'Administração de bases de dados'] },
+      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Publicação'] },
+      { label: 'OUTROS', items: ['WordPress', 'Tecnologias web', 'Plataformas cloud', 'Ferramentas de integração'] },
+    ],
+    notesEyebrow: 'NOTAS / 05',
+    notesTitle: 'Algumas coisas que aprendi.',
+    notes: [
+      { text: 'A maior parte dos problemas é mais simples do que parece à primeira.', aside: '', className: 'note' },
+      { text: 'A maior parte dos «atalhos» não o é.', aside: '', className: 'note' },
+      { text: 'Bom software é software que se consegue manter.', aside: '', className: 'note' },
+      { text: 'Por vezes a base de dados é inocente.', aside: ' …mas nem sempre.', className: 'note note--interactive' },
+    ],
+    contactEyebrow: 'CONTACTO / 06',
+    contactTitle: 'Tem um problema que valha a pena resolver?',
+    contactLead: 'Seja um projeto, uma oportunidade ou um problema técnico particularmente teimoso, estou sempre aberto a uma conversa.',
+    contactLinks: [
+      { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
+      { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
+      { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
+    ],
+    formName: 'NOME',
+    formEmail: 'EMAIL',
+    formMessage: 'MENSAGEM',
+    send: 'Enviar mensagem →',
+    sent: 'Mensagem enviada ✓',
+    sentThanks: 'Obrigado — respondo em breve.',
+    footerRole: 'ENGENHEIRO DE SOFTWARE',
+  },
+  en: {
+    htmlLang: 'en',
+    ogLocale: 'en_GB',
+    docTitle: 'José — Software Engineer',
+    docDescription: 'Software Engineer working across software development, databases, DevOps and project delivery.',
+    skip: 'Skip to content',
+    navAria: 'Primary',
+    footerAria: 'Footer',
+    langLabel: 'Language',
+    menuOpen: 'Open menu',
+    menuClose: 'Close menu',
+    talk: 'Let’s talk →',
+    formHeading: 'Send a message',
+    nav: [
+      { label: 'About', href: '#about' },
+      { label: 'Projects', href: '#projects' },
+      { label: 'Experience', href: '#experience' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    heroEyebrow: 'SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY',
+    heroTitle: 'Hi, I’m José.',
+    taglineBefore: 'I build things, fix things, and occasionally',
+    taglineMark: 'argue with databases',
+    taglineAfter: '.',
+    heroLead: 'Software Engineer working across software development, databases, DevOps and project delivery.',
+    seeWork: 'See my work →',
+    aboutEyebrow: 'ABOUT / 01',
+    aboutTitle: 'More than a job title.',
+    aboutLede: 'Software Engineer by profession, problem solver by habit.',
+    aboutBody: 'My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.',
+    pillars: [
+      { label: 'BUILD', text: 'Software and application development.' },
+      { label: 'SOLVE', text: 'Databases, integrations, troubleshooting and technical problems.' },
+      { label: 'DELIVER', text: 'Projects, Agile delivery, support and client communication.' },
+      { label: 'LEAD', text: 'Technical leadership, coordination and helping teams move forward.' },
+      { label: 'CLIENT SUCCESS', text: 'Making sure what shipped actually works for the people using it.' },
+      { label: 'SERVE', text: 'Building solutions for everyday problems — useful to someone, not just technically interesting.' },
+    ],
+    projectsEyebrow: 'PROJECTS / 02',
+    projectsTitle: 'Things I’ve built.',
+    projectsLead: 'A few projects, experiments and solutions I’ve worked on — professionally and independently.',
+    projectLabel: 'PROJECT',
+    roleLabel: 'ROLE',
+    areasLabel: 'AREAS',
+    resultLabel: 'RESULT',
+    viewProject: 'VIEW PROJECT',
+    projects: [
+      {
+        number: '01',
+        kind: 'PERSONAL · WEB',
+        title: 'Évora Serviços',
+        href: '#projects',
+        caption: 'SCREENSHOT / ÉVORA SERVIÇOS',
+        summary: 'Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.',
+        role: 'Design, build, run',
+        areas: 'Web · Database · Hosting',
+        result: 'Live, growing listings',
+      },
+      {
+        number: '02',
+        kind: 'PROFESSIONAL · DATABASE',
+        title: 'A migration nobody wanted to attempt',
+        href: '#projects',
+        caption: 'DIAGRAM / MIGRATION PATH',
+        summary: 'A fifteen-year-old Oracle schema held the business together and nobody fully understood it. I mapped it, rewrote the reporting layer, and moved it to PostgreSQL in stages, with a rollback path at every step. Nothing was switched off until it was proven twice.',
+        role: 'Technical lead',
+        areas: 'Oracle · PostgreSQL · SQL',
+        result: 'Zero data loss, faster reports',
+      },
+      {
+        number: '03',
+        kind: 'PROFESSIONAL · DEVOPS',
+        title: 'Releases that stopped being events',
+        href: '#projects',
+        caption: 'DIAGRAM / DEPLOY PIPELINE',
+        summary: 'Deployments happened on Friday evenings, by hand, with a checklist in a shared document. I containerised the stack and moved it to GitLab CI/CD with automated checks and repeatable environments. Releases became a normal Tuesday.',
+        role: 'Engineer & owner',
+        areas: 'Docker · GitLab CI · Infra',
+        result: 'Minutes, not evenings',
+      },
+    ],
+    experienceEyebrow: 'EXPERIENCE / 03',
+    experienceTitle: 'The road so far.',
+    timeline: [
+      {
+        period: '2021 — PRESENT',
+        title: 'Technical Lead / Delivery',
+        org: 'Company / Client projects',
+        summary: 'Owning delivery end to end: scoping with clients, guiding the technical approach, and keeping the team unblocked. Still writing code, mostly where it matters most.',
+      },
+      {
+        period: '2018 — PRESENT',
+        title: 'DevOps & Release Management',
+        org: 'Company',
+        summary: 'Containerised legacy services, built CI/CD pipelines, and made environments reproducible. Reduced the number of things that could only be done by one person.',
+      },
+      {
+        period: '2018 — PRESENT',
+        title: 'Database Management',
+        org: 'Company',
+        summary: 'Oracle and PostgreSQL administration, performance work, integrations and the occasional 2 a.m. investigation. Learned to read a query plan before blaming the application.',
+      },
+      {
+        period: '2015 — 2018',
+        title: 'Software Development',
+        org: 'Company',
+        summary: 'Java  applications, internal tools and client features.',
+      },
+    ],
+    toolboxEyebrow: 'TOOLBOX / 04',
+    toolboxTitle: 'Tools of the trade.',
+    toolbox: [
+      { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
+      { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
+      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment'] },
+      { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
+    ],
+    notesEyebrow: 'NOTES / 05',
+    notesTitle: 'A few things I’ve learned.',
+    notes: [
+      { text: 'Most problems are simpler than they first appear.', aside: '', className: 'note' },
+      { text: 'Most “quick fixes” aren’t.', aside: '', className: 'note' },
+      { text: 'Good software is software people can maintain.', aside: '', className: 'note' },
+      { text: 'Sometimes the database is innocent.', aside: ' …but not always.', className: 'note note--interactive' },
+    ],
+    contactEyebrow: 'CONTACT / 06',
+    contactTitle: 'Got a problem worth solving?',
+    contactLead: 'Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.',
+    contactLinks: [
+      { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
+      { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
+      { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
+    ],
+    formName: 'NAME',
+    formEmail: 'EMAIL',
+    formMessage: 'MESSAGE',
+    send: 'Send message →',
+    sent: 'Message sent ✓',
+    sentThanks: 'Thanks — I’ll get back to you.',
+    footerRole: 'SOFTWARE ENGINEER',
+  },
+};
 
-// About section cards
-const PILLARS = [
-  { label: 'BUILD', text: 'Software and application development.' },
-  { label: 'SOLVE', text: 'Databases, integrations, troubleshooting and technical problems.' },
-  { label: 'DELIVER', text: 'Projects, Agile delivery, support and client communication.' },
-  { label: 'LEAD', text: 'Technical leadership, coordination and helping teams move forward.' },
-  { label: 'CLIENT SUCCESS', text: 'Making sure what shipped actually works for the people using it.' },
-  { label: 'SERVE', text: 'Building solutions for everyday problems — useful to someone, not just technically interesting.' },
-];
+function readLang() {
+  try {
+    const stored = localStorage.getItem(LANG_KEY);
+    if (stored === 'en' || stored === 'pt-PT') return stored;
+  } catch (_) { /* ignore */ }
+  return DEFAULT_LANG;
+}
 
-// href is still a placeholder (#projects) until each project has a real URL
-const PROJECTS = [
-  {
-    number: '01',
-    kind: 'PERSONAL · WEB',
-    title: 'Évora Serviços',
-    href: '#projects',
-    caption: 'SCREENSHOT / ÉVORA SERVIÇOS',
-    summary: 'Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.',
-    role: 'Design, build, run',
-    areas: 'Web · Database · Hosting',
-    result: 'Live, growing listings',
-  },
-  {
-    number: '02',
-    kind: 'PROFESSIONAL · DATABASE',
-    title: 'A migration nobody wanted to attempt',
-    href: '#projects',
-    caption: 'DIAGRAM / MIGRATION PATH',
-    summary: 'A fifteen-year-old Oracle schema held the business together and nobody fully understood it. I mapped it, rewrote the reporting layer, and moved it to PostgreSQL in stages, with a rollback path at every step. Nothing was switched off until it was proven twice.',
-    role: 'Technical lead',
-    areas: 'Oracle · PostgreSQL · SQL',
-    result: 'Zero data loss, faster reports',
-  },
-  {
-    number: '03',
-    kind: 'PROFESSIONAL · DEVOPS',
-    title: 'Releases that stopped being events',
-    href: '#projects',
-    caption: 'DIAGRAM / DEPLOY PIPELINE',
-    summary: 'Deployments happened on Friday evenings, by hand, with a checklist in a shared document. I containerised the stack and moved it to GitLab CI/CD with automated checks and repeatable environments. Releases became a normal Tuesday.',
-    role: 'Engineer & owner',
-    areas: 'Docker · GitLab CI · Infra',
-    result: 'Minutes, not evenings',
-  },
-];
+function writeLang(lang) {
+  try { localStorage.setItem(LANG_KEY, lang); } catch (_) { /* ignore */ }
+}
 
-// Employer names are still placeholders ("Company")
-const TIMELINE = [
-  {
-    period: '2021 — PRESENT',
-    title: 'Technical Lead / Delivery',
-    org: 'Company / Client projects',
-    summary: 'Owning delivery end to end: scoping with clients, guiding the technical approach, and keeping the team unblocked. Still writing code, mostly where it matters most.',
-  },
-  {
-    period: '2018 — PRESENT',
-    title: 'DevOps & Release Management',
-    org: 'Company',
-    summary: 'Containerised legacy services, built CI/CD pipelines, and made environments reproducible. Reduced the number of things that could only be done by one person.',
-  },
-  {
-    period: '2018 — PRESENT',
-    title: 'Database Management',
-    org: 'Company',
-    summary: 'Oracle and PostgreSQL administration, performance work, integrations and the occasional 2 a.m. investigation. Learned to read a query plan before blaming the application.',
-  },
-  {
-    period: '2015 — 2018',
-    title: 'Software Development',
-    org: 'Company',
-    summary: 'Java  applications, internal tools and client features.',
-  },
-];
-
-// Skills grouped by category
-const TOOLBOX = [
-  { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
-  { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
-  { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment'] },
-  { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
-];
+function syncDocument(copy) {
+  document.documentElement.lang = copy.htmlLang;
+  document.title = copy.docTitle;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', copy.docDescription);
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', copy.docTitle);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', copy.docDescription);
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  if (ogLocale) ogLocale.setAttribute('content', copy.ogLocale);
+}
 
 class Component extends DCLogic {
-  // menuOpen: mobile drawer. sent: contact form has been acknowledged.
-  state = { menuOpen: false, sent: false };
+  state = { menuOpen: false, sent: false, lang: readLang() };
 
   componentDidMount() {
-    // Close the drawer when the viewport crosses back to desktop width
     this.wide = window.matchMedia('(min-width: 720px)');
     this.onWide = (e) => { if (e.matches) this.setState({ menuOpen: false }); };
     this.wide.addEventListener('change', this.onWide);
@@ -126,7 +333,6 @@ class Component extends DCLogic {
     window.addEventListener('keydown', this.onKey);
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // Scroll-in animation: CSS starts hidden only after this class is set
     if (!reduced && 'IntersectionObserver' in window) {
       document.documentElement.classList.add('reveal-on');
       this.reveals = new IntersectionObserver((entries) => {
@@ -141,6 +347,13 @@ class Component extends DCLogic {
   }
 
   componentDidUpdate() {
+    if (this._lang && this._lang !== this.state.lang) {
+      for (const node of document.querySelectorAll('.reveal')) {
+        node.classList.add('is-in');
+        node.setAttribute('data-observed', '');
+      }
+    }
+    this._lang = this.state.lang;
     this.observeReveals();
   }
 
@@ -151,7 +364,6 @@ class Component extends DCLogic {
     document.documentElement.classList.remove('reveal-on');
   }
 
-  /** `sc-if` branches mount after the first pass, so this reruns on every update. */
   observeReveals() {
     if (!this.reveals) return;
     for (const node of document.querySelectorAll('.reveal:not([data-observed])')) {
@@ -160,36 +372,48 @@ class Component extends DCLogic {
     }
   }
 
-  // Flat object the template binds to via {{ name }}
+  setLang(lang) {
+    writeLang(lang);
+    this.setState({ lang, menuOpen: false, sent: false });
+  }
+
   renderVals() {
+    const copy = COPY[this.state.lang] || COPY[DEFAULT_LANG];
+    syncDocument(copy);
+    const isPt = this.state.lang === 'pt-PT';
+
     return {
-      // Template lists
-      nav: NAV,
+      copy,
+      nav: copy.nav,
       social: SOCIAL,
-      contactLinks: CONTACT_LINKS,
+      contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
-      pillars: PILLARS,
-      projects: PROJECTS,
-      timeline: TIMELINE,
-      toolbox: TOOLBOX,
+      pillars: copy.pillars,
+      projects: copy.projects,
+      timeline: copy.timeline,
+      toolbox: copy.toolbox,
+      notes: copy.notes,
       year: new Date().getFullYear(),
 
-      // Optional blocks (can be toggled from the Design Component editor)
       heroVisual: this.props.heroVisual ?? true,
       showForm: this.props.showContactForm ?? true,
 
-      // Mobile menu
       menuOpen: this.state.menuOpen,
-      menuLabel: this.state.menuOpen ? 'Close menu' : 'Open menu',
+      menuLabel: this.state.menuOpen ? copy.menuClose : copy.menuOpen,
       drawerClass: this.state.menuOpen ? 'is-open' : '',
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
 
-      // Contact form
+      ptClass: isPt ? 'is-active' : '',
+      enClass: isPt ? '' : 'is-active',
+      isPt,
+      isEn: !isPt,
+      setPt: () => this.setLang('pt-PT'),
+      setEn: () => this.setLang('en'),
+
       sent: this.state.sent,
-      sendLabel: this.state.sent ? 'Message sent ✓' : 'Send message →',
-      sentMessage: this.state.sent ? 'Thanks — I’ll get back to you.' : '',
-      // Acknowledges locally only; nothing is delivered until this posts to a form endpoint.
+      sendLabel: this.state.sent ? copy.sent : copy.send,
+      sentMessage: this.state.sent ? copy.sentThanks : '',
       submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
     };
   }
