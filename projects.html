@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F5F3EE">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Projetos — José</title>
+  <meta name="description" content="Uma vista de conjunto do trabalho — pessoal e profissional.">
+  <meta property="og:title" content="Projetos — José">
+  <meta property="og:description" content="Uma vista de conjunto do trabalho — pessoal e profissional.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:locale:alternate" content="en_GB">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<noscript>
+  <p class="noscript">Este sítio precisa de JavaScript. Pode escrever para <a href="mailto:jbernardopinheiro@gmail.com">jbernardopinheiro@gmail.com</a>.</p>
+</noscript>
+<x-dc>
+<a class="skip-link" href="#main">{{ copy.skip }}</a>
+
+<header class="header">
+  <div class="shell header__bar">
+    <a class="header__mark" href="{{ homeHref }}">José Pinheiro</a>
+    <nav class="header__nav" aria-label="{{ copy.navAria }}">
+      <div class="nav-links">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+          <a href="{{ item.href }}">{{ item.label }}</a>
+        </sc-for>
+      </div>
+      <div class="lang" role="group" aria-label="{{ copy.langLabel }}">
+        <button type="button" class="lang__btn {{ ptClass }}" onClick="{{ setPt }}" aria-pressed="{{ isPt }}">PT</button>
+        <button type="button" class="lang__btn {{ enClass }}" onClick="{{ setEn }}" aria-pressed="{{ isEn }}">EN</button>
+      </div>
+      <a class="btn btn--pill header__cta" href="{{ talkHref }}">{{ copy.talk }}</a>
+      <button class="nav-toggle" type="button" onClick="{{ toggleMenu }}"
+              aria-label="{{ menuLabel }}" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" d="M3 5h12M3 9h12M3 13h12"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+  <div class="drawer {{ drawerClass }}" id="mobile-menu">
+    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+      <a href="{{ item.href }}" onClick="{{ closeMenu }}">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</header>
+
+<main class="shell" id="main">
+  <section class="section gallery-page" aria-labelledby="gallery-title">
+    <a class="gallery-back" href="{{ homeHref }}">{{ copy.backHome }}</a>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">{{ copy.galleryEyebrow }}</p>
+        <h1 class="section-title" id="gallery-title">{{ copy.galleryTitle }}</h1>
+      </div>
+      <p class="prose section-head__aside">{{ copy.galleryLead }}</p>
+    </div>
+
+    <div class="gallery">
+      <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
+        <article class="gallery-card reveal">
+          <div class="project__frame">
+            <div class="project__media">
+              <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" />
+            </div>
+          </div>
+          <p class="eyebrow project__meta">
+            <span>{{ copy.projectLabel }} / {{ project.number }}</span>
+            <span class="eyebrow--accent">{{ project.kind }}</span>
+          </p>
+          <h2 class="gallery-card__title">{{ project.title }}</h2>
+          <p class="prose">{{ project.summary }}</p>
+          <sc-if value="{{ project.url }}" hint-placeholder-val="{{ false }}">
+            <a class="project__cta" href="{{ project.url }}" target="{{ project.target }}" rel="{{ project.rel }}">
+              {{ copy.viewProject }} <span class="project__arrow">→</span>
+            </a>
+          </sc-if>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <p class="footer__name">José</p>
+      <p class="eyebrow eyebrow--faint footer__role">{{ copy.footerRole }}</p>
+    </div>
+    <nav class="footer__links" aria-label="{{ copy.footerAria }}">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+        <a href="{{ item.href }}">{{ item.label }}</a>
+      </sc-for>
+      <sc-for list="{{ social }}" as="item" hint-placeholder-count="2">
+        <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+    <p class="footer__copy">© {{ year }} JOSÉ</p>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}"></script>
+<script type="module">
+  try {
+    const res = await fetch('./page.js', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load page.js: ' + res.status);
+    document.querySelector('script[data-dc-script]').textContent = await res.text();
+    const runtime = document.createElement('script');
+    runtime.src = './script.js';
+    document.head.appendChild(runtime);
+  } catch (err) {
+    console.error(err);
+  }
+</script>
+</body>
+</html>

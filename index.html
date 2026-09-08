@@ -43,7 +43,7 @@
 <!-- Sticky site header: desktop links, compact CTA, mobile drawer -->
 <header class="header">
   <div class="shell header__bar">
-    <a class="header__mark" href="#top">José Pinheiro</a>
+    <a class="header__mark" href="{{ homeHref }}">José Pinheiro</a>
     <nav class="header__nav" aria-label="{{ copy.navAria }}">
       <div class="nav-links">
         <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
@@ -54,7 +54,7 @@
         <button type="button" class="lang__btn {{ ptClass }}" onClick="{{ setPt }}" aria-pressed="{{ isPt }}">PT</button>
         <button type="button" class="lang__btn {{ enClass }}" onClick="{{ setEn }}" aria-pressed="{{ isEn }}">EN</button>
       </div>
-      <a class="btn btn--pill header__cta" href="#contact">{{ copy.talk }}</a>
+      <a class="btn btn--pill header__cta" href="{{ talkHref }}">{{ copy.talk }}</a>
       <!-- Shown below 720px; CSS hides .nav-links at that breakpoint -->
       <button class="nav-toggle" type="button" onClick="{{ toggleMenu }}"
               aria-label="{{ menuLabel }}" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">
@@ -180,6 +180,10 @@
         </article>
       </sc-for>
     </div>
+
+    <p class="projects__more reveal">
+      <a class="btn btn--outline" href="{{ galleryHref }}">{{ copy.allProjects }}</a>
+    </p>
   </section>
 
   <!-- 03 — Experience (TIMELINE) -->

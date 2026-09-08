@@ -12,6 +12,15 @@ const SOCIAL = [
   { label: 'GitHub', href: 'https://github.com/pinheirojose' },
 ];
 
+function onGalleryPage() {
+  return /(?:^|\/)projects\.html$/i.test(location.pathname);
+}
+
+function withHomeBase(href) {
+  if (!onGalleryPage() || !String(href).startsWith('#')) return href;
+  return './index.html' + href;
+}
+
 function withProjectUrl(project) {
   const href = String(project.url || '').trim();
   const external = /^https?:/i.test(href);
@@ -70,12 +79,18 @@ const COPY = {
     areasLabel: 'ÁREAS',
     resultLabel: 'RESULTADO',
     viewProject: 'VER PROJETO',
+    allProjects: 'Ver todos os projetos',
+    galleryEyebrow: 'PROJETOS',
+    galleryTitle: 'Todos os projetos.',
+    galleryLead: 'Uma vista de conjunto do trabalho — pessoal e profissional.',
+    galleryDocTitle: 'Projetos — José',
+    backHome: '← Início',
     projects: [
       {
         number: '01',
         kind: 'PESSOAL · WEB',
         title: 'Évora Serviços',
-        image: './images/evora-servicos.png',
+        image: './images/evora-services.png',
         caption: 'CAPTURA / ÉVORA SERVIÇOS',
         summary: 'Encontrar um profissional de confiança em Évora era perguntar à volta. Construí uma plataforma onde os residentes procuram serviços locais e as empresas aparecem sem precisarem de um site próprio.',
         role: 'Conceber, construir, gerir',
@@ -216,12 +231,18 @@ const COPY = {
     areasLabel: 'AREAS',
     resultLabel: 'RESULT',
     viewProject: 'VIEW PROJECT',
+    allProjects: 'See all projects',
+    galleryEyebrow: 'PROJECTS',
+    galleryTitle: 'All projects.',
+    galleryLead: 'A wider look at the work — personal and professional.',
+    galleryDocTitle: 'Projects — José',
+    backHome: '← Home',
     projects: [
       {
         number: '01',
         kind: 'PERSONAL · WEB',
         title: 'Évora Serviços',
-        image: './images/evora-servicos.png',
+        image: './images/evora-services.png',
         caption: 'SCREENSHOT / ÉVORA SERVIÇOS',
         summary: 'Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.',
         role: 'Design, build, run',
@@ -442,12 +463,18 @@ class Component extends DCLogic {
 
   renderVals() {
     const copy = COPY[this.state.lang] || COPY[DEFAULT_LANG];
-    syncDocument(copy);
+    const gallery = onGalleryPage();
+    syncDocument(gallery
+      ? { ...copy, docTitle: copy.galleryDocTitle, docDescription: copy.galleryLead }
+      : copy);
     const isPt = this.state.lang === 'pt-PT';
 
     return {
       copy,
-      nav: copy.nav,
+      nav: copy.nav.map((item) => ({ ...item, href: withHomeBase(item.href) })),
+      homeHref: gallery ? './index.html' : '#top',
+      talkHref: withHomeBase('#contact'),
+      galleryHref: './projects.html',
       social: SOCIAL,
       contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
