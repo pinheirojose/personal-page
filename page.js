@@ -283,9 +283,9 @@ const COPY = {
     toolboxEyebrow: 'TOOLBOX / 04',
     toolboxTitle: 'Tools of the trade.',
     toolbox: [
-      { label: 'DEVELOPMENT', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
+      { label: 'DEVELOPMENT', items: ['Java', 'Bash', 'React', 'Python', 'APIs', 'JavaScript'] },
       { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
-      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment'] },
+      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment', 'Jenkins'] },
       { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
     ],
     notesEyebrow: 'NOTES / 05',
