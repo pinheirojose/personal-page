@@ -5,26 +5,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F5F3EE">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>José — Software Engineer</title>
   <meta name="description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
   <meta property="og:title" content="José — Software Engineer">
   <meta property="og:description" content="Software Engineer working across software development, databases, DevOps and project delivery.">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en">
 
   <!-- Fonts load first so text does not flash a fallback face -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<noscript>
+  <p class="noscript">This site needs JavaScript to render. You can still write to <a href="mailto:jbernardopinheiro@gmail.com">jbernardopinheiro@gmail.com</a>.</p>
+</noscript>
 <!-- Everything inside <x-dc> is the page template. Bindings come from page.js. -->
 <x-dc>
 <!-- Keyboard users jump past the sticky header -->
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Shared SVG pattern used by the hero diagram (hidden; referenced via url(#dots)) -->
-<svg class="svg-defs" aria-hidden="true" focusable="false">
+<svg class="svg-defs" aria-hidden="true">
   <defs>
     <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
       <circle cx="1.2" cy="1.2" r="1.2" fill="#171717" opacity="0.10"></circle>
@@ -45,17 +52,19 @@
       <a class="btn btn--pill header__cta" href="#contact">Let’s talk →</a>
       <!-- Shown below 720px; CSS hides .nav-links at that breakpoint -->
       <button class="nav-toggle" type="button" onClick="{{ toggleMenu }}"
-              aria-label="Menu" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">≡</button>
+              aria-label="{{ menuLabel }}" aria-expanded="{{ menuOpen }}" aria-controls="mobile-menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" d="M3 5h12M3 9h12M3 13h12"></path>
+        </svg>
+      </button>
     </nav>
   </div>
-  <!-- Drawer only exists in the DOM while the menu is open on a narrow viewport -->
-  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-    <div class="drawer" id="mobile-menu">
-      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
-        <a href="{{ item.href }}" onClick="{{ closeMenu }}">{{ item.label }}</a>
-      </sc-for>
-    </div>
-  </sc-if>
+  <!-- Stays in the DOM so aria-controls stays valid; .is-open shows it on small screens -->
+  <div class="drawer {{ drawerClass }}" id="mobile-menu">
+    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+      <a href="{{ item.href }}" onClick="{{ closeMenu }}">{{ item.label }}</a>
+    </sc-for>
+  </div>
 </header>
 
 <main class="shell" id="main">
@@ -65,8 +74,8 @@
     <div class="reveal">
       <p class="eyebrow">SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY</p>
       <h1 class="hero__title" id="hero-title">Hi, I’m José.</h1>
-      <p class="hero__tagline">I build things, fix things, and occasionally <span style="color:var(--accent);">argue with databases</span>.</p>
-      <p class="prose prose--lead" style="margin-top:clamp(20px,3vw,28px);">Software Engineer working across software development, databases, DevOps and project delivery.</p>
+      <p class="hero__tagline">I build things, fix things, and occasionally <em class="mark">argue with databases</em>.</p>
+      <p class="prose prose--lead hero__lead">Software Engineer working across software development, databases, DevOps and project delivery.</p>
       <div class="hero__actions">
         <a class="btn btn--ink" href="#projects">See my work →</a>
         <a class="btn btn--outline" href="#contact">Let’s talk →</a>
@@ -76,7 +85,7 @@
     <!-- Decorative map of how the work fits together; can be toggled off via heroVisual -->
     <sc-if value="{{ heroVisual }}" hint-placeholder-val="{{ true }}">
       <div class="hero__visual" aria-hidden="true">
-        <svg viewBox="0 0 380 480">
+        <svg viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg">
           <rect x="18" y="18" width="344" height="444" fill="url(#dots)"></rect>
           <path d="M78 74 C 78 140, 208 128, 208 186" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
           <path d="M208 186 C 208 250, 92 244, 92 306" fill="none" stroke="#171717" stroke-width="1" opacity="0.35"></path>
@@ -111,31 +120,30 @@
         <p class="eyebrow">ABOUT / 01</p>
         <h2 class="section-title" id="about-title">More than a job title.</h2>
       </div>
-      <div style="max-width:52ch;">
-        <p style="margin:0; font-size:clamp(18px,2.1vw,23px); line-height:1.45; letter-spacing:-0.015em;">Software Engineer by profession, problem solver by habit.</p>
-        <p class="prose" style="margin-top:18px; font-size:16.5px;">My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.</p>
+      <div class="about-copy">
+        <p class="lede">Software Engineer by profession, problem solver by habit.</p>
+        <p class="prose about-copy__body">My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.</p>
       </div>
     </div>
 
-    <!-- Four practice areas — data lives in PILLARS -->
-    <div class="rule-grid reveal" style="margin-top:clamp(40px,6vw,80px);">
+    <ul class="rule-grid rule-grid--pillars reveal">
       <sc-for list="{{ pillars }}" as="pillar" hint-placeholder-count="6">
-        <div class="pillar">
+        <li class="pillar">
           <p class="eyebrow eyebrow--accent">{{ pillar.label }}</p>
           <p>{{ pillar.text }}</p>
-        </div>
+        </li>
       </sc-for>
-    </div>
+    </ul>
   </section>
 
   <!-- 02 — Projects (one article per entry in PROJECTS) -->
   <section class="section" id="projects" aria-labelledby="projects-title">
-    <div class="reveal" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px;">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">PROJECTS / 02</p>
         <h2 class="section-title" id="projects-title">Things I’ve built.</h2>
       </div>
-      <p class="prose" style="max-width:44ch;">A few projects, experiments and solutions I’ve worked on — professionally and independently.</p>
+      <p class="prose section-head__aside">A few projects, experiments and solutions I’ve worked on — professionally and independently.</p>
     </div>
 
     <div class="projects">
@@ -178,7 +186,7 @@
         <li class="timeline__item reveal">
           <div class="timeline__row">
             <div>
-              <p class="eyebrow">{{ role.period }}</p>
+              <p class="eyebrow"><time>{{ role.period }}</time></p>
               <h3 class="timeline__role">{{ role.title }}</h3>
               <p class="timeline__org">{{ role.org }}</p>
             </div>
@@ -190,7 +198,7 @@
   </section>
 
   <!-- 04 — Skills grouped by area (TOOLBOX) -->
-  <section class="section" aria-labelledby="toolbox-title">
+  <section class="section" id="toolbox" aria-labelledby="toolbox-title">
     <div class="split reveal">
       <div>
         <p class="eyebrow">TOOLBOX / 04</p>
@@ -199,7 +207,7 @@
       <div class="toolbox">
         <sc-for list="{{ toolbox }}" as="group" hint-placeholder-count="4">
           <div>
-            <p class="eyebrow eyebrow--accent">{{ group.label }}</p>
+            <h3 class="eyebrow eyebrow--accent">{{ group.label }}</h3>
             <ul>
               <sc-for list="{{ group.items }}" as="tool" hint-placeholder-count="4">
                 <li>{{ tool }}</li>
@@ -212,35 +220,39 @@
   </section>
 
   <!-- 05 — Short notes; the last one reveals extra copy on hover/focus -->
-  <section class="section" aria-labelledby="notes-title">
+  <section class="section" id="notes" aria-labelledby="notes-title">
     <div class="reveal">
       <p class="eyebrow">NOTES / 05</p>
       <h2 class="section-title" id="notes-title">A few things I’ve learned.</h2>
     </div>
-    <div class="rule-grid reveal" style="--rule-grid-min:260px; margin-top:clamp(32px,4vw,56px);">
-      <p class="note">Most problems are simpler than they first appear.</p>
-      <p class="note">Most “quick fixes” aren’t.</p>
-      <p class="note">Good software is software people can maintain.</p>
-      <p class="note note--interactive" tabindex="0">Sometimes the database is innocent.<span class="note__aside"> …but not always.</span></p>
-    </div>
+    <ul class="rule-grid rule-grid--notes reveal">
+      <li><p class="note">Most problems are simpler than they first appear.</p></li>
+      <li><p class="note">Most “quick fixes” aren’t.</p></li>
+      <li><p class="note">Good software is software people can maintain.</p></li>
+      <li>
+        <p class="note note--interactive">Sometimes the database is innocent.<span class="note__aside"> …but not always.</span></p>
+      </li>
+    </ul>
   </section>
 
   <!-- 06 — Contact: links + optional form -->
-  <section class="section" id="contact" aria-labelledby="contact-title" style="padding-bottom:clamp(48px,6vw,80px);">
-    <div class="split reveal" style="gap:clamp(32px,5vw,80px);">
+  <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+    <div class="split split--contact reveal">
       <div>
         <p class="eyebrow">CONTACT / 06</p>
-        <h2 class="section-title" id="contact-title" style="max-width:14ch; font-size:clamp(32px,5vw,62px); line-height:1.03; letter-spacing:-0.032em;">Got a problem worth solving?</h2>
-        <p class="prose prose--lead" style="margin-top:22px;">Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.</p>
-        <a class="btn btn--accent" href="{{ primaryContact }}" style="margin-top:28px;">Let’s talk →</a>
-        <div class="contact-list">
+        <h2 class="section-title contact-title" id="contact-title">Got a problem worth solving?</h2>
+        <p class="prose prose--lead contact-lead">Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.</p>
+        <a class="btn btn--accent contact-cta" href="{{ primaryContact }}">Let’s talk →</a>
+        <ul class="contact-list">
           <sc-for list="{{ contactLinks }}" as="link" hint-placeholder-count="3">
-            <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}">
-              <span>{{ link.text }}</span>
-              <span class="eyebrow eyebrow--faint">{{ link.label }}</span>
-            </a>
+            <li>
+              <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}">
+                <span>{{ link.text }}</span>
+                <span class="eyebrow eyebrow--faint">{{ link.label }}</span>
+              </a>
+            </li>
           </sc-for>
-        </div>
+        </ul>
       </div>
 
       <!-- Local acknowledgement only until submit posts to a real endpoint -->
@@ -249,15 +261,15 @@
           <h3 class="sr-only">Send a message</h3>
           <label class="field">
             <span class="eyebrow eyebrow--faint">NAME</span>
-            <input type="text" name="name" autocomplete="name" required="required" />
+            <input type="text" name="name" autocomplete="name" required="required" maxlength="120" />
           </label>
           <label class="field">
             <span class="eyebrow eyebrow--faint">EMAIL</span>
-            <input type="email" name="email" autocomplete="email" required="required" />
+            <input type="email" name="email" autocomplete="email" inputmode="email" required="required" maxlength="254" />
           </label>
           <label class="field">
             <span class="eyebrow eyebrow--faint">MESSAGE</span>
-            <textarea name="message" rows="4" required="required"></textarea>
+            <textarea name="message" rows="4" required="required" maxlength="4000" enterkeyhint="send"></textarea>
           </label>
           <button class="btn btn--outline" type="submit" disabled="{{ sent }}">{{ sendLabel }}</button>
           <p class="form__status" aria-live="polite">{{ sentMessage }}</p>
@@ -271,8 +283,8 @@
 <footer class="footer">
   <div class="shell footer__inner">
     <div>
-      <p style="margin:0; font-size:17px; font-weight:500;">José</p>
-      <p class="eyebrow eyebrow--faint" style="margin-top:8px;">SOFTWARE ENGINEER</p>
+      <p class="footer__name">José</p>
+      <p class="eyebrow eyebrow--faint footer__role">SOFTWARE ENGINEER</p>
     </div>
     <nav class="footer__links" aria-label="Footer">
       <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
@@ -288,16 +300,17 @@
 </x-dc>
 <!-- Runtime reads this tag's text, not src. page.js is fetched into it, then script.js boots. -->
 <script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showContactForm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}"></script>
-<script>
-  fetch('./page.js')
-    .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
-    .then(function (src) {
-      document.querySelector('script[data-dc-script]').textContent = src;
-      var runtime = document.createElement('script');
-      runtime.src = './script.js';
-      document.head.appendChild(runtime);
-    })
-    .catch(function (err) { console.error('Failed to load page.js', err); });
+<script type="module">
+  try {
+    const res = await fetch('./page.js');
+    if (!res.ok) throw new Error('Failed to load page.js: ' + res.status);
+    document.querySelector('script[data-dc-script]').textContent = await res.text();
+    const runtime = document.createElement('script');
+    runtime.src = './script.js';
+    document.head.appendChild(runtime);
+  } catch (err) {
+    console.error(err);
+  }
 </script>
 </body>
 </html>

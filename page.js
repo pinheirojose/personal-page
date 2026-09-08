@@ -25,7 +25,7 @@ const SOCIAL = [
 
 // Rows in the contact panel (email, LinkedIn, GitHub)
 const CONTACT_LINKS = [
-  { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL },
+  { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
   { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
   { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
 ];
@@ -122,6 +122,8 @@ class Component extends DCLogic {
     this.wide = window.matchMedia('(min-width: 720px)');
     this.onWide = (e) => { if (e.matches) this.setState({ menuOpen: false }); };
     this.wide.addEventListener('change', this.onWide);
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ menuOpen: false }); };
+    window.addEventListener('keydown', this.onKey);
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     // Scroll-in animation: CSS starts hidden only after this class is set
@@ -144,6 +146,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     this.wide.removeEventListener('change', this.onWide);
+    window.removeEventListener('keydown', this.onKey);
     this.reveals?.disconnect();
     document.documentElement.classList.remove('reveal-on');
   }
@@ -177,6 +180,8 @@ class Component extends DCLogic {
 
       // Mobile menu
       menuOpen: this.state.menuOpen,
+      menuLabel: this.state.menuOpen ? 'Close menu' : 'Open menu',
+      drawerClass: this.state.menuOpen ? 'is-open' : '',
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
 
