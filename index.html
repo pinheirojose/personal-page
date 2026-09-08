@@ -154,10 +154,9 @@
     <div class="projects">
       <sc-for list="{{ projects }}" as="project" hint-placeholder-count="3">
         <article class="project reveal">
-          <!-- Striped placeholder until a real screenshot is added -->
           <div class="project__frame">
             <div class="project__media">
-              <span class="project__caption" aria-hidden="true">{{ project.caption }}</span>
+              <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" />
             </div>
           </div>
           <div>
@@ -165,14 +164,18 @@
               <span>{{ copy.projectLabel }} / {{ project.number }}</span>
               <span class="eyebrow--accent">{{ project.kind }}</span>
             </p>
-            <h3 class="project__title"><a href="{{ project.href }}">{{ project.title }}</a></h3>
+            <h3 class="project__title">{{ project.title }}</h3>
             <p class="prose project__summary">{{ project.summary }}</p>
             <dl class="project__facts">
               <div><dt>{{ copy.roleLabel }}</dt><dd>{{ project.role }}</dd></div>
               <div><dt>{{ copy.areasLabel }}</dt><dd>{{ project.areas }}</dd></div>
               <div><dt>{{ copy.resultLabel }}</dt><dd>{{ project.result }}</dd></div>
             </dl>
-            <p class="project__cta" aria-hidden="true">{{ copy.viewProject }} <span class="project__arrow">→</span></p>
+            <sc-if value="{{ project.url }}" hint-placeholder-val="{{ false }}">
+              <a class="project__cta" href="{{ project.url }}" target="{{ project.target }}" rel="{{ project.rel }}">
+                {{ copy.viewProject }} <span class="project__arrow">→</span>
+              </a>
+            </sc-if>
           </div>
         </article>
       </sc-for>
@@ -306,7 +309,7 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showContactForm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}"></script>
 <script type="module">
   try {
-    const res = await fetch('./page.js');
+    const res = await fetch('./page.js', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load page.js: ' + res.status);
     document.querySelector('script[data-dc-script]').textContent = await res.text();
     const runtime = document.createElement('script');

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img">
+  <rect width="640" height="400" fill="#EDEAE3"/>
+  <defs>
+    <pattern id="s" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#171717" stroke-width="1" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="400" fill="url(#s)"/>
+  <rect x="120" y="160" width="88" height="56" fill="none" stroke="#171717" stroke-width="1.5"/>
+  <rect x="276" y="160" width="88" height="56" fill="none" stroke="#C65D3A" stroke-width="1.5"/>
+  <rect x="432" y="160" width="88" height="56" fill="none" stroke="#171717" stroke-width="1.5"/>
+  <path d="M208 188 H276 M364 188 H432" fill="none" stroke="#171717" stroke-width="1" opacity="0.5"/>
+  <text x="320" y="280" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#171717" opacity="0.55">GITLAB CI / CD</text>
+</svg>
