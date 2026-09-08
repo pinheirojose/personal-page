@@ -448,7 +448,14 @@ a.project__cta:focus-visible {
 }
 .contact-list a:hover { color: var(--accent); }
 
-.form { display: flex; flex-direction: column; gap: 20px; align-self: start; }
+.form { display: flex; flex-direction: column; gap: 20px; align-self: start; position: relative; }
+.form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 .field { display: flex; flex-direction: column; gap: 8px; }
 .field input, .field textarea {
   padding: 10px 0;
@@ -463,6 +470,7 @@ a.project__cta:focus-visible {
 .field textarea { resize: vertical; }
 .field input:focus, .field textarea:focus { border-bottom-color: var(--accent); }
 .form__status { margin: 0; font-size: 14.5px; color: var(--sage); }
+.form__status--error { color: var(--accent); }
 .form .btn { align-self: flex-start; }
 
 /* ---------- Footer ---------- */

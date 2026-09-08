@@ -49,7 +49,7 @@ const COPY = {
     taglineMark: 'discuto com bases de dados',
     taglineAfter: '.',
     heroLead: 'Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.',
-    seeWork: 'Ver o meu trabalho →',
+    seeWork: 'O meu trabalho →',
     aboutEyebrow: 'SOBRE / 01',
     aboutTitle: 'Mais do que um cargo.',
     aboutLede: 'Engenheiro de software de profissão; resolver problemas é o hábito.',
@@ -164,8 +164,10 @@ const COPY = {
     formEmail: 'EMAIL',
     formMessage: 'MENSAGEM',
     send: 'Enviar mensagem →',
+    sending: 'A enviar…',
     sent: 'Mensagem enviada ✓',
     sentThanks: 'Obrigado — respondo em breve.',
+    sendFail: 'Não foi possível enviar. Tente outra vez, ou escreva para o email.',
     footerRole: 'ENGENHEIRO DE SOFTWARE',
   },
   en: {
@@ -308,8 +310,10 @@ const COPY = {
     formEmail: 'EMAIL',
     formMessage: 'MESSAGE',
     send: 'Send message →',
+    sending: 'Sending…',
     sent: 'Message sent ✓',
     sentThanks: 'Thanks — I’ll get back to you.',
+    sendFail: 'Couldn’t send. Try again, or email me directly.',
     footerRole: 'SOFTWARE ENGINEER',
   },
 };
@@ -340,7 +344,49 @@ function syncDocument(copy) {
 }
 
 class Component extends DCLogic {
-  state = { menuOpen: false, sent: false, lang: readLang() };
+  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang() };
+
+  submit = (e) => {
+    e.preventDefault();
+    if (this.state.sent || this.state.sending) return;
+
+    const form = e.currentTarget;
+    if (form.querySelector('[name="_honey"]')?.value) return;
+
+    const name = String(form.elements.name?.value || '').trim();
+    const from = String(form.elements.email?.value || '').trim();
+    const message = String(form.elements.message?.value || '').trim();
+    if (!name || !from || !message) return;
+
+    this.setState({ sending: true, formError: false });
+
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(EMAIL), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email: from,
+        message,
+        _replyto: from,
+        _subject: 'Contacto — ' + name,
+        _captcha: 'false',
+        _template: 'table',
+      }),
+    })
+      .then((res) => res.json().then((data) => ({ res, data }), () => ({ res, data: {} })))
+      .then(({ res, data }) => {
+        if (!res.ok || data.success === false || data.success === 'false') {
+          throw new Error('formsubmit');
+        }
+        this.setState({ sending: false, sent: true, formError: false });
+      })
+      .catch(() => {
+        this.setState({ sending: false, sent: false, formError: true });
+      });
+  };
 
   componentDidMount() {
     this.wide = window.matchMedia('(min-width: 720px)');
@@ -429,9 +475,11 @@ class Component extends DCLogic {
       setEn: () => this.setLang('en'),
 
       sent: this.state.sent,
-      sendLabel: this.state.sent ? copy.sent : copy.send,
-      sentMessage: this.state.sent ? copy.sentThanks : '',
-      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      formBusy: this.state.sent || this.state.sending,
+      sendLabel: this.state.sending ? copy.sending : (this.state.sent ? copy.sent : copy.send),
+      sentMessage: this.state.sent ? copy.sentThanks : (this.state.formError ? copy.sendFail : ''),
+      statusClass: 'form__status' + (this.state.formError ? ' form__status--error' : ''),
+      submit: this.submit,
     };
   }
 }

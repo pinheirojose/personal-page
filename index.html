@@ -43,7 +43,7 @@
 <!-- Sticky site header: desktop links, compact CTA, mobile drawer -->
 <header class="header">
   <div class="shell header__bar">
-    <a class="header__mark" href="#top">José</a>
+    <a class="header__mark" href="#top">José Pinheiro</a>
     <nav class="header__nav" aria-label="{{ copy.navAria }}">
       <div class="nav-links">
         <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
@@ -262,10 +262,11 @@
         </ul>
       </div>
 
-      <!-- Local acknowledgement only until submit posts to a real endpoint -->
+      <!-- Posts to FormSubmit, which forwards the message to EMAIL in page.js -->
       <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
         <form class="form" onSubmit="{{ submit }}">
           <h3 class="sr-only">{{ copy.formHeading }}</h3>
+          <input class="form__trap" type="text" name="_honey" tabindex="-1" autocomplete="off" />
           <label class="field">
             <span class="eyebrow eyebrow--faint">{{ copy.formName }}</span>
             <input type="text" name="name" autocomplete="name" required="required" maxlength="120" />
@@ -278,8 +279,8 @@
             <span class="eyebrow eyebrow--faint">{{ copy.formMessage }}</span>
             <textarea name="message" rows="4" required="required" maxlength="4000" enterkeyhint="send"></textarea>
           </label>
-          <button class="btn btn--outline" type="submit" disabled="{{ sent }}">{{ sendLabel }}</button>
-          <p class="form__status" aria-live="polite">{{ sentMessage }}</p>
+          <button class="btn btn--outline" type="submit" disabled="{{ formBusy }}">{{ sendLabel }}</button>
+          <p class="{{ statusClass }}" aria-live="polite">{{ sentMessage }}</p>
         </form>
       </sc-if>
     </div>
