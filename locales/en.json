@@ -1,0 +1,152 @@
+{
+  "htmlLang": "en",
+  "ogLocale": "en_GB",
+  "docTitle": "José — Software Engineer",
+  "docDescription": "Software Engineer working across software development, databases, DevOps and project delivery.",
+  "skip": "Skip to content",
+  "navAria": "Primary",
+  "footerAria": "Footer",
+  "langLabel": "Language",
+  "menuOpen": "Open menu",
+  "menuClose": "Close menu",
+  "talk": "Let’s talk →",
+  "formHeading": "Send a message",
+  "nav": [
+    { "label": "About", "href": "#about" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Experience", "href": "#experience" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "heroEyebrow": "SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY",
+  "heroTitle": "Hi, I’m José.",
+  "taglineBefore": "I build things, fix things, and occasionally",
+  "taglineMark": "argue with databases",
+  "taglineAfter": ".",
+  "heroLead": "Software Engineer working across software development, databases, DevOps and project delivery.",
+  "seeWork": "See my work →",
+  "aboutEyebrow": "ABOUT / 01",
+  "aboutTitle": "More than a job title.",
+  "aboutLede": "Software Engineer by profession, problem solver by habit.",
+  "aboutBody": "My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.",
+  "pillars": [
+    { "label": "BUILD", "text": "Software and application development." },
+    { "label": "SOLVE", "text": "Databases, integrations, troubleshooting and technical problems." },
+    { "label": "DELIVER", "text": "Projects, Agile delivery, support and client communication." },
+    { "label": "LEAD", "text": "Technical leadership, coordination and helping teams move forward." },
+    { "label": "CLIENT SUCCESS", "text": "Making sure what shipped actually works for the people using it." },
+    { "label": "SERVE", "text": "Building solutions for everyday problems — useful to someone, not just technically interesting." }
+  ],
+  "projectsEyebrow": "PROJECTS / 02",
+  "projectsTitle": "Things I’ve built.",
+  "projectsLead": "A few projects, experiments and solutions I’ve worked on — professionally and independently.",
+  "projectLabel": "PROJECT",
+  "roleLabel": "ROLE",
+  "areasLabel": "AREAS",
+  "resultLabel": "RESULT",
+  "viewProject": "VIEW PROJECT",
+  "allProjects": "See all projects",
+  "galleryEyebrow": "PROJECTS",
+  "galleryTitle": "All projects.",
+  "galleryLead": "A wider look at the work — personal and professional.",
+  "galleryDocTitle": "Projects — José",
+  "backHome": "← Home",
+  "projects": [
+    {
+      "number": "01",
+      "kind": "PERSONAL · WEB",
+      "title": "Évora Serviços",
+      "image": "./images/evora-services.png",
+      "caption": "SCREENSHOT / ÉVORA SERVIÇOS",
+      "summary": "Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.",
+      "role": "Design, build, run",
+      "areas": "Web · Database · Hosting",
+      "result": "Live, growing listings",
+      "url": "https://www.evoraservicos.pt/"
+    },
+    {
+      "number": "02",
+      "kind": "PROFESSIONAL · Database | Development | Project Delivery",
+      "title": "International University ERP Migration",
+      "image": "./images/migration.png",
+      "caption": "DIAGRAM / MIGRATION PATH",
+      "summary": "A university ERP migration project where I worked across the entire delivery lifecycle — from database and application development to technical planning, project management, and final delivery.",
+      "role": "Technical lead",
+      "areas": "Oracle · Java · SQL",
+      "result": "Behind the databases, deployments and deadlines, the project ultimately helped improve the systems used every day by thousands of students and staff.",
+      "url": ""
+    },
+    {
+      "number": "03",
+      "kind": "PROFESSIONAL · DBA | Linux | Oracle",
+      "title": "Infrastructure Redesign",
+      "image": "./images/database.png",
+      "caption": "DIAGRAM / DBA",
+      "summary": "Redesigned the database infrastructure to create a more scalable and isolated environment for multiple clients. The solution introduced dedicated database instances running on open-source Linux infrastructure, supporting multiple Oracle versions, from 11 -> 19.",
+      "role": "Oracle Administration | Planning & Standardisation",
+      "areas": "Linux · Oracle · Infra · Docker",
+      "result": "Turning a shared and increasingly difficult-to-maintain environment into a structured, isolated and scalable database platform that could support different clients and Oracle versions with greater control",
+      "url": ""
+    }
+  ],
+  "experienceEyebrow": "EXPERIENCE / 03",
+  "experienceTitle": "The road so far.",
+  "timeline": [
+    {
+      "period": "2021 — PRESENT",
+      "title": "Technical Lead / Delivery",
+      "org": "MorphisTech / Freelance client projects",
+      "summary": "Driving end-to-end delivery with a strong focus on client success. Translating business needs into clear technical direction, aligning stakeholders, managing priorities and guiding teams through execution to deliver reliable solutions that meet both client expectations and project objectives."
+    },
+    {
+      "period": "2018 — PRESENT",
+      "title": "DevOps & Release Management",
+      "org": "MorphisTech",
+      "summary": "Improved software delivery processes through containerisation, CI/CD automation and environment standardisation. Helped modernise legacy services, establish reproducible deployments and reduce single points of knowledge across development and operations"
+    },
+    {
+      "period": "2018 — PRESENT",
+      "title": "Database Management",
+      "org": "MorphisTech",
+      "summary": "Oracle and PostgreSQL database engineering, covering infrastructure, performance, migrations, integrations and production support — with a strong focus on reliability, optimisation and the connection between database, application and delivery."
+    },
+    {
+      "period": "2015 — 2018",
+      "title": "Software Development",
+      "org": "MorphisTech",
+      "summary": "Java  applications, internal tools and client features."
+    }
+  ],
+  "toolboxEyebrow": "TOOLBOX / 04",
+  "toolboxTitle": "Tools of the trade.",
+  "toolbox": [
+    { "label": "DEVELOPMENT", "items": ["Java", "Bash", "React", "Python", "APIs", "JavaScript"] },
+    { "label": "DATABASES", "items": ["Oracle", "PostgreSQL", "SQL", "Database administration"] },
+    { "label": "DEVOPS", "items": ["Docker", "GitLab CI/CD", "Deployment", "Jenkins"] },
+    { "label": "OTHER", "items": ["WordPress", "Web technologies", "Cloud platforms", "Integration tools"] }
+  ],
+  "notesEyebrow": "NOTES / 05",
+  "notesTitle": "A few things I’ve learned.",
+  "notes": [
+    { "text": "Most problems are simpler than they first appear.", "aside": "", "className": "note" },
+    { "text": "Most “quick fixes” aren’t.", "aside": "", "className": "note" },
+    { "text": "Good software is software people can maintain.", "aside": "", "className": "note" },
+    { "text": "Sometimes the database is innocent.", "aside": " …but not always.", "className": "note note--interactive" }
+  ],
+  "contactEyebrow": "CONTACT / 06",
+  "contactTitle": "Got a problem worth solving?",
+  "contactLead": "Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.",
+  "contactLinks": [
+    { "id": "email", "label": "EMAIL" },
+    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose" },
+    { "id": "github", "label": "GITHUB", "text": "@jose" }
+  ],
+  "formName": "NAME",
+  "formEmail": "EMAIL",
+  "formMessage": "MESSAGE",
+  "send": "Send message →",
+  "sending": "Sending…",
+  "sent": "Message sent ✓",
+  "sentThanks": "Thanks — I’ll get back to you.",
+  "sendFail": "Couldn’t send. Try again, or email me directly.",
+  "footerRole": "SOFTWARE ENGINEER"
+}

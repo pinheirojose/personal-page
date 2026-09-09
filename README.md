@@ -8,7 +8,10 @@ Personal website built to showcase my work, skills, and projects.
 | --- | --- |
 | `index.html` | Page markup. |
 | `style.css` | All styling. Design tokens are custom properties on `:root`. |
-| `page.js` | Copy in `pt-PT` (default) and `en`, plus the `Component` class. |
+| `locales/pt-PT.json` | Portuguese copy (default). |
+| `locales/en.json` | English copy. |
+| `boot.js` | Loads locale files and `page.js`, then starts the runtime. |
+| `page.js` | Page behaviour (`Component`). |
 | `script.js` | Generated `dc-runtime` bundle. Do not edit by hand. |
 
 ## Running it
@@ -26,13 +29,15 @@ python3 -m http.server 8000
 - `<head>` — metadata, Google Fonts and `style.css`.
 - `<x-dc>` — the template. `sc-for` loops render the repeated sections and
   `sc-if` gates the hero illustration and contact form.
-- `page.js` — content arrays (`PROJECTS`, `TIMELINE`, `TOOLBOX`, …) plus the
-  `Component` class. The page fetches it into `<script data-dc-script>` before
-  `script.js` boots (the runtime only reads that tag’s text, not an external
-  `src`).
+- `locales/*.json` — all user-facing copy, keyed by BCP 47 language tag
+  (`pt-PT`, `en`).
+- `boot.js` — fetches those catalogs onto `window.__I18N__`, then loads
+  `page.js` into `<script data-dc-script>` before `script.js` boots.
+- `page.js` — behaviour only (`Component`). The runtime evals it as
+  `class Component extends DCLogic` (it is not a normal browser script).
 
-To change content, edit the arrays at the top of `page.js` rather than the
-markup. Styling is class-based, so the markup carries almost no inline styles.
+To change wording, edit the locale JSON rather than the markup. Styling is
+class-based, so the markup carries almost no inline styles.
 
 One runtime quirk: interpolated `{{ … }}` values render wrapped in an HTML
 `<span>`, so they cannot be used inside an SVG `<text>` element — they come out

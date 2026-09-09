@@ -1,7 +1,5 @@
-// Page content and behaviour.
-// The runtime evals this as `class Component extends DCLogic` — it is not a
-// normal browser script. index.html fetches this file into <script data-dc-script>
-// before loading script.js.
+// Page behaviour. Copy lives in locales/*.json and is loaded by boot.js
+// onto window.__I18N__ before this file is eval'd by the runtime.
 
 const EMAIL = 'jbernardopinheiro@gmail.com';
 const DEFAULT_LANG = 'pt-PT';
@@ -32,313 +30,27 @@ function withProjectUrl(project) {
   };
 }
 
-const COPY = {
-  'pt-PT': {
-    htmlLang: 'pt-PT',
-    ogLocale: 'pt_PT',
-    docTitle: 'José — Engenheiro de software',
-    docDescription: 'Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.',
-    skip: 'Saltar para o conteúdo',
-    navAria: 'Principal',
-    footerAria: 'Rodapé',
-    langLabel: 'Idioma',
-    menuOpen: 'Abrir menu',
-    menuClose: 'Fechar menu',
-    talk: 'Vamos falar →',
-    formHeading: 'Enviar mensagem',
-    nav: [
-      { label: 'Sobre', href: '#about' },
-      { label: 'Projetos', href: '#projects' },
-      { label: 'Experiência', href: '#experience' },
-      { label: 'Contacto', href: '#contact' },
-    ],
-    heroEyebrow: 'ENGENHEIRO DE SOFTWARE · BASES DE DADOS · DESENVOLVIMENTO · DEVOPS · ENTREGA',
-    heroTitle: 'Olá, sou o José.',
-    taglineBefore: 'Construo coisas, corrijo coisas e, de vez em quando,',
-    taglineMark: 'discuto com bases de dados',
-    taglineAfter: '.',
-    heroLead: 'Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.',
-    seeWork: 'O meu trabalho →',
-    aboutEyebrow: 'SOBRE / 01',
-    aboutTitle: 'Mais do que um cargo.',
-    aboutLede: 'Engenheiro de software de profissão; resolver problemas é o hábito.',
-    aboutBody: 'O meu trabalho fica entre software, bases de dados, infraestrutura e fazer as coisas chegar ao fim. Gosto de transformar problemas complicados em soluções práticas — de preferência que ainda façam sentido daqui a seis meses.',
-    pillars: [
-      { label: 'CONSTRUIR', text: 'Desenvolvimento de software e aplicações.' },
-      { label: 'RESOLVER', text: 'Bases de dados, integrações, diagnóstico e problemas técnicos.' },
-      { label: 'ENTREGAR', text: 'Projetos, entrega Agile, suporte e comunicação com clientes.' },
-      { label: 'LIDERAR', text: 'Liderança técnica, coordenação e ajudar as equipas a avançar.' },
-      { label: 'SUCESSO DO CLIENTE', text: 'Garantir que o que foi entregue funciona para quem o usa.' },
-      { label: 'SERVIR', text: 'Construir soluções para problemas do dia a dia — úteis para alguém, não só tecnicamente interessantes.' },
-    ],
-    projectsEyebrow: 'PROJETOS / 02',
-    projectsTitle: 'Coisas que construí.',
-    projectsLead: 'Alguns projetos, experiências e soluções em que trabalhei — profissionalmente e por conta própria.',
-    projectLabel: 'PROJETO',
-    roleLabel: 'FUNÇÃO',
-    areasLabel: 'ÁREAS',
-    resultLabel: 'RESULTADO',
-    viewProject: 'VER PROJETO',
-    allProjects: 'Ver todos os projetos',
-    galleryEyebrow: 'PROJETOS',
-    galleryTitle: 'Todos os projetos.',
-    galleryLead: 'Uma vista de conjunto do trabalho — pessoal e profissional.',
-    galleryDocTitle: 'Projetos — José',
-    backHome: '← Início',
-    projects: [
-      {
-        number: '01',
-        kind: 'PESSOAL · WEB',
-        title: 'Évora Serviços',
-        image: './images/evora-services.png',
-        caption: 'CAPTURA / ÉVORA SERVIÇOS',
-        summary: 'Encontrar um profissional de confiança em Évora era perguntar à volta. Construí uma plataforma onde os residentes procuram serviços locais e as empresas aparecem sem precisarem de um site próprio.',
-        role: 'Conceber, construir, gerir',
-        areas: 'Web · Base de dados · Alojamento',
-        result: 'Listagens ativas, a crescer',
-        url: 'https://www.evoraservicos.pt/',
-      },
-      {
-        number: '02',
-        kind: 'PROFISSIONAL · Base de dados | Desenvolvimento | Entrega de projetos',
-        title: 'Migração ERP da Universidade Internacional',
-        image: './images/migration.png',
-        caption: 'DIAGRAMA / PERCURSO DE MIGRAÇÃO',
-        summary: 'Um projeto de migração de ERP universitário em que trabalhei em todo o ciclo de entrega — desde o desenvolvimento da base de dados e da aplicação até ao planeamento técnico, gestão de projeto e entrega final.',
-        role: 'Responsável técnico',
-        areas: 'Oracle · Java · SQL',
-        result: 'Por detrás das bases de dados, das publicações e dos prazos, o projeto acabou por melhorar os sistemas usados todos os dias por milhares de estudantes e funcionários.',
-        url: '',
-      },
-      {
-        number: '03',
-        kind: 'PROFISSIONAL · DBA | Linux | Oracle',
-        title: 'Redesenho da infraestrutura',
-        image: './images/database.png',
-        caption: 'DIAGRAMA / DBA',
-        summary: 'Redesenhei a infraestrutura de bases de dados para criar um ambiente mais escalável e isolado para vários clientes. A solução introduziu instâncias de base de dados dedicadas, a correr em infraestrutura Linux de código aberto, com suporte a várias versões de Oracle, da 11 à 19.',
-        role: 'Administração Oracle | Planeamento e standardização',
-        areas: 'Linux · Oracle · Infra · Docker',
-        result: 'Transformar um ambiente partilhado e cada vez mais difícil de manter numa plataforma de bases de dados estruturada, isolada e escalável, capaz de servir diferentes clientes e versões de Oracle com mais controlo.',
-        url: '',
-      },
-    ],
-    experienceEyebrow: 'EXPERIÊNCIA / 03',
-    experienceTitle: 'O caminho até aqui.',
-    timeline: [
-      {
-        period: '2021 — PRESENTE',
-        title: 'Líder técnico / Entrega',
-        org: 'MorphisTech / Projetos de clientes em freelance',
-        summary: 'Entrega de ponta a ponta, com um foco forte no sucesso do cliente. Traduzir necessidades de negócio em direção técnica clara, alinhar as partes interessadas, gerir prioridades e orientar as equipas na execução — para entregar soluções fiáveis que cumpram as expectativas do cliente e os objetivos do projeto.',
-      },
-      {
-        period: '2018 — PRESENTE',
-        title: 'DevOps e gestão de releases',
-        org: 'MorphisTech',
-        summary: 'Melhorei os processos de entrega de software com contentorização, automação CI/CD e standardização de ambientes. Ajudei a modernizar serviços antigos, a tornar as publicações reproduzíveis e a reduzir os pontos únicos de conhecimento entre desenvolvimento e operações.',
-      },
-      {
-        period: '2018 — PRESENTE',
-        title: 'Gestão de bases de dados',
-        org: 'MorphisTech',
-        summary: 'Engenharia de bases de dados Oracle e PostgreSQL: infraestrutura, desempenho, migrações, integrações e suporte em produção — com um foco forte na fiabilidade, na otimização e na ligação entre base de dados, aplicação e entrega.',
-      },
-      {
-        period: '2015 — 2018',
-        title: 'Desenvolvimento de software',
-        org: 'MorphisTech',
-        summary: 'Aplicações em Java, ferramentas internas e funcionalidades para clientes.',
-      },
-    ],
-    toolboxEyebrow: 'FERRAMENTAS / 04',
-    toolboxTitle: 'Ferramentas do ofício.',
-    toolbox: [
-      { label: 'DESENVOLVIMENTO', items: ['Java', 'JavaScript', 'React', 'Python', 'APIs'] },
-      { label: 'BASES DE DADOS', items: ['Oracle', 'PostgreSQL', 'SQL', 'Administração de bases de dados'] },
-      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Publicação'] },
-      { label: 'OUTROS', items: ['WordPress', 'Tecnologias web', 'Plataformas cloud', 'Ferramentas de integração'] },
-    ],
-    notesEyebrow: 'NOTAS / 05',
-    notesTitle: 'Algumas coisas que aprendi.',
-    notes: [
-      { text: 'A maior parte dos problemas é mais simples do que parece à primeira.', aside: '', className: 'note' },
-      { text: 'A maior parte dos «atalhos» não o é.', aside: '', className: 'note' },
-      { text: 'Bom software é software que se consegue manter.', aside: '', className: 'note' },
-      { text: 'Por vezes a base de dados é inocente.', aside: ' …mas nem sempre.', className: 'note note--interactive' },
-    ],
-    contactEyebrow: 'CONTACTO / 06',
-    contactTitle: 'Tem um problema que valha a pena resolver?',
-    contactLead: 'Seja um projeto, uma oportunidade ou um problema técnico particularmente teimoso, estou sempre aberto a uma conversa.',
-    contactLinks: [
-      { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
-      { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
-      { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
-    ],
-    formName: 'NOME',
-    formEmail: 'EMAIL',
-    formMessage: 'MENSAGEM',
-    send: 'Enviar mensagem →',
-    sending: 'A enviar…',
-    sent: 'Mensagem enviada ✓',
-    sentThanks: 'Obrigado — respondo em breve.',
-    sendFail: 'Não foi possível enviar. Tente outra vez, ou escreva para o email.',
-    footerRole: 'ENGENHEIRO DE SOFTWARE',
-  },
-  en: {
-    htmlLang: 'en',
-    ogLocale: 'en_GB',
-    docTitle: 'José — Software Engineer',
-    docDescription: 'Software Engineer working across software development, databases, DevOps and project delivery.',
-    skip: 'Skip to content',
-    navAria: 'Primary',
-    footerAria: 'Footer',
-    langLabel: 'Language',
-    menuOpen: 'Open menu',
-    menuClose: 'Close menu',
-    talk: 'Let’s talk →',
-    formHeading: 'Send a message',
-    nav: [
-      { label: 'About', href: '#about' },
-      { label: 'Projects', href: '#projects' },
-      { label: 'Experience', href: '#experience' },
-      { label: 'Contact', href: '#contact' },
-    ],
-    heroEyebrow: 'SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY',
-    heroTitle: 'Hi, I’m José.',
-    taglineBefore: 'I build things, fix things, and occasionally',
-    taglineMark: 'argue with databases',
-    taglineAfter: '.',
-    heroLead: 'Software Engineer working across software development, databases, DevOps and project delivery.',
-    seeWork: 'See my work →',
-    aboutEyebrow: 'ABOUT / 01',
-    aboutTitle: 'More than a job title.',
-    aboutLede: 'Software Engineer by profession, problem solver by habit.',
-    aboutBody: 'My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.',
-    pillars: [
-      { label: 'BUILD', text: 'Software and application development.' },
-      { label: 'SOLVE', text: 'Databases, integrations, troubleshooting and technical problems.' },
-      { label: 'DELIVER', text: 'Projects, Agile delivery, support and client communication.' },
-      { label: 'LEAD', text: 'Technical leadership, coordination and helping teams move forward.' },
-      { label: 'CLIENT SUCCESS', text: 'Making sure what shipped actually works for the people using it.' },
-      { label: 'SERVE', text: 'Building solutions for everyday problems — useful to someone, not just technically interesting.' },
-    ],
-    projectsEyebrow: 'PROJECTS / 02',
-    projectsTitle: 'Things I’ve built.',
-    projectsLead: 'A few projects, experiments and solutions I’ve worked on — professionally and independently.',
-    projectLabel: 'PROJECT',
-    roleLabel: 'ROLE',
-    areasLabel: 'AREAS',
-    resultLabel: 'RESULT',
-    viewProject: 'VIEW PROJECT',
-    allProjects: 'See all projects',
-    galleryEyebrow: 'PROJECTS',
-    galleryTitle: 'All projects.',
-    galleryLead: 'A wider look at the work — personal and professional.',
-    galleryDocTitle: 'Projects — José',
-    backHome: '← Home',
-    projects: [
-      {
-        number: '01',
-        kind: 'PERSONAL · WEB',
-        title: 'Évora Serviços',
-        image: './images/evora-services.png',
-        caption: 'SCREENSHOT / ÉVORA SERVIÇOS',
-        summary: 'Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.',
-        role: 'Design, build, run',
-        areas: 'Web · Database · Hosting',
-        result: 'Live, growing listings',
-        url: 'https://www.evoraservicos.pt/',
-      },
-      {
-        number: '02',
-        kind: 'PROFESSIONAL · Database | Development | Project Delivery',
-        title: 'International University ERP Migration',
-        image: './images/migration.png',
-        caption: 'DIAGRAM / MIGRATION PATH',
-        summary: 'A university ERP migration project where I worked across the entire delivery lifecycle — from database and application development to technical planning, project management, and final delivery.',
-        role: 'Technical lead',
-        areas: 'Oracle · Java · SQL',
-        result: 'Behind the databases, deployments and deadlines, the project ultimately helped improve the systems used every day by thousands of students and staff.',
-        url: '',
-      },
-      {
-        number: '03',
-        kind: 'PROFESSIONAL · DBA | Linux | Oracle',
-        title: 'Infrastructure Redesign',
-        image: './images/database.png',
-        caption: 'DIAGRAM / DBA',
-        summary: 'Redesigned the database infrastructure to create a more scalable and isolated environment for multiple clients. The solution introduced dedicated database instances running on open-source Linux infrastructure, supporting multiple Oracle versions, from 11 -> 19.',
-        role: 'Oracle Administration | Planning & Standardisation',
-        areas: 'Linux · Oracle · Infra · Docker',
-        result: 'Turning a shared and increasingly difficult-to-maintain environment into a structured, isolated and scalable database platform that could support different clients and Oracle versions with greater control',
-        url: '',
-      },
-    ],
-    experienceEyebrow: 'EXPERIENCE / 03',
-    experienceTitle: 'The road so far.',
-    timeline: [
-      {
-        period: '2021 — PRESENT',
-        title: 'Technical Lead / Delivery',
-        org: 'MorphisTech / Freelance client projects',
-        summary: 'Driving end-to-end delivery with a strong focus on client success. Translating business needs into clear technical direction, aligning stakeholders, managing priorities and guiding teams through execution to deliver reliable solutions that meet both client expectations and project objectives.',
-      },
-      {
-        period: '2018 — PRESENT',
-        title: 'DevOps & Release Management',
-        org: 'MorphisTech',
-        summary: 'Improved software delivery processes through containerisation, CI/CD automation and environment standardisation. Helped modernise legacy services, establish reproducible deployments and reduce single points of knowledge across development and operations',
-      },
-      {
-        period: '2018 — PRESENT',
-        title: 'Database Management',
-        org: 'MorphisTech',
-        summary: 'Oracle and PostgreSQL database engineering, covering infrastructure, performance, migrations, integrations and production support — with a strong focus on reliability, optimisation and the connection between database, application and delivery.',
-      },
-      {
-        period: '2015 — 2018',
-        title: 'Software Development',
-        org: 'MorphisTech',
-        summary: 'Java  applications, internal tools and client features.',
-      },
-    ],
-    toolboxEyebrow: 'TOOLBOX / 04',
-    toolboxTitle: 'Tools of the trade.',
-    toolbox: [
-      { label: 'DEVELOPMENT', items: ['Java', 'Bash', 'React', 'Python', 'APIs', 'JavaScript'] },
-      { label: 'DATABASES', items: ['Oracle', 'PostgreSQL', 'SQL', 'Database administration'] },
-      { label: 'DEVOPS', items: ['Docker', 'GitLab CI/CD', 'Deployment', 'Jenkins'] },
-      { label: 'OTHER', items: ['WordPress', 'Web technologies', 'Cloud platforms', 'Integration tools'] },
-    ],
-    notesEyebrow: 'NOTES / 05',
-    notesTitle: 'A few things I’ve learned.',
-    notes: [
-      { text: 'Most problems are simpler than they first appear.', aside: '', className: 'note' },
-      { text: 'Most “quick fixes” aren’t.', aside: '', className: 'note' },
-      { text: 'Good software is software people can maintain.', aside: '', className: 'note' },
-      { text: 'Sometimes the database is innocent.', aside: ' …but not always.', className: 'note note--interactive' },
-    ],
-    contactEyebrow: 'CONTACT / 06',
-    contactTitle: 'Got a problem worth solving?',
-    contactLead: 'Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.',
-    contactLinks: [
-      { label: 'EMAIL', text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' },
-      { label: 'LINKEDIN', text: '/in/jose', href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' },
-      { label: 'GITHUB', text: '@jose', href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' },
-    ],
-    formName: 'NAME',
-    formEmail: 'EMAIL',
-    formMessage: 'MESSAGE',
-    send: 'Send message →',
-    sending: 'Sending…',
-    sent: 'Message sent ✓',
-    sentThanks: 'Thanks — I’ll get back to you.',
-    sendFail: 'Couldn’t send. Try again, or email me directly.',
-    footerRole: 'SOFTWARE ENGINEER',
-  },
-};
+function hydrateCopy(raw) {
+  if (!raw) return raw;
+  const contactLinks = (raw.contactLinks || []).map((link) => {
+    if (link.id === 'email') {
+      return { label: link.label, text: EMAIL, href: 'mailto:' + EMAIL, target: '_self', rel: '' };
+    }
+    if (link.id === 'linkedin') {
+      return { label: link.label, text: link.text, href: SOCIAL[0].href, target: '_blank', rel: 'noopener noreferrer' };
+    }
+    if (link.id === 'github') {
+      return { label: link.label, text: link.text, href: SOCIAL[1].href, target: '_blank', rel: 'noopener noreferrer' };
+    }
+    return link;
+  });
+  return { ...raw, contactLinks };
+}
 
+function messagesFor(lang) {
+  const catalog = (typeof window !== 'undefined' && window.__I18N__) || {};
+  return hydrateCopy(catalog[lang] || catalog[DEFAULT_LANG] || {});
+}
 function readLang() {
   try {
     const stored = localStorage.getItem(LANG_KEY);
@@ -462,7 +174,7 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const copy = COPY[this.state.lang] || COPY[DEFAULT_LANG];
+    const copy = messagesFor(this.state.lang);
     const gallery = onGalleryPage();
     syncDocument(gallery
       ? { ...copy, docTitle: copy.galleryDocTitle, docDescription: copy.galleryLead }
@@ -471,18 +183,18 @@ class Component extends DCLogic {
 
     return {
       copy,
-      nav: copy.nav.map((item) => ({ ...item, href: withHomeBase(item.href) })),
+      nav: (copy.nav || []).map((item) => ({ ...item, href: withHomeBase(item.href) })),
       homeHref: gallery ? './index.html' : '#top',
       talkHref: withHomeBase('#contact'),
       galleryHref: './projects.html',
       social: SOCIAL,
       contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
-      pillars: copy.pillars,
-      projects: copy.projects.map(withProjectUrl),
-      timeline: copy.timeline,
-      toolbox: copy.toolbox,
-      notes: copy.notes,
+      pillars: copy.pillars || [],
+      projects: (copy.projects || []).map(withProjectUrl),
+      timeline: copy.timeline || [],
+      toolbox: copy.toolbox || [],
+      notes: copy.notes || [],
       year: new Date().getFullYear(),
 
       heroVisual: this.props.heroVisual ?? true,

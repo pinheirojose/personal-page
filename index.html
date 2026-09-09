@@ -312,17 +312,6 @@
 </x-dc>
 <!-- Runtime reads this tag's text, not src. page.js is fetched into it, then script.js boots. -->
 <script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showContactForm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}"></script>
-<script type="module">
-  try {
-    const res = await fetch('./page.js', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to load page.js: ' + res.status);
-    document.querySelector('script[data-dc-script]').textContent = await res.text();
-    const runtime = document.createElement('script');
-    runtime.src = './script.js';
-    document.head.appendChild(runtime);
-  } catch (err) {
-    console.error(err);
-  }
-</script>
+<script type="module" src="./boot.js"></script>
 </body>
 </html>
