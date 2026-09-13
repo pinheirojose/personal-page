@@ -32,7 +32,7 @@
     <a class="header__mark" href="{{ homeHref }}">José Pinheiro</a>
     <nav class="header__nav" aria-label="{{ copy.navAria }}">
       <div class="nav-links">
-        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
           <a href="{{ item.href }}">{{ item.label }}</a>
         </sc-for>
       </div>
@@ -50,7 +50,7 @@
     </nav>
   </div>
   <div class="drawer {{ drawerClass }}" id="mobile-menu">
-    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
       <a href="{{ item.href }}" onClick="{{ closeMenu }}">{{ item.label }}</a>
     </sc-for>
   </div>
@@ -99,7 +99,7 @@
       <p class="eyebrow eyebrow--faint footer__role">{{ copy.footerRole }}</p>
     </div>
     <nav class="footer__links" aria-label="{{ copy.footerAria }}">
-      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
         <a href="{{ item.href }}">{{ item.label }}</a>
       </sc-for>
       <sc-for list="{{ social }}" as="item" hint-placeholder-count="2">

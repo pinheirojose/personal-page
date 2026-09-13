@@ -12,6 +12,7 @@
   "talk": "Vamos falar →",
   "formHeading": "Enviar mensagem",
   "nav": [
+    { "label": "Início", "href": "#top" },
     { "label": "Sobre", "href": "#about" },
     { "label": "Projetos", "href": "#projects" },
     { "label": "Experiência", "href": "#experience" },
