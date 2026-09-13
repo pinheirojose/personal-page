@@ -86,6 +86,18 @@
       "areas": "Linux · Oracle · Infra · Docker",
       "result": "Turning a shared and increasingly difficult-to-maintain environment into a structured, isolated and scalable database platform that could support different clients and Oracle versions with greater control",
       "url": ""
+    },
+    {
+      "number": "04",
+      "kind": "PERSONAL · WEB",
+      "title": "Personal page",
+      "image": "./images/personal-page.png",
+      "caption": "PLACEHOLDER / PERSONAL PAGE",
+      "summary": "A bilingual site to present the work — projects, experience and a way to get in touch — without a framework lock-in.",
+      "role": "Design, build",
+      "areas": "HTML · CSS · JavaScript",
+      "result": "My digital CV, in Portuguese and English",
+      "url": "./index.html"
     }
   ],
   "experienceEyebrow": "EXPERIENCE / 03",
