@@ -2,7 +2,7 @@
 // onto window.__I18N__ before this file is eval'd by the runtime.
 
 const EMAIL = 'jbernardopinheiro@gmail.com';
-const DEFAULT_LANG = 'pt-PT';
+const HOME_PROJECT_LIMIT = 3;
 const LANG_KEY = 'jose-lang';
 
 const SOCIAL = [
@@ -191,7 +191,9 @@ class Component extends DCLogic {
       contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
       pillars: copy.pillars || [],
-      projects: (copy.projects || []).map(withProjectUrl),
+      projects: (copy.projects || [])
+        .map(withProjectUrl)
+        .slice(0, gallery ? undefined : HOME_PROJECT_LIMIT),
       timeline: copy.timeline || [],
       toolbox: copy.toolbox || [],
       notes: copy.notes || [],
