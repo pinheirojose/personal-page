@@ -2,6 +2,8 @@
 
 Personal website built to showcase my work, skills, and projects.
 
+Live site: [https://josepinheiro.vercel.app/](https://josepinheiro.vercel.app/)
+
 ## Files
 
 | File | What it is |
