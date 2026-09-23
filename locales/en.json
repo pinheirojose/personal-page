@@ -99,6 +99,18 @@
       "areas": "HTML · CSS · JavaScript",
       "result": "My digital CV, in Portuguese and English",
       "url": "./index.html"
+    },
+    {
+      "number": "05",
+      "kind": "PERSONAL · WEB",
+      "title": "Travel map",
+      "image": "./images/travel-map.png",
+      "caption": "PLACEHOLDER / TRAVEL MAP",
+      "summary": "A personal travel map: mark places visited or still on the list, filter by country and year, then download a high-resolution poster. Everything stays in this browser — export JSON so you do not lose it.",
+      "role": "Design, build",
+      "areas": "React · TypeScript · Vite",
+      "result": "English and Portuguese, dark mode, no account",
+      "url": "https://myworldmarked.vercel.app/"
     }
   ],
   "experienceEyebrow": "EXPERIENCE / 03",
