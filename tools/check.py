@@ -49,7 +49,12 @@ async def open_page(browser, path='/', lang=None, locale='pt-PT', viewport=(1440
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
     page.on('pageerror', lambda e: errors.append(str(e)))
     await page.goto(BASE + path)
-    await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
+    try:
+        await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
+    except Exception:
+        state = await page.evaluate("({react: !!window.React, dom: !!window.ReactDOM, i18n: !!window.__I18N__,"
+                                    " scripts: [...document.scripts].map(s => s.src.split('/').pop())})")
+        raise AssertionError(f'{path} never rendered: {state} console={errors[:5]}')
     await page.evaluate('document.fonts.ready')  # web fonts shift layout when they land
     return ctx, page, errors
 
@@ -405,6 +410,70 @@ async def check_header_height_unchanged(browser):
         hh = await page.evaluate("document.querySelector('#dc-root .header').getBoundingClientRect().height")
         await ctx.close()
         assert hh == want, f'{w}px header {hh}, want {want}'
+
+
+async def scroll_through(page):
+    """Scroll top → bottom so reveals and lazy images fire, then wait for images."""
+    height = await page.evaluate('document.documentElement.scrollHeight')
+    for y in range(0, height, 500):
+        await page.evaluate(f'scrollTo(0, {y})')
+        await page.wait_for_timeout(60)
+    await page.wait_for_timeout(900)
+    await page.wait_for_function("[...document.querySelectorAll('#dc-root img')].every(i => i.complete && i.naturalWidth > 0)")
+
+
+@check
+async def check_final_matrix(browser):
+    out = ROOT / 'tmp-audit'
+    out.mkdir(exist_ok=True)
+    for path in PAGES:
+        for lang in ['pt-PT', 'en']:
+            for w, h in [(1440, 900), (390, 844)]:
+                label = f'{path.strip("/").removesuffix(".html") or "index"}-{lang}-{w}'
+                ctx, page, errors = await open_page(browser, path, lang=lang, viewport=(w, h))
+                form_posts = []
+                await page.route('**/formsubmit.co/**', lambda r: (form_posts.append(r.request.url), r.abort()))
+                await scroll_through(page)
+                overflow = await page.evaluate('document.documentElement.scrollWidth - innerWidth')
+                assert overflow <= 0, f'{label}: horizontal scroll {overflow}px'
+
+                # back-to-top: visible after scrolling, returns to the top
+                top = page.locator('#dc-root .to-top')
+                await page.wait_for_selector('#dc-root .to-top.is-visible')
+                await top.click()
+                try:
+                    await page.wait_for_function('scrollY < 5', timeout=5000)
+                except Exception:
+                    raise AssertionError(f'{label}: back-to-top left scrollY at {await page.evaluate("scrollY")}')
+
+                # contact form: empty submit sends nothing and flags the fields
+                if path == '/':
+                    await page.locator('#dc-root .form button[type=submit]').click()
+                    await page.wait_for_timeout(200)
+                    invalid = await page.eval_on_selector_all('#dc-root .form :invalid', 'es => es.map(e => e.name)')
+                    assert set(invalid) >= {'name', 'email', 'message'}, f'{label} invalid {invalid}'
+                    assert not form_posts, f'{label}: empty form posted'
+
+                # mobile menu opens and closes
+                if w < 720:
+                    await page.click('.nav-toggle')
+                    assert await page.locator('#mobile-menu').is_visible(), f'{label} menu did not open'
+                    await page.click('.nav-toggle')
+                    assert not await page.locator('#mobile-menu').is_visible(), f'{label} menu did not close'
+
+                # Full-page shots resize the viewport, which makes ScrollTrigger refresh
+                # (save scroll → 0 → restore); taken last so it can't undo the back-to-top scroll.
+                await page.evaluate('scrollTo(0, 0)')
+                await page.screenshot(path=str(out / f'{label}.png'), full_page=True)
+
+                # language toggle flips the page
+                other = 'EN' if lang == 'pt-PT' else 'PT'
+                await page.click(f'.lang__btn:has-text("{other}")')
+                want = 'en' if other == 'EN' else 'pt-PT'
+                await page.wait_for_function(f"document.documentElement.lang === '{want}'")
+                await page.wait_for_timeout(300)
+                await ctx.close()
+                assert not errors, f'{label}: console errors {errors}'
 
 
 # ---------- runner ----------
