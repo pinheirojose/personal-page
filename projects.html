@@ -184,6 +184,12 @@
     <p class="footer__copy">© {{ year }} JOSÉ</p>
   </div>
 </footer>
+<!-- Floating back-to-top; page.js toggles .is-visible once the reader scrolls past the first screen -->
+<button class="to-top {{ toTopClass }}" type="button" onClick="{{ scrollToTop }}" aria-label="{{ copy.backToTop }}" title="{{ copy.backToTop }}">
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+    <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" d="M8 13V3.5M3.5 8 8 3.5 12.5 8"></path>
+  </svg>
+</button>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}"></script>
 <script type="module" src="./boot.js"></script>

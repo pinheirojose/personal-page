@@ -11,6 +11,7 @@ const GSAP_SRC = [
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
 ];
 const CARDS = '.showcase .work-card';
+const TO_TOP_AFTER = 0.6; // show the back-to-top button after scrolling this share of the viewport
 
 function loadScript(src) {
   return new Promise((resolve, reject) => {
@@ -107,7 +108,7 @@ function syncDocument(copy) {
 }
 
 class Component extends DCLogic {
-  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang() };
+  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang(), showTop: false };
 
   submit = (e) => {
     e.preventDefault();
@@ -157,6 +158,18 @@ class Component extends DCLogic {
     this.wide.addEventListener('change', this.onWide);
     this.onKey = (e) => { if (e.key === 'Escape') this.setState({ menuOpen: false }); };
     window.addEventListener('keydown', this.onKey);
+
+    // Back-to-top: one rAF-throttled check per frame, and setState only when it flips.
+    this.onScroll = () => {
+      if (this.scrollTick) return;
+      this.scrollTick = requestAnimationFrame(() => {
+        this.scrollTick = 0;
+        const showTop = window.scrollY > window.innerHeight * TO_TOP_AFTER;
+        if (showTop !== this.state.showTop) this.setState({ showTop });
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduced && 'IntersectionObserver' in window) {
@@ -230,6 +243,8 @@ class Component extends DCLogic {
   componentWillUnmount() {
     this.wide.removeEventListener('change', this.onWide);
     window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('scroll', this.onScroll);
+    cancelAnimationFrame(this.scrollTick);
     this.reveals?.disconnect();
     this.killCardTriggers();
     this.gsap?.killTweensOf(CARDS);
@@ -245,6 +260,13 @@ class Component extends DCLogic {
       this.reveals.observe(node);
     }
   }
+
+  scrollToTop = () => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    // Keyboard users land at the top too, not on a button that is about to hide.
+    document.querySelector('.header__mark')?.focus({ preventScroll: true });
+  };
 
   setLang(lang) {
     writeLang(lang);
@@ -308,6 +330,9 @@ class Component extends DCLogic {
       sentMessage: this.state.sent ? copy.sentThanks : (this.state.formError ? copy.sendFail : ''),
       statusClass: 'form__status' + (this.state.formError ? ' form__status--error' : ''),
       submit: this.submit,
+
+      toTopClass: this.state.showTop ? 'is-visible' : '',
+      scrollToTop: this.scrollToTop,
     };
   }
 }
