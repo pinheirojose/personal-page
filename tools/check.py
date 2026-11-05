@@ -279,6 +279,42 @@ async def check_content_fixes(browser):
             assert alts and all(a.strip() and '/' not in a for a in alts), f'{path} {lang}: {alts}'
 
 
+PRELOADS = {
+    './script.js': 'script',
+    './vendor/react.production.min.js': 'script',
+    './vendor/react-dom.production.min.js': 'script',
+    './page.js': 'fetch',
+    './locales/pt-PT.json': 'fetch',
+    './locales/en.json': 'fetch',
+}
+
+
+@check
+async def check_perf_loading(browser):
+    assert 'no-store' not in (ROOT / 'boot.js').read_text(), 'boot.js still uses no-store'
+    for tag in ['pt-PT', 'en']:
+        for p in locale_json(tag)['projects']:
+            assert p['image'].endswith('.webp') and (ROOT / p['image']).exists(), p['image']
+    assert not list((ROOT / 'images').glob('*.png')) or {f.name for f in (ROOT / 'images').glob('*.png')} <= {
+        'favicon.png', 'og.png', 'apple-touch-icon.png'}, 'leftover project PNGs'
+    for path in PAGES:
+        ctx = await browser.new_context(locale='en-GB', viewport={'width': 1440, 'height': 900})
+        page = await ctx.new_page()
+        urls, warnings = [], []
+        page.on('request', lambda r: urls.append(r.url))
+        page.on('console', lambda m: warnings.append(m.text) if m.type in ('warning', 'error') else None)
+        await page.goto(BASE + path)
+        await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
+        links = await page.eval_on_selector_all('link[rel=preload]', 'ls => ls.map(l => [l.getAttribute("href"), l.as, l.crossOrigin])')
+        await page.wait_for_timeout(3500)  # Chrome reports unused preloads after ~3s
+        await ctx.close()
+        got = {h: a for h, a, _ in links}
+        assert got == PRELOADS, f'{path} preloads {got}'
+        assert all(c == 'anonymous' for h, a, c in links if a == 'fetch'), f'{path} fetch preloads need crossorigin'
+        assert not [u for u in urls if 'unpkg.com' in u], f'{path} still hits unpkg'
+        assert not [w for w in warnings if 'preload' in w.lower()], f'{path}: {warnings}'
+
+
 # ---------- runner ----------
 
 async def main(names):
