@@ -199,7 +199,6 @@
             <article class="work-card work-card--{{ project.type }} reveal">
               <div class="work-card__media">
                 <img src="{{ project.image }}" alt="{{ project.alt }}" width="640" height="400" loading="lazy" decoding="async" />
-                <span class="badge badge--{{ project.type }}"><span class="badge__dot" aria-hidden="true"></span>{{ project.typeLabel }}</span>
                 <span class="work-card__index" aria-hidden="true">{{ project.number }}</span>
               </div>
               <div class="work-card__body">
@@ -244,7 +243,6 @@
             <article class="work-card work-card--{{ project.type }} reveal">
               <div class="work-card__media">
                 <img src="{{ project.image }}" alt="{{ project.alt }}" width="640" height="400" loading="lazy" decoding="async" />
-                <span class="badge badge--{{ project.type }}"><span class="badge__dot" aria-hidden="true"></span>{{ project.typeLabel }}</span>
                 <span class="work-card__index" aria-hidden="true">{{ project.number }}</span>
               </div>
               <div class="work-card__body">
@@ -352,7 +350,6 @@
         <p class="eyebrow">{{ copy.contactEyebrow }}</p>
         <h2 class="section-title contact-title" id="contact-title">{{ copy.contactTitle }}</h2>
         <p class="prose prose--lead contact-lead">{{ copy.contactLead }}</p>
-        <a class="btn btn--accent contact-cta" href="{{ primaryContact }}">{{ copy.talk }}</a>
         <ul class="contact-list">
           <sc-for list="{{ contactLinks }}" as="link" hint-placeholder-count="3">
             <li>

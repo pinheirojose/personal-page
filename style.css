@@ -157,8 +157,6 @@ input, textarea, button { font-family: inherit; }
 }
 .btn--ink { background: var(--ink); color: var(--bg); }
 .btn--ink:hover { background: var(--accent); color: var(--bg); }
-.btn--accent { background: var(--accent-text); color: var(--bg); }
-.btn--accent:hover { background: var(--ink); color: var(--bg); }
 .btn--outline { background: transparent; border-color: var(--ink); color: var(--ink); }
 .btn--outline:hover { background: var(--ink); color: var(--bg); }
 .btn--pill {
@@ -202,12 +200,12 @@ input, textarea, button { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 3px;
+  padding: 0; /* 36px buttons + 1px border = 38px, the height of the header pill */
   border: 1px solid var(--rule);
   border-radius: 999px;
 }
 .lang__btn {
-  min-height: 28px;
+  min-height: 36px;
   padding: 0 10px;
   border: none;
   border-radius: 999px;
@@ -289,6 +287,10 @@ input, textarea, button { font-family: inherit; }
 .hero__lead { margin-top: clamp(20px, 3vw, 28px); }
 .mark { font-style: normal; color: var(--accent); }
 .hero__visual { display: flex; justify-content: center; }
+/* On phones the diagram is a full screen of decoration after the CTAs. */
+@media (max-width: 719px) {
+  .hero__visual { display: none; }
+}
 .hero__visual svg { width: 100%; max-width: 400px; height: auto; animation: drift 11s ease-in-out infinite; }
 
 /* ---------- Cards (about pillars + notes) ---------- */
@@ -321,7 +323,7 @@ input, textarea, button { font-family: inherit; }
 
 /* ---------- Projects ---------- */
 /* One card markup (.work-card) serves the home preview and the gallery.
-   Type colours: professional = ink pill with accent dot, personal = light pill with sage dot. */
+   Column header dots: professional = accent, personal = sage. */
 .badge__dot {
   display: inline-block;
   flex: none;
@@ -330,35 +332,9 @@ input, textarea, button { font-family: inherit; }
   border-radius: 999px;
   background: var(--type-dot, var(--ink-faint));
 }
-.showcase__col--professional,
-.work-card--professional { --type-dot: var(--accent); }
-.showcase__col--personal,
-.work-card--personal { --type-dot: var(--sage); }
+.showcase__col--professional { --type-dot: var(--accent); }
+.showcase__col--personal { --type-dot: var(--sage); }
 
-.badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 28px;
-  padding: 0 12px 0 10px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  backdrop-filter: blur(8px);
-}
-.badge--professional { background: var(--ink); color: var(--bg); }
-.badge--personal {
-  background: rgba(245, 243, 238, .92);
-  border-color: var(--rule);
-  color: var(--ink);
-}
 
 .showcase {
   display: grid;
@@ -593,7 +569,6 @@ input, textarea, button { font-family: inherit; }
   letter-spacing: -.032em;
 }
 .contact-lead { margin-top: 22px; }
-.contact-cta { margin-top: 28px; }
 .contact-list { display: flex; flex-direction: column; margin-top: 34px; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
 .contact-list a {
   display: flex;

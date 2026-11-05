@@ -52,7 +52,6 @@ function withProjectUrl(project, copy) {
   return {
     ...project,
     type,
-    typeLabel: (copy.projectTypes || {})[type] || type,
     tags: project.tags || [],
     url: href,
     isPrivate: !href,
@@ -175,7 +174,12 @@ class Component extends DCLogic {
     this.wide = window.matchMedia('(min-width: 720px)');
     this.onWide = (e) => { if (e.matches) this.setState({ menuOpen: false }); };
     this.wide.addEventListener('change', this.onWide);
-    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ menuOpen: false }); };
+    // Escape closes an open menu and hands focus back to the toggle.
+    this.onKey = (e) => {
+      if (e.key !== 'Escape' || !this.state.menuOpen) return;
+      this.setState({ menuOpen: false });
+      document.querySelector('.nav-toggle')?.focus();
+    };
     window.addEventListener('keydown', this.onKey);
 
     // Back-to-top: one rAF-throttled check per frame, and setState only when it flips.
@@ -249,6 +253,10 @@ class Component extends DCLogic {
   }
 
   componentDidUpdate() {
+    // Drawer just opened: move focus into it (it's display:none until now).
+    if (this.state.menuOpen && !this._menuOpen) document.querySelector('#mobile-menu a')?.focus();
+    this._menuOpen = this.state.menuOpen;
+
     if (this._lang && this._lang !== this.state.lang) {
       for (const node of document.querySelectorAll('.reveal')) {
         node.classList.add('is-in');
@@ -301,8 +309,11 @@ class Component extends DCLogic {
       : copy);
     const isPt = this.state.lang === 'pt-PT';
     const allProjects = (copy.projects || []).map((p) => withProjectUrl(p, copy));
+    // Cards are numbered within their own column (01, 02 …).
     const byType = (type) => {
-      const list = allProjects.filter((p) => p.type === type);
+      const list = allProjects
+        .filter((p) => p.type === type)
+        .map((p, i) => ({ ...p, number: String(i + 1).padStart(2, '0') }));
       return gallery ? list : list.slice(0, HOME_PER_COLUMN);
     };
     const professionalProjects = byType('professional');
@@ -317,7 +328,6 @@ class Component extends DCLogic {
       galleryHref: './projects.html',
       social: SOCIAL,
       contactLinks: copy.contactLinks,
-      primaryContact: 'mailto:' + EMAIL,
       pillars: copy.pillars || [],
       professionalProjects,
       personalProjects,

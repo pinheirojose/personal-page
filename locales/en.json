@@ -53,7 +53,6 @@
   "privateWork": "Client work · no public demo",
   "projects": [
     {
-      "number": "01",
       "type": "professional",
       "tags": ["Web", "WordPress", "Real estate"],
       "title": "Imóveis Ana Morgado",
@@ -67,7 +66,6 @@
       "url": "https://imoveisanamorgado.pt/"
     },
     {
-      "number": "02",
       "type": "personal",
       "tags": ["Web", "Platform", "Product"],
       "title": "Évora Serviços",
@@ -81,7 +79,6 @@
       "url": "https://www.evoraservicos.pt/"
     },
     {
-      "number": "03",
       "type": "professional",
       "tags": ["Database", "Development", "Project delivery"],
       "title": "International University ERP Migration",
@@ -95,7 +92,6 @@
       "url": ""
     },
     {
-      "number": "04",
       "type": "professional",
       "tags": ["DBA", "Linux", "Oracle"],
       "title": "Infrastructure Redesign",
@@ -109,7 +105,6 @@
       "url": ""
     },
     {
-      "number": "05",
       "type": "personal",
       "tags": ["Web", "Design", "Bilingual"],
       "title": "Personal page",
@@ -123,7 +118,6 @@
       "url": "https://github.com/pinheirojose/personal-page"
     },
     {
-      "number": "06",
       "type": "personal",
       "tags": ["Web", "React", "Maps"],
       "title": "Travel map",

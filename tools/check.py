@@ -315,6 +315,98 @@ async def check_perf_loading(browser):
         assert not [w for w in warnings if 'preload' in w.lower()], f'{path}: {warnings}'
 
 
+COLUMN_INDEXES = """() => [...document.querySelectorAll('#dc-root .showcase__col')]
+    .map(c => [...c.querySelectorAll('.work-card__index')].map(i => i.textContent.trim()))"""
+
+
+@check
+async def check_no_card_badges(browser):
+    for path in PAGES:
+        ctx, page, _ = await open_page(browser, path, lang='en')
+        n = await page.locator('#dc-root .work-card .badge').count()
+        dots = await page.locator('#dc-root .col-head .badge__dot').count()
+        await ctx.close()
+        assert n == 0 and dots == 2, f'{path}: {n} badges, {dots} column dots'
+
+
+@check
+async def check_column_numbering(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en')
+    home = await page.evaluate(COLUMN_INDEXES)
+    await page.click('.lang__btn:has-text("PT")')
+    await page.wait_for_function("document.documentElement.lang === 'pt-PT'")
+    home_pt = await page.evaluate(COLUMN_INDEXES)
+    await ctx.close()
+    assert home == [['01', '02'], ['01', '02']] == home_pt, (home, home_pt)
+    ctx, page, _ = await open_page(browser, '/projects.html', lang='en')
+    gallery = await page.evaluate(COLUMN_INDEXES)
+    await ctx.close()
+    for col in gallery:
+        assert col == [f'{i + 1:02d}' for i in range(len(col))], gallery
+    assert all('number' not in p for t in ['pt-PT', 'en'] for p in locale_json(t)['projects']), 'locales still have number'
+
+
+@check
+async def check_hero_visual_hidden_mobile(browser):
+    for (w, h), want in [((390, 844), False), ((1440, 900), True)]:
+        ctx, page, _ = await open_page(browser, '/', lang='en', viewport=(w, h))
+        visible = await page.locator('#dc-root .hero__visual').is_visible()
+        await ctx.close()
+        assert visible == want, f'{w}px hero visual visible={visible}'
+
+
+@check
+async def check_no_contact_cta(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en')
+    n = await page.locator('#dc-root .contact-cta').count()
+    await ctx.close()
+    assert n == 0, f'{n} contact CTAs'
+
+
+@check
+async def check_menu_focus(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en', viewport=(390, 844))
+    await page.click('.nav-toggle')
+    await page.wait_for_selector('#mobile-menu.is-open')
+    on_open = await page.evaluate("document.activeElement === document.querySelector('#mobile-menu a')")
+    await page.keyboard.press('Escape')
+    await page.wait_for_selector('#mobile-menu:not(.is-open)', state='attached')
+    on_close = await page.evaluate("document.activeElement?.classList.contains('nav-toggle')")
+    await ctx.close()
+    assert on_open, 'focus not on first drawer link after opening'
+    assert on_close, 'focus not back on .nav-toggle after Escape'
+
+
+@check
+async def check_escape_closed_menu_keeps_focus(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en', viewport=(390, 844))
+    await page.focus('#dc-root .hero__actions a')
+    await page.keyboard.press('Escape')
+    await page.wait_for_timeout(100)
+    still = await page.evaluate("document.activeElement === document.querySelector('#dc-root .hero__actions a')")
+    await ctx.close()
+    assert still, 'Escape with the menu closed moved focus'
+
+
+@check
+async def check_lang_buttons_36(browser):
+    for w, h in [(1440, 900), (390, 844)]:
+        ctx, page, _ = await open_page(browser, '/', lang='en', viewport=(w, h))
+        heights = await page.eval_on_selector_all('#dc-root .lang__btn', 'bs => bs.map(b => b.getBoundingClientRect().height)')
+        await ctx.close()
+        assert all(x >= 36 for x in heights), f'{w}px lang buttons {heights}'
+
+
+@check
+async def check_header_height_unchanged(browser):
+    # Heights before Phase 6: the 38px pill sets desktop, the 40px menu toggle sets mobile.
+    for (w, h), want in [((1440, 900), 67), ((390, 844), 69)]:
+        ctx, page, _ = await open_page(browser, '/', lang='en', viewport=(w, h))
+        hh = await page.evaluate("document.querySelector('#dc-root .header').getBoundingClientRect().height")
+        await ctx.close()
+        assert hh == want, f'{w}px header {hh}, want {want}'
+
+
 # ---------- runner ----------
 
 async def main(names):
