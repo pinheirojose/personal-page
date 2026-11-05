@@ -192,7 +192,7 @@
           <sc-for list="{{ professionalProjects }}" as="project" hint-placeholder-count="3">
             <article class="work-card work-card--{{ project.type }} reveal">
               <div class="work-card__media">
-                <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" loading="lazy" decoding="async" />
+                <img src="{{ project.image }}" alt="{{ project.alt }}" width="640" height="400" loading="lazy" decoding="async" />
                 <span class="badge badge--{{ project.type }}"><span class="badge__dot" aria-hidden="true"></span>{{ project.typeLabel }}</span>
                 <span class="work-card__index" aria-hidden="true">{{ project.number }}</span>
               </div>
@@ -237,7 +237,7 @@
           <sc-for list="{{ personalProjects }}" as="project" hint-placeholder-count="3">
             <article class="work-card work-card--{{ project.type }} reveal">
               <div class="work-card__media">
-                <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" loading="lazy" decoding="async" />
+                <img src="{{ project.image }}" alt="{{ project.alt }}" width="640" height="400" loading="lazy" decoding="async" />
                 <span class="badge badge--{{ project.type }}"><span class="badge__dot" aria-hidden="true"></span>{{ project.typeLabel }}</span>
                 <span class="work-card__index" aria-hidden="true">{{ project.number }}</span>
               </div>

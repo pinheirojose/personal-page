@@ -251,6 +251,34 @@ async def check_field_focus_no_shift(browser):
     assert before == after, (before, after)
 
 
+VAGUE_TOOLS = ['APIs', 'Deployment', 'Publicação', 'Web technologies', 'Tecnologias web',
+               'Cloud platforms', 'Plataformas cloud', 'Integration tools', 'Ferramentas de integração']
+
+
+@check
+async def check_content_fixes(browser):
+    for tag in ['pt-PT', 'en']:
+        data = locale_json(tag)
+        raw = json.dumps(data, ensure_ascii=False)
+        assert 'PLACEHOLDER' not in raw and 'ESPAÇO RESERVADO' not in raw, f'{tag} placeholder caption'
+        for group in data['toolbox']:
+            assert 4 <= len(group['items']) <= 6, f'{tag} {group["label"]} has {len(group["items"])}'
+            assert not set(group['items']) & set(VAGUE_TOOLS), f'{tag} vague: {group["items"]}'
+        items = {i for g in data['toolbox'] for i in g['items']}
+        assert {'Linux', 'TypeScript', 'MySQL'} <= items, f'{tag} missing tools'
+        personal = next(p for p in data['projects'] if p['image'].endswith(('personal-page.png', 'personal-page.webp')))
+        assert personal['url'] == 'https://github.com/pinheirojose/personal-page', personal['url']
+    assert locale_json('pt-PT')['footerRole'] == 'ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO'
+    assert locale_json('en')['footerRole'] == 'SOFTWARE ENGINEER · TECH LEAD'
+    assert 'Está a olhar para ela' in json.dumps(locale_json('pt-PT'), ensure_ascii=False)
+    for path in PAGES:
+        for lang in ['pt-PT', 'en']:
+            ctx, page, _ = await open_page(browser, path, lang=lang)
+            alts = await page.eval_on_selector_all('#dc-root .work-card img', 'is => is.map(i => i.alt)')
+            await ctx.close()
+            assert alts and all(a.strip() and '/' not in a for a in alts), f'{path} {lang}: {alts}'
+
+
 # ---------- runner ----------
 
 async def main(names):

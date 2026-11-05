@@ -59,6 +59,7 @@
       "title": "Imóveis Ana Morgado",
       "image": "./images/imoveis-ana-morgado.webp",
       "caption": "SCREENSHOT / IMÓVEIS ANA MORGADO",
+      "alt": "Home page of the Imóveis Ana Morgado website, with Ana’s photo, a button to explore listings and her years of experience and homes sold.",
       "summary": "A website for a solo real estate agent, where clients can browse her listings, search by location and price, open a full property page and get in touch with her directly.",
       "role": "Design, build, launch",
       "areas": "WordPress · Houzez · MySQL · Docker",
@@ -72,6 +73,7 @@
       "title": "Évora Serviços",
       "image": "./images/evora-services.webp",
       "caption": "SCREENSHOT / ÉVORA SERVIÇOS",
+      "alt": "Évora Serviços banner with the Roman Temple of Évora and the tagline “A sua cidade. Os melhores serviços.”",
       "summary": "Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.",
       "role": "Design, build, run",
       "areas": "Web · Database · Hosting",
@@ -85,6 +87,7 @@
       "title": "International University ERP Migration",
       "image": "./images/migration.png",
       "caption": "DIAGRAM / MIGRATION PATH",
+      "alt": "A person typing code on a laptop in an empty classroom.",
       "summary": "A university ERP migration where I covered the whole cycle: database and application development, technical planning, project management and the go-live.",
       "role": "Technical lead",
       "areas": "Oracle · Java · SQL",
@@ -98,6 +101,7 @@
       "title": "Infrastructure Redesign",
       "image": "./images/database.png",
       "caption": "DIAGRAM / DBA",
+      "alt": "Wooden letter tiles spelling DATA on a table.",
       "summary": "A shared database environment was getting harder to maintain with every new client. I redesigned it around dedicated instances per client on open-source Linux, supporting Oracle 11 through 19.",
       "role": "Oracle DBA, planning, standardisation",
       "areas": "Linux · Oracle · Infra · Docker",
@@ -110,12 +114,13 @@
       "tags": ["Web", "Design", "Bilingual"],
       "title": "Personal page",
       "image": "./images/personal-page.png",
-      "caption": "PLACEHOLDER / PERSONAL PAGE",
+      "caption": "SCREENSHOT / PERSONAL PAGE",
+      "alt": "The top of this site: “Hi, I’m José.” next to a dotted map linking code, data, infra, delivery and people.",
       "summary": "A bilingual site to present the work — projects, experience and a way to get in touch — without a framework lock-in.",
       "role": "Design, build",
       "areas": "HTML · CSS · JavaScript",
       "result": "You’re looking at it",
-      "url": "./index.html"
+      "url": "https://github.com/pinheirojose/personal-page"
     },
     {
       "number": "06",
@@ -123,7 +128,8 @@
       "tags": ["Web", "React", "Maps"],
       "title": "Travel map",
       "image": "./images/travel-map.webp",
-      "caption": "PLACEHOLDER / TRAVEL MAP",
+      "caption": "SCREENSHOT / TRAVEL MAP",
+      "alt": "The Travel Map app showing Europe and North Africa, with a sidebar for searching and filtering places.",
       "summary": "A personal travel map: mark places visited or still on the list, filter by country and year, then download a high-resolution poster. Everything stays in this browser — export JSON so you don’t lose it.",
       "role": "Design, build",
       "areas": "React · TypeScript · Vite",
@@ -162,10 +168,10 @@
   "toolboxEyebrow": "TOOLBOX / 04",
   "toolboxTitle": "Tools of the trade.",
   "toolbox": [
-    { "label": "DEVELOPMENT", "items": ["Java", "Bash", "React", "Python", "APIs", "JavaScript"] },
-    { "label": "DATABASES", "items": ["Oracle", "PostgreSQL", "SQL", "Database administration"] },
-    { "label": "DEVOPS", "items": ["Docker", "GitLab CI/CD", "Deployment", "Jenkins"] },
-    { "label": "OTHER", "items": ["WordPress", "Web technologies", "Cloud platforms", "Integration tools"] }
+    { "label": "DEVELOPMENT", "items": ["Java", "TypeScript", "JavaScript", "React", "Python", "Bash"] },
+    { "label": "DATABASES", "items": ["Oracle", "PostgreSQL", "MySQL", "SQL", "Database administration"] },
+    { "label": "DEVOPS", "items": ["Docker", "Linux", "GitLab CI/CD", "Jenkins"] },
+    { "label": "OTHER", "items": ["WordPress", "Vite", "Vercel", "Git"] }
   ],
   "notesEyebrow": "NOTES / 05",
   "notesTitle": "A few things I’ve learned.",
@@ -191,5 +197,5 @@
   "sent": "Message sent ✓",
   "sentThanks": "Thanks — I’ll get back to you.",
   "sendFail": "Couldn’t send. Try again, or email me directly.",
-  "footerRole": "SOFTWARE ENGINEER"
+  "footerRole": "SOFTWARE ENGINEER · TECH LEAD"
 }

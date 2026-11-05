@@ -59,6 +59,7 @@
       "title": "Imóveis Ana Morgado",
       "image": "./images/imoveis-ana-morgado.webp",
       "caption": "CAPTURA / IMÓVEIS ANA MORGADO",
+      "alt": "Página inicial do site Imóveis Ana Morgado, com a fotografia da Ana, um botão para explorar imóveis e os anos de experiência e imóveis vendidos.",
       "summary": "Um site para uma agente imobiliária independente, onde os clientes podem ver os imóveis dela, pesquisar por localização e preço, abrir a ficha completa de cada imóvel e contactá-la diretamente.",
       "role": "Design, desenvolvimento, lançamento",
       "areas": "WordPress · Houzez · MySQL · Docker",
@@ -72,6 +73,7 @@
       "title": "Évora Serviços",
       "image": "./images/evora-services.webp",
       "caption": "CAPTURA / ÉVORA SERVIÇOS",
+      "alt": "Banner da Évora Serviços com o Templo Romano de Évora e o lema «A sua cidade. Os melhores serviços.»",
       "summary": "Encontrar um profissional de confiança em Évora era perguntar à volta. Construí uma plataforma onde os residentes procuram serviços locais e as empresas aparecem sem precisarem de um site próprio.",
       "role": "Conceber, construir, gerir",
       "areas": "Web · Base de dados · Alojamento",
@@ -85,6 +87,7 @@
       "title": "Migração ERP da Universidade Internacional",
       "image": "./images/migration.png",
       "caption": "DIAGRAMA / PERCURSO DE MIGRAÇÃO",
+      "alt": "Uma pessoa a escrever código num portátil, numa sala de aula vazia.",
       "summary": "Uma migração de ERP universitário em que fiz o ciclo completo: desenvolvimento da base de dados e da aplicação, planeamento técnico, gestão de projeto e arranque em produção.",
       "role": "Responsável técnico",
       "areas": "Oracle · Java · SQL",
@@ -98,6 +101,7 @@
       "title": "Redesenho da infraestrutura",
       "image": "./images/database.png",
       "caption": "DIAGRAMA / DBA",
+      "alt": "Peças de madeira com letras a formar a palavra DATA, em cima de uma mesa.",
       "summary": "Um ambiente de bases de dados partilhado ficava mais difícil de manter a cada novo cliente. Redesenhei-o com instâncias dedicadas por cliente, em Linux de código aberto, com suporte a Oracle da 11 à 19.",
       "role": "DBA Oracle, planeamento, standardização",
       "areas": "Linux · Oracle · Infra · Docker",
@@ -110,12 +114,13 @@
       "tags": ["Web", "Design", "Bilingue"],
       "title": "Página pessoal",
       "image": "./images/personal-page.png",
-      "caption": "ESPAÇO RESERVADO / PÁGINA PESSOAL",
+      "caption": "CAPTURA / PÁGINA PESSOAL",
+      "alt": "O topo deste site: «Olá, sou o José.» ao lado de um mapa pontilhado que liga código, dados, infraestrutura, entrega e pessoas.",
       "summary": "Um sítio bilingue para apresentar o trabalho — projetos, experiência e uma forma de contacto — sem ficar preso a um framework.",
       "role": "Conceber, construir",
       "areas": "HTML · CSS · JavaScript",
-      "result": "Está a olhar para ele",
-      "url": "./index.html"
+      "result": "Está a olhar para ela",
+      "url": "https://github.com/pinheirojose/personal-page"
     },
     {
       "number": "06",
@@ -123,7 +128,8 @@
       "tags": ["Web", "React", "Mapas"],
       "title": "Mapa de viagens",
       "image": "./images/travel-map.webp",
-      "caption": "ESPAÇO RESERVADO / MAPA DE VIAGENS",
+      "caption": "CAPTURA / MAPA DE VIAGENS",
+      "alt": "A app Mapa de viagens com a Europa e o Norte de África, e uma barra lateral para pesquisar e filtrar locais.",
       "summary": "Um mapa de viagens pessoal: marcar sítios visitados ou por visitar, filtrar por país e por ano, e descarregar um poster em alta resolução. Tudo fica neste browser — exportar JSON para não se perder.",
       "role": "Conceber, construir",
       "areas": "React · TypeScript · Vite",
@@ -162,10 +168,10 @@
   "toolboxEyebrow": "FERRAMENTAS / 04",
   "toolboxTitle": "Ferramentas do ofício.",
   "toolbox": [
-    { "label": "DESENVOLVIMENTO", "items": ["Java", "Bash", "React", "Python", "APIs", "JavaScript"] },
-    { "label": "BASES DE DADOS", "items": ["Oracle", "PostgreSQL", "SQL", "Administração de bases de dados"] },
-    { "label": "DEVOPS", "items": ["Docker", "GitLab CI/CD", "Publicação", "Jenkins"] },
-    { "label": "OUTROS", "items": ["WordPress", "Tecnologias web", "Plataformas cloud", "Ferramentas de integração"] }
+    { "label": "DESENVOLVIMENTO", "items": ["Java", "TypeScript", "JavaScript", "React", "Python", "Bash"] },
+    { "label": "BASES DE DADOS", "items": ["Oracle", "PostgreSQL", "MySQL", "SQL", "Administração de bases de dados"] },
+    { "label": "DEVOPS", "items": ["Docker", "Linux", "GitLab CI/CD", "Jenkins"] },
+    { "label": "OUTROS", "items": ["WordPress", "Vite", "Vercel", "Git"] }
   ],
   "notesEyebrow": "NOTAS / 05",
   "notesTitle": "Algumas coisas que aprendi.",
@@ -191,5 +197,5 @@
   "sent": "Mensagem enviada ✓",
   "sentThanks": "Obrigado — respondo em breve.",
   "sendFail": "Não foi possível enviar. Tente outra vez, ou escreva para o email.",
-  "footerRole": "ENGENHEIRO DE SOFTWARE"
+  "footerRole": "ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO"
 }
