@@ -58,6 +58,8 @@ deploys it.
   confirming the activation email FormSubmit sends.
 - Projects, timeline and all other copy live in `locales/*.json`. Only the
   first `HOME_PROJECT_LIMIT` projects show on the home page; `projects.html`
-  shows all of them.
+  shows all of them. Each project needs `"type": "personal"` or
+  `"professional"` (drives the badge and the gallery filter) and a short
+  `tags` list.
 - Project images go in `images/`. Prefer WebP around 1600px wide; the cards
   display at 640×400.

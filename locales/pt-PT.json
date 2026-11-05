@@ -51,10 +51,17 @@
   "galleryLead": "Uma vista de conjunto do trabalho — pessoal e profissional.",
   "galleryDocTitle": "Projetos — José",
   "backHome": "← Início",
+  "projectTypes": { "personal": "Pessoal", "professional": "Profissional" },
+  "filterAria": "Filtrar projetos por tipo",
+  "filterAll": "Todos",
+  "statPersonal": "pessoais",
+  "statProfessional": "profissionais",
+  "privateWork": "Trabalho para cliente · sem demo pública",
   "projects": [
     {
       "number": "01",
-      "kind": "PESSOAL · WEB",
+      "type": "personal",
+      "tags": ["Web", "Plataforma", "Produto"],
       "title": "Évora Serviços",
       "image": "./images/evora-services.webp",
       "caption": "CAPTURA / ÉVORA SERVIÇOS",
@@ -66,7 +73,8 @@
     },
     {
       "number": "02",
-      "kind": "PROFISSIONAL · Base de dados | Desenvolvimento | Entrega de projetos",
+      "type": "professional",
+      "tags": ["Base de dados", "Desenvolvimento", "Entrega de projetos"],
       "title": "Migração ERP da Universidade Internacional",
       "image": "./images/migration.png",
       "caption": "DIAGRAMA / PERCURSO DE MIGRAÇÃO",
@@ -78,7 +86,8 @@
     },
     {
       "number": "03",
-      "kind": "PROFISSIONAL · DBA | Linux | Oracle",
+      "type": "professional",
+      "tags": ["DBA", "Linux", "Oracle"],
       "title": "Redesenho da infraestrutura",
       "image": "./images/database.png",
       "caption": "DIAGRAMA / DBA",
@@ -90,7 +99,8 @@
     },
     {
       "number": "04",
-      "kind": "PESSOAL · WEB",
+      "type": "personal",
+      "tags": ["Web", "Design", "Bilingue"],
       "title": "Página pessoal",
       "image": "./images/personal-page.png",
       "caption": "ESPAÇO RESERVADO / PÁGINA PESSOAL",
@@ -102,7 +112,8 @@
     },
     {
       "number": "05",
-      "kind": "PESSOAL · WEB",
+      "type": "personal",
+      "tags": ["Web", "React", "Mapas"],
       "title": "Mapa de viagens",
       "image": "./images/travel-map.webp",
       "caption": "ESPAÇO RESERVADO / MAPA DE VIAGENS",

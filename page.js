@@ -20,15 +20,31 @@ function withHomeBase(href) {
   return './index.html' + href;
 }
 
-function withProjectUrl(project) {
+const PROJECT_TYPES = ['professional', 'personal'];
+
+function withProjectUrl(project, copy) {
   const href = String(project.url || '').trim();
   const external = /^https?:/i.test(href);
+  const type = PROJECT_TYPES.includes(project.type) ? project.type : 'personal';
   return {
     ...project,
+    type,
+    typeLabel: (copy.projectTypes || {})[type] || type,
+    tags: project.tags || [],
     url: href,
+    isPrivate: !href,
     target: external ? '_blank' : '_self',
     rel: external ? 'noopener noreferrer' : '',
   };
+}
+
+// An odd count leaves one card alone on the last row of a two-column grid,
+// so the first card spans the full width instead.
+function withFeature(list) {
+  return list.map((project, i) => ({
+    ...project,
+    cardClass: i === 0 && list.length % 2 === 1 ? 'work-card--feature' : '',
+  }));
 }
 
 function hydrateCopy(raw) {
@@ -78,7 +94,7 @@ function syncDocument(copy) {
 }
 
 class Component extends DCLogic {
-  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang() };
+  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang(), filter: 'all' };
 
   submit = (e) => {
     e.preventDefault();
@@ -181,6 +197,11 @@ class Component extends DCLogic {
       ? { ...copy, docTitle: copy.galleryDocTitle, docDescription: copy.galleryLead }
       : copy);
     const isPt = this.state.lang === 'pt-PT';
+    const allProjects = (copy.projects || []).map((p) => withProjectUrl(p, copy));
+    const counts = { professional: 0, personal: 0 };
+    for (const p of allProjects) counts[p.type] += 1;
+    const filter = this.state.filter;
+    const shown = filter === 'all' ? allProjects : allProjects.filter((p) => p.type === filter);
 
     return {
       copy,
@@ -192,9 +213,19 @@ class Component extends DCLogic {
       contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
       pillars: copy.pillars || [],
-      projects: (copy.projects || [])
-        .map(withProjectUrl)
-        .slice(0, gallery ? undefined : HOME_PROJECT_LIMIT),
+      projects: withFeature(gallery ? shown : allProjects.slice(0, HOME_PROJECT_LIMIT)),
+      projectCount: allProjects.length,
+      professionalCount: counts.professional,
+      personalCount: counts.personal,
+      filterAllClass: filter === 'all' ? 'is-active' : '',
+      filterProClass: filter === 'professional' ? 'is-active' : '',
+      filterPersonalClass: filter === 'personal' ? 'is-active' : '',
+      filterIsAll: filter === 'all',
+      filterIsPro: filter === 'professional',
+      filterIsPersonal: filter === 'personal',
+      showAll: () => this.setState({ filter: 'all' }),
+      showProfessional: () => this.setState({ filter: 'professional' }),
+      showPersonal: () => this.setState({ filter: 'personal' }),
       timeline: copy.timeline || [],
       toolbox: copy.toolbox || [],
       notes: copy.notes || [],

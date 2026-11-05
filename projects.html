@@ -72,25 +72,47 @@
       <p class="prose section-head__aside">{{ copy.galleryLead }}</p>
     </div>
 
-    <div class="gallery">
-      <sc-for list="{{ projects }}" as="project" hint-placeholder-count="4">
-        <article class="gallery-card reveal">
-          <div class="project__frame">
-            <div class="project__media">
-              <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" loading="lazy" decoding="async" />
+    <div class="filter" role="group" aria-label="{{ copy.filterAria }}">
+      <button type="button" class="filter__btn {{ filterAllClass }}" onClick="{{ showAll }}" aria-pressed="{{ filterIsAll }}">{{ copy.filterAll }} <span class="filter__count">{{ projectCount }}</span></button>
+      <button type="button" class="filter__btn filter__btn--professional {{ filterProClass }}" onClick="{{ showProfessional }}" aria-pressed="{{ filterIsPro }}"><span class="badge__dot" aria-hidden="true"></span>{{ copy.projectTypes.professional }} <span class="filter__count">{{ professionalCount }}</span></button>
+      <button type="button" class="filter__btn filter__btn--personal {{ filterPersonalClass }}" onClick="{{ showPersonal }}" aria-pressed="{{ filterIsPersonal }}"><span class="badge__dot" aria-hidden="true"></span>{{ copy.projectTypes.personal }} <span class="filter__count">{{ personalCount }}</span></button>
+    </div>
+
+    <div class="showcase showcase--gallery">
+      <sc-for list="{{ projects }}" as="project" hint-placeholder-count="5">
+        <article class="work-card work-card--{{ project.type }} {{ project.cardClass }} reveal">
+          <div class="work-card__media">
+            <img src="{{ project.image }}" alt="{{ project.caption }}" width="640" height="400" loading="lazy" decoding="async" />
+            <span class="badge badge--{{ project.type }}"><span class="badge__dot" aria-hidden="true"></span>{{ project.typeLabel }}</span>
+            <span class="work-card__index" aria-hidden="true">{{ project.number }}</span>
+          </div>
+          <div class="work-card__body">
+            <ul class="tags" aria-label="{{ copy.areasLabel }}">
+              <sc-for list="{{ project.tags }}" as="tag" hint-placeholder-count="3">
+                <li>{{ tag }}</li>
+              </sc-for>
+            </ul>
+            <h2 class="work-card__title">{{ project.title }}</h2>
+            <p class="prose work-card__summary">{{ project.summary }}</p>
+            <dl class="work-card__facts">
+              <div><dt>{{ copy.roleLabel }}</dt><dd>{{ project.role }}</dd></div>
+              <div><dt>{{ copy.areasLabel }}</dt><dd>{{ project.areas }}</dd></div>
+              <div class="work-card__result"><dt>{{ copy.resultLabel }}</dt><dd>{{ project.result }}</dd></div>
+            </dl>
+            <div class="work-card__foot">
+              <sc-if value="{{ project.url }}" hint-placeholder-val="{{ false }}">
+                <a class="work-card__cta" href="{{ project.url }}" target="{{ project.target }}" rel="{{ project.rel }}">
+                  {{ copy.viewProject }}<span class="sr-only">: {{ project.title }}</span> <span class="work-card__arrow" aria-hidden="true">↗</span>
+                </a>
+              </sc-if>
+              <sc-if value="{{ project.isPrivate }}" hint-placeholder-val="{{ false }}">
+                <p class="work-card__private">
+                  <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.2" d="M3 5.5V4a3 3 0 0 1 6 0v1.5M2.5 5.5h7v5h-7z"></path></svg>
+                  {{ copy.privateWork }}
+                </p>
+              </sc-if>
             </div>
           </div>
-          <p class="eyebrow project__meta">
-            <span>{{ copy.projectLabel }} / {{ project.number }}</span>
-            <span class="eyebrow--accent">{{ project.kind }}</span>
-          </p>
-          <h2 class="gallery-card__title">{{ project.title }}</h2>
-          <p class="prose">{{ project.summary }}</p>
-          <sc-if value="{{ project.url }}" hint-placeholder-val="{{ false }}">
-            <a class="project__cta" href="{{ project.url }}" target="{{ project.target }}" rel="{{ project.rel }}">
-              {{ copy.viewProject }} <span class="project__arrow">→</span>
-            </a>
-          </sc-if>
         </article>
       </sc-for>
     </div>
