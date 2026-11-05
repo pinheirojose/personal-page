@@ -18,28 +18,25 @@
     { "label": "Experience", "href": "#experience" },
     { "label": "Contact", "href": "#contact" }
   ],
-  "heroEyebrow": "SOFTWARE ENGINEER · DATABASES · DEVELOPMENT · DEVOPS · DELIVERY",
+  "heroEyebrow": "SOFTWARE ENGINEER · TECH LEAD",
   "heroTitle": "Hi, I’m José.",
   "taglineBefore": "I build things, fix things, and occasionally",
   "taglineMark": "argue with databases",
   "taglineAfter": ".",
-  "heroLead": "Software Engineer working across software development, databases, DevOps and project delivery.",
+  "heroLead": "Ten years and counting of taking software from the first line of code to production, and keeping it there.",
   "seeWork": "See my work →",
   "aboutEyebrow": "ABOUT / 01",
   "aboutTitle": "More than a job title.",
-  "aboutLede": "Software Engineer by profession, problem solver by habit.",
-  "aboutBody": "My work sits somewhere between software, databases, infrastructure and getting things delivered. I enjoy turning complicated problems into practical solutions — preferably ones that still make sense six months later.",
+  "aboutLede": "Engineer by trade, problem solver by habit.",
+  "aboutBody": "I care less about which layer the trouble lives in and more about getting it sorted. I like turning messy situations into practical solutions — preferably ones that still make sense six months later.",
   "pillars": [
-    { "label": "BUILD", "text": "Software and application development." },
-    { "label": "SOLVE", "text": "Databases, integrations, troubleshooting and technical problems." },
-    { "label": "DELIVER", "text": "Projects, Agile delivery, support and client communication." },
-    { "label": "LEAD", "text": "Technical leadership, coordination and helping teams move forward." },
-    { "label": "CLIENT SUCCESS", "text": "Making sure what shipped actually works for the people using it." },
-    { "label": "SERVE", "text": "Building solutions for everyday problems — useful to someone, not just technically interesting." }
+    { "label": "BUILD", "text": "Software and applications, from the database up." },
+    { "label": "SOLVE", "text": "Troubleshooting, integrations, performance and the occasional mystery in production." },
+    { "label": "DELIVER", "text": "Leading teams and staying close to clients, so what ships is useful to someone, not just technically interesting." }
   ],
   "projectsEyebrow": "PROJECTS / 02",
   "projectsTitle": "Things I’ve built.",
-  "projectsLead": "A few projects, experiments and solutions I’ve worked on — professionally and independently.",
+  "projectsLead": "Some for clients, some for me, all of them out in the world.",
   "projectLabel": "PROJECT",
   "roleLabel": "ROLE",
   "areasLabel": "AREAS",
@@ -48,7 +45,7 @@
   "allProjects": "See all projects",
   "galleryEyebrow": "PROJECTS",
   "galleryTitle": "All projects.",
-  "galleryLead": "A wider look at the work — personal and professional.",
+  "galleryLead": "Everything in one place, including the ones that didn’t fit on the home page.",
   "galleryDocTitle": "Projects — José",
   "backHome": "← Home",
   "projectTypes": { "personal": "Personal", "professional": "Professional" },
@@ -87,10 +84,10 @@
       "title": "International University ERP Migration",
       "image": "./images/migration.png",
       "caption": "DIAGRAM / MIGRATION PATH",
-      "summary": "A university ERP migration project where I worked across the entire delivery lifecycle — from database and application development to technical planning, project management, and final delivery.",
+      "summary": "A university ERP migration where I covered the whole cycle: database and application development, technical planning, project management and the go-live.",
       "role": "Technical lead",
       "areas": "Oracle · Java · SQL",
-      "result": "Behind the databases, deployments and deadlines, the project ultimately helped improve the systems used every day by thousands of students and staff.",
+      "result": "Better everyday systems for thousands of students and staff",
       "url": ""
     },
     {
@@ -100,10 +97,10 @@
       "title": "Infrastructure Redesign",
       "image": "./images/database.png",
       "caption": "DIAGRAM / DBA",
-      "summary": "Redesigned the database infrastructure to create a more scalable and isolated environment for multiple clients. The solution introduced dedicated database instances running on open-source Linux infrastructure, supporting multiple Oracle versions, from 11 -> 19.",
-      "role": "Oracle Administration | Planning & Standardisation",
+      "summary": "A shared database environment was getting harder to maintain with every new client. I redesigned it around dedicated instances per client on open-source Linux, supporting Oracle 11 through 19.",
+      "role": "Oracle DBA, planning, standardisation",
       "areas": "Linux · Oracle · Infra · Docker",
-      "result": "Turning a shared and increasingly difficult-to-maintain environment into a structured, isolated and scalable database platform that could support different clients and Oracle versions with greater control",
+      "result": "Every client isolated, every Oracle version covered, far fewer surprises",
       "url": ""
     },
     {
@@ -116,7 +113,7 @@
       "summary": "A bilingual site to present the work — projects, experience and a way to get in touch — without a framework lock-in.",
       "role": "Design, build",
       "areas": "HTML · CSS · JavaScript",
-      "result": "My digital CV, in Portuguese and English",
+      "result": "You’re looking at it",
       "url": "./index.html"
     },
     {
@@ -126,7 +123,7 @@
       "title": "Travel map",
       "image": "./images/travel-map.webp",
       "caption": "PLACEHOLDER / TRAVEL MAP",
-      "summary": "A personal travel map: mark places visited or still on the list, filter by country and year, then download a high-resolution poster. Everything stays in this browser — export JSON so you do not lose it.",
+      "summary": "A personal travel map: mark places visited or still on the list, filter by country and year, then download a high-resolution poster. Everything stays in this browser — export JSON so you don’t lose it.",
       "role": "Design, build",
       "areas": "React · TypeScript · Vite",
       "result": "English and Portuguese, dark mode, no account",
@@ -140,25 +137,25 @@
       "period": "2021 — PRESENT",
       "title": "Technical Lead / Delivery",
       "org": "MorphisTech / Freelance client projects",
-      "summary": "Driving end-to-end delivery with a strong focus on client success. Translating business needs into clear technical direction, aligning stakeholders, managing priorities and guiding teams through execution to deliver reliable solutions that meet both client expectations and project objectives."
+      "summary": "End-to-end delivery for client projects: turning business needs into technical direction, keeping stakeholders aligned, setting priorities and guiding teams all the way to a reliable release."
     },
     {
       "period": "2018 — PRESENT",
       "title": "DevOps & Release Management",
       "org": "MorphisTech",
-      "summary": "Improved software delivery processes through containerisation, CI/CD automation and environment standardisation. Helped modernise legacy services, establish reproducible deployments and reduce single points of knowledge across development and operations"
+      "summary": "Improved software delivery processes through containerisation, CI/CD automation and environment standardisation. Helped modernise legacy services, establish reproducible deployments and reduce single points of knowledge across development and operations."
     },
     {
       "period": "2018 — PRESENT",
       "title": "Database Management",
       "org": "MorphisTech",
-      "summary": "Oracle and PostgreSQL database engineering, covering infrastructure, performance, migrations, integrations and production support — with a strong focus on reliability, optimisation and the connection between database, application and delivery."
+      "summary": "Oracle and PostgreSQL engineering: infrastructure, performance, migrations, integrations and production support, with reliability first and the application never far from mind."
     },
     {
       "period": "2015 — 2018",
       "title": "Software Development",
       "org": "MorphisTech",
-      "summary": "Java  applications, internal tools and client features."
+      "summary": "Java applications, internal tools and client features."
     }
   ],
   "toolboxEyebrow": "TOOLBOX / 04",
@@ -173,17 +170,17 @@
   "notesTitle": "A few things I’ve learned.",
   "notes": [
     { "text": "Most problems are simpler than they first appear.", "aside": "", "className": "note" },
-    { "text": "Most “quick fixes” aren’t.", "aside": "", "className": "note" },
-    { "text": "Good software is software people can maintain.", "aside": "", "className": "note" },
-    { "text": "Sometimes the database is innocent.", "aside": " …but not always.", "className": "note note--interactive" }
+    { "text": "“Quick fixes” rarely are.", "aside": "", "className": "note" },
+    { "text": "One good log line beats an hour of guessing.", "aside": "", "className": "note" },
+    { "text": "“It works on my machine.”", "aside": " …which is why Docker exists.", "className": "note note--interactive" }
   ],
   "contactEyebrow": "CONTACT / 06",
   "contactTitle": "Got a problem worth solving?",
-  "contactLead": "Whether it’s a project, an opportunity, or a particularly stubborn technical problem, I’m always open to a conversation.",
+  "contactLead": "Whether it’s a project, an opportunity or a bug that refuses to die, I’m always up for a chat.",
   "contactLinks": [
     { "id": "email", "label": "EMAIL" },
-    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose" },
-    { "id": "github", "label": "GITHUB", "text": "@jose" }
+    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose-pinheiro" },
+    { "id": "github", "label": "GITHUB", "text": "@pinheirojose" }
   ],
   "formName": "NAME",
   "formEmail": "EMAIL",

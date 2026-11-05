@@ -18,28 +18,25 @@
     { "label": "Experiência", "href": "#experience" },
     { "label": "Contacto", "href": "#contact" }
   ],
-  "heroEyebrow": "ENGENHEIRO DE SOFTWARE · BASES DE DADOS · DESENVOLVIMENTO · DEVOPS · ENTREGA",
+  "heroEyebrow": "ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO",
   "heroTitle": "Olá, sou o José.",
   "taglineBefore": "Construo coisas, corrijo coisas e, de vez em quando,",
   "taglineMark": "discuto com bases de dados",
   "taglineAfter": ".",
-  "heroLead": "Engenheiro de software a trabalhar em desenvolvimento, bases de dados, DevOps e entrega de projetos.",
+  "heroLead": "Há mais de dez anos a levar software da primeira linha de código até produção, e a mantê-lo lá.",
   "seeWork": "O meu trabalho →",
   "aboutEyebrow": "SOBRE / 01",
   "aboutTitle": "Mais do que um cargo.",
-  "aboutLede": "Engenheiro de software de profissão; resolver problemas é o hábito.",
-  "aboutBody": "O meu trabalho fica entre software, bases de dados, infraestrutura e fazer as coisas chegar ao fim. Gosto de transformar problemas complicados em soluções práticas — de preferência que ainda façam sentido daqui a seis meses.",
+  "aboutLede": "Engenheiro de profissão; resolver problemas é o hábito.",
+  "aboutBody": "Importa-me menos em que camada está o problema e mais que fique resolvido. Gosto de transformar situações confusas em soluções práticas — de preferência que ainda façam sentido daqui a seis meses.",
   "pillars": [
-    { "label": "CONSTRUIR", "text": "Desenvolvimento de software e aplicações." },
-    { "label": "RESOLVER", "text": "Bases de dados, integrações, diagnóstico e problemas técnicos." },
-    { "label": "ENTREGAR", "text": "Projetos, entrega Agile, suporte e comunicação com clientes." },
-    { "label": "LIDERAR", "text": "Liderança técnica, coordenação e ajudar as equipas a avançar." },
-    { "label": "SUCESSO DO CLIENTE", "text": "Garantir que o que foi entregue funciona para quem o usa." },
-    { "label": "SERVIR", "text": "Construir soluções para problemas do dia a dia — úteis para alguém, não só tecnicamente interessantes." }
+    { "label": "CONSTRUIR", "text": "Software e aplicações, da base de dados para cima." },
+    { "label": "RESOLVER", "text": "Diagnóstico, integrações, desempenho e um ou outro mistério em produção." },
+    { "label": "ENTREGAR", "text": "Liderar equipas e estar perto dos clientes, para que o que é entregue seja útil a alguém, e não só tecnicamente interessante." }
   ],
   "projectsEyebrow": "PROJETOS / 02",
   "projectsTitle": "Coisas que construí.",
-  "projectsLead": "Alguns projetos, experiências e soluções em que trabalhei — profissionalmente e por conta própria.",
+  "projectsLead": "Uns para clientes, outros para mim, todos cá fora a funcionar.",
   "projectLabel": "PROJETO",
   "roleLabel": "FUNÇÃO",
   "areasLabel": "ÁREAS",
@@ -48,7 +45,7 @@
   "allProjects": "Ver todos os projetos",
   "galleryEyebrow": "PROJETOS",
   "galleryTitle": "Todos os projetos.",
-  "galleryLead": "Uma vista de conjunto do trabalho — pessoal e profissional.",
+  "galleryLead": "Tudo num só sítio, incluindo os que não couberam na página inicial.",
   "galleryDocTitle": "Projetos — José",
   "backHome": "← Início",
   "projectTypes": { "personal": "Pessoal", "professional": "Profissional" },
@@ -87,10 +84,10 @@
       "title": "Migração ERP da Universidade Internacional",
       "image": "./images/migration.png",
       "caption": "DIAGRAMA / PERCURSO DE MIGRAÇÃO",
-      "summary": "Um projeto de migração de ERP universitário em que trabalhei em todo o ciclo de entrega — desde o desenvolvimento da base de dados e da aplicação até ao planeamento técnico, gestão de projeto e entrega final.",
+      "summary": "Uma migração de ERP universitário em que fiz o ciclo completo: desenvolvimento da base de dados e da aplicação, planeamento técnico, gestão de projeto e arranque em produção.",
       "role": "Responsável técnico",
       "areas": "Oracle · Java · SQL",
-      "result": "Por detrás das bases de dados, das publicações e dos prazos, o projeto acabou por melhorar os sistemas usados todos os dias por milhares de estudantes e funcionários.",
+      "result": "Sistemas do dia a dia melhores para milhares de estudantes e funcionários",
       "url": ""
     },
     {
@@ -100,10 +97,10 @@
       "title": "Redesenho da infraestrutura",
       "image": "./images/database.png",
       "caption": "DIAGRAMA / DBA",
-      "summary": "Redesenhei a infraestrutura de bases de dados para criar um ambiente mais escalável e isolado para vários clientes. A solução introduziu instâncias de base de dados dedicadas, a correr em infraestrutura Linux de código aberto, com suporte a várias versões de Oracle, da 11 à 19.",
-      "role": "Administração Oracle | Planeamento e standardização",
+      "summary": "Um ambiente de bases de dados partilhado ficava mais difícil de manter a cada novo cliente. Redesenhei-o com instâncias dedicadas por cliente, em Linux de código aberto, com suporte a Oracle da 11 à 19.",
+      "role": "DBA Oracle, planeamento, standardização",
       "areas": "Linux · Oracle · Infra · Docker",
-      "result": "Transformar um ambiente partilhado e cada vez mais difícil de manter numa plataforma de bases de dados estruturada, isolada e escalável, capaz de servir diferentes clientes e versões de Oracle com mais controlo.",
+      "result": "Cada cliente isolado, todas as versões de Oracle cobertas, muito menos surpresas",
       "url": ""
     },
     {
@@ -116,7 +113,7 @@
       "summary": "Um sítio bilingue para apresentar o trabalho — projetos, experiência e uma forma de contacto — sem ficar preso a um framework.",
       "role": "Conceber, construir",
       "areas": "HTML · CSS · JavaScript",
-      "result": "O meu CV digital, em português e inglês",
+      "result": "Está a olhar para ele",
       "url": "./index.html"
     },
     {
@@ -140,7 +137,7 @@
       "period": "2021 — PRESENTE",
       "title": "Líder técnico / Entrega",
       "org": "MorphisTech / Projetos de clientes em freelance",
-      "summary": "Entrega de ponta a ponta, com um foco forte no sucesso do cliente. Traduzir necessidades de negócio em direção técnica clara, alinhar as partes interessadas, gerir prioridades e orientar as equipas na execução — para entregar soluções fiáveis que cumpram as expectativas do cliente e os objetivos do projeto."
+      "summary": "Entrega de ponta a ponta em projetos de clientes: transformar necessidades de negócio em direção técnica, manter as partes interessadas alinhadas, definir prioridades e acompanhar as equipas até uma versão fiável em produção."
     },
     {
       "period": "2018 — PRESENTE",
@@ -152,7 +149,7 @@
       "period": "2018 — PRESENTE",
       "title": "Gestão de bases de dados",
       "org": "MorphisTech",
-      "summary": "Engenharia de bases de dados Oracle e PostgreSQL: infraestrutura, desempenho, migrações, integrações e suporte em produção — com um foco forte na fiabilidade, na otimização e na ligação entre base de dados, aplicação e entrega."
+      "summary": "Engenharia Oracle e PostgreSQL: infraestrutura, desempenho, migrações, integrações e suporte em produção, com a fiabilidade em primeiro lugar e a aplicação sempre em mente."
     },
     {
       "period": "2015 — 2018",
@@ -162,28 +159,28 @@
     }
   ],
   "toolboxEyebrow": "FERRAMENTAS / 04",
-  "toolboxTitle": "Ferramentas:",
+  "toolboxTitle": "Ferramentas do ofício.",
   "toolbox": [
-    { "label": "DESENVOLVIMENTO", "items": ["Java", "JavaScript", "React", "Python", "APIs"] },
+    { "label": "DESENVOLVIMENTO", "items": ["Java", "Bash", "React", "Python", "APIs", "JavaScript"] },
     { "label": "BASES DE DADOS", "items": ["Oracle", "PostgreSQL", "SQL", "Administração de bases de dados"] },
-    { "label": "DEVOPS", "items": ["Docker", "GitLab CI/CD", "Publicação"] },
+    { "label": "DEVOPS", "items": ["Docker", "GitLab CI/CD", "Publicação", "Jenkins"] },
     { "label": "OUTROS", "items": ["WordPress", "Tecnologias web", "Plataformas cloud", "Ferramentas de integração"] }
   ],
   "notesEyebrow": "NOTAS / 05",
   "notesTitle": "Algumas coisas que aprendi.",
   "notes": [
     { "text": "A maior parte dos problemas é mais simples do que parece à primeira.", "aside": "", "className": "note" },
-    { "text": "A maior parte dos «atalhos» não o é.", "aside": "", "className": "note" },
-    { "text": "Bom software é software que se consegue manter.", "aside": "", "className": "note" },
-    { "text": "Por vezes a base de dados é inocente.", "aside": " …mas nem sempre.", "className": "note note--interactive" }
+    { "text": "Os «atalhos» raramente o são.", "aside": "", "className": "note" },
+    { "text": "Uma boa linha de log vale mais do que uma hora de palpites.", "aside": "", "className": "note" },
+    { "text": "«Na minha máquina funciona.»", "aside": " …e é por isso que existe o Docker.", "className": "note note--interactive" }
   ],
   "contactEyebrow": "CONTACTO / 06",
   "contactTitle": "Tem um problema que valha a pena resolver?",
-  "contactLead": "Seja um projeto, uma oportunidade ou um problema técnico particularmente teimoso, estou sempre aberto a uma conversa.",
+  "contactLead": "Seja um projeto, uma oportunidade ou um bug que se recusa a morrer, estou sempre disponível para conversar.",
   "contactLinks": [
     { "id": "email", "label": "EMAIL" },
-    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose" },
-    { "id": "github", "label": "GITHUB", "text": "@jose" }
+    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose-pinheiro" },
+    { "id": "github", "label": "GITHUB", "text": "@pinheirojose" }
   ],
   "formName": "NOME",
   "formEmail": "EMAIL",
