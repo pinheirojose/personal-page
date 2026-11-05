@@ -50,6 +50,7 @@ async def open_page(browser, path='/', lang=None, locale='pt-PT', viewport=(1440
     page.on('pageerror', lambda e: errors.append(str(e)))
     await page.goto(BASE + path)
     await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
+    await page.evaluate('document.fonts.ready')  # web fonts shift layout when they land
     return ctx, page, errors
 
 
@@ -191,6 +192,63 @@ async def check_hreflang_links(browser):
         await ctx.close()
         want = {'pt-PT': PAGE_URL[path] + '?lang=pt', 'en': PAGE_URL[path] + '?lang=en', 'x-default': PAGE_URL[path]}
         assert links == want, f'{path}: {links}'
+
+
+ACCENT_TEXT = 'rgb(168, 75, 43)'  # --accent-text #A84B2B
+
+
+@check
+async def check_accent_text_applied(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en')
+    css = lambda sel, prop: page.eval_on_selector(sel, f'e => getComputedStyle(e).{prop}')
+    for sel in ['.eyebrow--accent', '.work-card__cta', '.header__cta']:
+        assert await css(sel, 'color') == ACCENT_TEXT, f'{sel} {await css(sel, "color")}'
+    base_a = await page.evaluate("""() => { const a = document.createElement('a'); a.href = '#';
+        document.querySelector('main').append(a); return getComputedStyle(a).color; }""")
+    assert base_a == ACCENT_TEXT, f'a {base_a}'
+    assert await css('.mark', 'color') == 'rgb(198, 93, 58)', '.mark keeps --accent'
+    delivery = page.locator('.hero__visual text', has_text='DELIVERY')
+    assert await delivery.get_attribute('fill') == '#5A6854'
+    assert await delivery.get_attribute('font-weight') is None
+    await ctx.close()
+
+
+@check
+async def check_note_aside_focusable(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en')
+    notes = page.locator('.note[tabindex="0"]')
+    assert await notes.count() == 1, f'{await notes.count()} focusable notes'
+    aside = notes.locator('.note__aside')
+    assert await aside.evaluate('e => getComputedStyle(e).opacity') == '0', 'aside hidden before focus'
+    await notes.focus()
+    await page.keyboard.press('Shift+Tab')  # bring keyboard modality so :focus-visible applies
+    await page.keyboard.press('Tab')
+    await page.wait_for_timeout(500)
+    assert await page.evaluate("document.activeElement.classList.contains('note--interactive')")
+    assert await aside.evaluate('e => getComputedStyle(e).opacity') == '1', 'aside visible on focus'
+    await ctx.close()
+    ctx, page, _ = await open_page(browser, '/', lang='en', has_touch=True, is_mobile=True, viewport=(390, 844))
+    op = await page.locator('.note--interactive .note__aside').evaluate('e => getComputedStyle(e).opacity')
+    await ctx.close()
+    assert op == '1', f'touch: aside opacity {op}'
+
+
+@check
+async def check_field_focus_no_shift(browser):
+    ctx, page, _ = await open_page(browser, '/', lang='en')
+    field = page.locator('.field input[name=name]')
+    # Layout, not viewport position: focusing scrolls the page.
+    layout = "e => [e.offsetHeight, e.closest('.field').nextElementSibling.offsetTop]"
+    before = await field.evaluate(layout)
+    border0 = await field.evaluate('e => getComputedStyle(e).borderBottomColor')
+    await field.focus()
+    await page.wait_for_timeout(100)
+    after = await field.evaluate(layout)
+    style = await field.evaluate('e => { const s = getComputedStyle(e); return [s.borderBottomWidth, s.borderBottomColor]; }')
+    await ctx.close()
+    assert border0 == 'rgb(138, 134, 126)', f'rest border {border0}'  # --rule-strong
+    assert style == ['2px', ACCENT_TEXT], style
+    assert before == after, (before, after)
 
 
 # ---------- runner ----------

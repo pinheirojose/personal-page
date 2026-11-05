@@ -325,7 +325,8 @@ class Component extends DCLogic {
       personalCount: count('personal'),
       timeline: copy.timeline || [],
       toolbox: copy.toolbox || [],
-      notes: copy.notes || [],
+      // A note with an aside reveals it on hover/focus, so only that one is focusable.
+      notes: (copy.notes || []).map((note) => ({ ...note, tabindex: note.aside ? '0' : null })),
       year: new Date().getFullYear(),
 
       heroVisual: this.props.heroVisual ?? true,
