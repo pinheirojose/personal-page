@@ -25,6 +25,7 @@
   --timeline-gutter: clamp(22px, 3vw, 34px);
   --header-h: 67px;
   --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
 }
 
 /* ---------- Base ---------- */
@@ -409,10 +410,16 @@ input, textarea, button { font-family: inherit; }
   height: calc(100% - 2 * clamp(18px, 7%, 40px));
   object-fit: contain;
   filter: drop-shadow(0 12px 22px rgba(23, 23, 23, .14));
-  transition: transform .8s var(--ease);
+  /* Own layer so the drop-shadow isn't re-rasterised every frame of the zoom. */
+  will-change: transform;
+  transition: transform .5s var(--ease-out);
 }
-.work-card:hover .work-card__media img,
-.work-card:focus-within .work-card__media img { transform: scale(1.035); }
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover .work-card__media img { transform: scale(1.03); }
+}
+.work-card:focus-within .work-card__media img { transform: scale(1.03); }
+/* GSAP is tweening this card (page.js): don't let CSS chase its transform. */
+.work-card[data-moving] { transition: none !important; }
 .work-card__index {
   position: absolute;
   top: 16px;
@@ -685,6 +692,13 @@ html.reveal-on .reveal {
   transition: opacity .7s var(--ease), transform .7s var(--ease);
 }
 html.reveal-on .reveal.is-in { opacity: 1; transform: none; }
+/* Once GSAP loads, cards animate via inline styles (staggered batch) instead. */
+html.cards-motion .work-card.reveal {
+  opacity: 1;
+  transform: none;
+  transition: border-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease);
+}
+html.cards-motion .work-card.reveal:has(.work-card__cta):hover { transform: translateY(-2px); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

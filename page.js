@@ -6,6 +6,28 @@ const HOME_PROJECT_LIMIT = 3;
 const LANG_KEY = 'jose-lang';
 const DEFAULT_LANG = 'pt-PT';
 
+const GSAP_SRC = [
+  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+];
+const CARDS = '.showcase .work-card';
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+// GSAP owns these inline styles; flag the card so its CSS transform transition
+// doesn't chase the tween, and hand control back to CSS (hover lift) when done.
+const moving = (on) => function () {
+  for (const el of this.targets()) el.toggleAttribute('data-moving', on);
+};
+
 const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jose-pinheiro/' },
   { label: 'GitHub', href: 'https://github.com/pinheirojose' },
@@ -157,9 +179,91 @@ class Component extends DCLogic {
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
       this.observeReveals();
     }
+
+    this.reduced = reduced;
+    if (reduced && !onGalleryPage()) {
+      this.cardsIO = true; // nothing to animate; reduced motion skips reveals entirely
+      return;
+    }
+    loadScript(GSAP_SRC[0])
+      .then(() => loadScript(GSAP_SRC[1]))
+      .then(() => this.startCardMotion(), () => {
+        // CDN unavailable: cards fall back to the IntersectionObserver reveal.
+        this.cardsIO = true;
+        this.observeReveals();
+      });
+  }
+
+  startCardMotion() {
+    const { gsap, ScrollTrigger } = window;
+    gsap.registerPlugin(ScrollTrigger);
+    this.gsap = gsap;
+    if (this.reduced) return; // gallery still gets an opacity-only crossfade
+
+    // Hide inline first, then lift the CSS reveal off the cards, so nothing flashes.
+    gsap.set(CARDS, { opacity: 0, y: 16 });
+    document.documentElement.classList.add('cards-motion');
+    this.cardTriggers = ScrollTrigger.batch(CARDS, {
+      start: 'top 92%',
+      once: true,
+      onEnter: (batch) => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'expo.out',
+        stagger: 0.07,
+        overwrite: true,
+        clearProps: 'opacity,transform',
+        onStart: moving(true),
+        onComplete: moving(false),
+      }),
+    });
+  }
+
+  killCardTriggers() {
+    for (const t of this.cardTriggers || []) t.kill();
+    this.cardTriggers = null;
+  }
+
+  // Fade the current cards out, swap the list, fade the new ones in (componentDidUpdate).
+  setFilter(filter) {
+    const gsap = this.gsap;
+    if (!gsap) return this.setState({ filter });
+    if (filter === (this.pendingFilter ?? this.state.filter)) return;
+    this.pendingFilter = filter;
+    this.killCardTriggers();
+    gsap.to(CARDS, {
+      opacity: 0,
+      y: this.reduced ? 0 : -6,
+      duration: 0.14,
+      ease: 'power2.out',
+      overwrite: true,
+      onStart: moving(true),
+      onComplete: () => {
+        this.pendingFilter = null;
+        this.cardsIn = true;
+        if (filter === this.state.filter) this.componentDidUpdate();
+        else this.setState({ filter });
+      },
+    });
   }
 
   componentDidUpdate() {
+    if (this.cardsIn) {
+      this.cardsIn = false;
+      this.gsap.fromTo(CARDS, { opacity: 0, y: this.reduced ? 0 : 10 }, {
+        opacity: 1,
+        y: 0,
+        duration: this.reduced ? 0.2 : 0.32,
+        ease: 'power3.out',
+        stagger: this.reduced ? 0 : 0.04,
+        overwrite: true,
+        clearProps: 'opacity,transform',
+        onStart: moving(true),
+        onComplete: moving(false),
+      });
+    }
+
     if (this._lang && this._lang !== this.state.lang) {
       for (const node of document.querySelectorAll('.reveal')) {
         node.classList.add('is-in');
@@ -174,12 +278,16 @@ class Component extends DCLogic {
     this.wide.removeEventListener('change', this.onWide);
     window.removeEventListener('keydown', this.onKey);
     this.reveals?.disconnect();
-    document.documentElement.classList.remove('reveal-on');
+    this.killCardTriggers();
+    this.gsap?.killTweensOf(CARDS);
+    document.documentElement.classList.remove('reveal-on', 'cards-motion');
   }
 
   observeReveals() {
     if (!this.reveals) return;
-    for (const node of document.querySelectorAll('.reveal:not([data-observed])')) {
+    // Cards wait for GSAP; they only join the observer if it fails to load.
+    const sel = this.cardsIO ? '.reveal' : '.reveal:not(.work-card)';
+    for (const node of document.querySelectorAll(sel + ':not([data-observed])')) {
       node.setAttribute('data-observed', '');
       this.reveals.observe(node);
     }
@@ -223,9 +331,9 @@ class Component extends DCLogic {
       filterIsAll: filter === 'all',
       filterIsPro: filter === 'professional',
       filterIsPersonal: filter === 'personal',
-      showAll: () => this.setState({ filter: 'all' }),
-      showProfessional: () => this.setState({ filter: 'professional' }),
-      showPersonal: () => this.setState({ filter: 'personal' }),
+      showAll: () => this.setFilter('all'),
+      showProfessional: () => this.setFilter('professional'),
+      showPersonal: () => this.setFilter('personal'),
       timeline: copy.timeline || [],
       toolbox: copy.toolbox || [],
       notes: copy.notes || [],
