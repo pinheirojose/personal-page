@@ -70,6 +70,8 @@ input, textarea, button { font-family: inherit; }
   color: var(--bg);
   font-size: 14px;
 }
+.noscript p { margin: 0 0 4px; }
+.noscript p:last-child { margin: 0; }
 .noscript a { color: var(--bg); text-decoration: underline; }
 
 /* ---------- Layout ---------- */

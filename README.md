@@ -45,11 +45,19 @@ One runtime quirk: interpolated `{{ … }}` values render wrapped in an HTML
 `<span>`, so they cannot be used inside an SVG `<text>` element — they come out
 invisible.
 
-## Before going live
+## Deploying
 
-- Replace the placeholder contact details (`EMAIL`, `SOCIAL` in the script).
-- Point each project's `href` at something real, and swap the striped
-  `.project__media` placeholders for actual imagery.
-- Wire the contact form to a real endpoint — `submit` currently only
-  acknowledges the message locally, nothing is delivered.
-- Fill in the real employer names in `TIMELINE` (currently "Company").
+The site is static (no build step) and is hosted on Vercel. Pushing to `main`
+deploys it.
+
+## Notes
+
+- Contact details (`EMAIL`, `SOCIAL`) live at the top of `page.js`.
+- The contact form posts to [FormSubmit](https://formsubmit.co/), which forwards
+  messages to `EMAIL`. The first submission from a new address requires
+  confirming the activation email FormSubmit sends.
+- Projects, timeline and all other copy live in `locales/*.json`. Only the
+  first `HOME_PROJECT_LIMIT` projects show on the home page; `projects.html`
+  shows all of them.
+- Project images go in `images/`. Prefer WebP around 1600px wide; the cards
+  display at 640×400.

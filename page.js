@@ -4,6 +4,7 @@
 const EMAIL = 'jbernardopinheiro@gmail.com';
 const HOME_PROJECT_LIMIT = 3;
 const LANG_KEY = 'jose-lang';
+const DEFAULT_LANG = 'pt-PT';
 
 const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jose-pinheiro/' },
