@@ -82,16 +82,35 @@ function messagesFor(lang) {
   const catalog = (typeof window !== 'undefined' && window.__I18N__) || {};
   return hydrateCopy(catalog[lang] || catalog[DEFAULT_LANG] || {});
 }
+const LANG_PARAM = { en: 'en', pt: 'pt-PT', 'pt-pt': 'pt-PT' };
+
+// ?lang= first (and remembered, so internal links keep it), then the stored
+// choice, then the browser language, then the default.
 function readLang() {
+  const fromUrl = LANG_PARAM[String(new URLSearchParams(location.search).get('lang')).toLowerCase()];
+  if (fromUrl) {
+    writeLang(fromUrl);
+    return fromUrl;
+  }
   try {
     const stored = localStorage.getItem(LANG_KEY);
     if (stored === 'en' || stored === 'pt-PT') return stored;
   } catch (_) { /* ignore */ }
+  const browser = navigator.language;
+  if (browser) return /^pt/i.test(browser) ? 'pt-PT' : 'en';
   return DEFAULT_LANG;
 }
 
 function writeLang(lang) {
   try { localStorage.setItem(LANG_KEY, lang); } catch (_) { /* ignore */ }
+}
+
+// Keep the language in the address bar (hash and other params untouched),
+// so a copied link opens in the same language.
+function syncLangParam(lang) {
+  const url = new URL(location.href);
+  url.searchParams.set('lang', lang === 'en' ? 'en' : 'pt');
+  history.replaceState(history.state, '', url);
 }
 
 function syncDocument(copy) {
@@ -270,6 +289,7 @@ class Component extends DCLogic {
 
   setLang(lang) {
     writeLang(lang);
+    syncLangParam(lang);
     this.setState({ lang, menuOpen: false, sent: false });
   }
 

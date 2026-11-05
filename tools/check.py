@@ -49,7 +49,7 @@ async def open_page(browser, path='/', lang=None, locale='pt-PT', viewport=(1440
     page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
     page.on('pageerror', lambda e: errors.append(str(e)))
     await page.goto(BASE + path)
-    await page.wait_for_function("document.querySelector('h1')?.textContent.trim().length > 0")
+    await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
     return ctx, page, errors
 
 
@@ -125,6 +125,72 @@ async def check_seo_head(browser):
     assert 'Sitemap: https://josepinheiro.vercel.app/sitemap.xml' in (ROOT / 'robots.txt').read_text()
     sm = (ROOT / 'sitemap.xml').read_text()
     assert all(f'<loc>{u}</loc>' in sm for u in PAGE_URL.values()), 'sitemap urls'
+
+
+async def html_lang(browser, path='/', **kw):
+    ctx, page, _ = await open_page(browser, path, **kw)
+    lang = await page.evaluate('document.documentElement.lang')
+    await ctx.close()
+    return lang
+
+
+@check
+async def check_lang_browser_en(browser):
+    assert await html_lang(browser, locale='en-GB') == 'en'
+
+
+@check
+async def check_lang_browser_pt(browser):
+    assert await html_lang(browser, locale='pt-PT') == 'pt-PT'
+
+
+@check
+async def check_lang_param_wins(browser):
+    assert await html_lang(browser, '/?lang=en', locale='pt-PT') == 'en'
+    assert await html_lang(browser, '/?lang=pt', locale='en-GB', lang='en') == 'pt-PT'
+
+
+@check
+async def check_lang_stored_wins(browser):
+    assert await html_lang(browser, locale='en-GB', lang='pt-PT') == 'pt-PT'
+
+
+@check
+async def check_lang_param_survives_navigation(browser):
+    ctx, page, _ = await open_page(browser, '/?lang=en', locale='pt-PT')
+    await page.click('.projects__more a')
+    await page.wait_for_url('**/projects.html')
+    await page.wait_for_function("document.querySelector('#dc-root h1')?.textContent.trim().length > 0")
+    lang = await page.evaluate('document.documentElement.lang')
+    await ctx.close()
+    assert lang == 'en', lang
+
+
+@check
+async def check_lang_param_invalid_ignored(browser):
+    assert await html_lang(browser, '/?lang=fr', locale='en-GB') == 'en'
+    assert await html_lang(browser, '/?lang=', locale='pt-PT') == 'pt-PT'
+
+
+@check
+async def check_lang_switch_keeps_hash_and_params(browser):
+    ctx, page, _ = await open_page(browser, '/?utm_source=x#projects', locale='pt-PT')
+    await page.click('.lang__btn:has-text("EN")')
+    await page.wait_for_function("document.documentElement.lang === 'en'")
+    url = page.url
+    await ctx.close()
+    assert url == BASE + '/?utm_source=x&lang=en#projects', url
+
+
+@check
+async def check_hreflang_links(browser):
+    for path in PAGES:
+        ctx, page, _ = await open_page(browser, path)
+        links = await page.eval_on_selector_all(
+            'link[rel=alternate][hreflang]', 'ls => Object.fromEntries(ls.map(l => [l.hreflang, l.href]))')
+        await ctx.close()
+        want = {'pt-PT': PAGE_URL[path] + '?lang=pt', 'en': PAGE_URL[path] + '?lang=en', 'x-default': PAGE_URL[path]}
+        assert links == want, f'{path}: {links}'
 
 
 # ---------- runner ----------
