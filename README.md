@@ -56,10 +56,10 @@ deploys it.
 - The contact form posts to [FormSubmit](https://formsubmit.co/), which forwards
   messages to `EMAIL`. The first submission from a new address requires
   confirming the activation email FormSubmit sends.
-- Projects, timeline and all other copy live in `locales/*.json`. Only the
-  first `HOME_PROJECT_LIMIT` projects show on the home page; `projects.html`
-  shows all of them. Each project needs `"type": "personal"` or
-  `"professional"` (drives the badge and the gallery filter) and a short
-  `tags` list.
+- Projects, timeline and all other copy live in `locales/*.json`. Projects sit in two
+  columns, professional on the left and personal on the right, in the order
+  they appear in the file. The home page shows the first `HOME_PER_COLUMN` of
+  each; `projects.html` shows all of them. Each project needs
+  `"type": "personal"` or `"professional"` and a short `tags` list.
 - Project images go in `images/`. Prefer WebP around 1600px wide; the cards
   display at 640×400.

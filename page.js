@@ -2,7 +2,7 @@
 // onto window.__I18N__ before this file is eval'd by the runtime.
 
 const EMAIL = 'jbernardopinheiro@gmail.com';
-const HOME_PROJECT_LIMIT = 3;
+const HOME_PER_COLUMN = 2;
 const LANG_KEY = 'jose-lang';
 const DEFAULT_LANG = 'pt-PT';
 
@@ -60,15 +60,6 @@ function withProjectUrl(project, copy) {
   };
 }
 
-// An odd count leaves one card alone on the last row of a two-column grid,
-// so the first card spans the full width instead.
-function withFeature(list) {
-  return list.map((project, i) => ({
-    ...project,
-    cardClass: i === 0 && list.length % 2 === 1 ? 'work-card--feature' : '',
-  }));
-}
-
 function hydrateCopy(raw) {
   if (!raw) return raw;
   const contactLinks = (raw.contactLinks || []).map((link) => {
@@ -116,7 +107,7 @@ function syncDocument(copy) {
 }
 
 class Component extends DCLogic {
-  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang(), filter: 'all' };
+  state = { menuOpen: false, sent: false, sending: false, formError: false, lang: readLang() };
 
   submit = (e) => {
     e.preventDefault();
@@ -181,7 +172,7 @@ class Component extends DCLogic {
     }
 
     this.reduced = reduced;
-    if (reduced && !onGalleryPage()) {
+    if (reduced) {
       this.cardsIO = true; // nothing to animate; reduced motion skips reveals entirely
       return;
     }
@@ -198,7 +189,7 @@ class Component extends DCLogic {
     const { gsap, ScrollTrigger } = window;
     gsap.registerPlugin(ScrollTrigger);
     this.gsap = gsap;
-    if (this.reduced) return; // gallery still gets an opacity-only crossfade
+    if (this.reduced) return;
 
     // Hide inline first, then lift the CSS reveal off the cards, so nothing flashes.
     gsap.set(CARDS, { opacity: 0, y: 16 });
@@ -225,45 +216,7 @@ class Component extends DCLogic {
     this.cardTriggers = null;
   }
 
-  // Fade the current cards out, swap the list, fade the new ones in (componentDidUpdate).
-  setFilter(filter) {
-    const gsap = this.gsap;
-    if (!gsap) return this.setState({ filter });
-    if (filter === (this.pendingFilter ?? this.state.filter)) return;
-    this.pendingFilter = filter;
-    this.killCardTriggers();
-    gsap.to(CARDS, {
-      opacity: 0,
-      y: this.reduced ? 0 : -6,
-      duration: 0.14,
-      ease: 'power2.out',
-      overwrite: true,
-      onStart: moving(true),
-      onComplete: () => {
-        this.pendingFilter = null;
-        this.cardsIn = true;
-        if (filter === this.state.filter) this.componentDidUpdate();
-        else this.setState({ filter });
-      },
-    });
-  }
-
   componentDidUpdate() {
-    if (this.cardsIn) {
-      this.cardsIn = false;
-      this.gsap.fromTo(CARDS, { opacity: 0, y: this.reduced ? 0 : 10 }, {
-        opacity: 1,
-        y: 0,
-        duration: this.reduced ? 0.2 : 0.32,
-        ease: 'power3.out',
-        stagger: this.reduced ? 0 : 0.04,
-        overwrite: true,
-        clearProps: 'opacity,transform',
-        onStart: moving(true),
-        onComplete: moving(false),
-      });
-    }
-
     if (this._lang && this._lang !== this.state.lang) {
       for (const node of document.querySelectorAll('.reveal')) {
         node.classList.add('is-in');
@@ -306,10 +259,13 @@ class Component extends DCLogic {
       : copy);
     const isPt = this.state.lang === 'pt-PT';
     const allProjects = (copy.projects || []).map((p) => withProjectUrl(p, copy));
-    const counts = { professional: 0, personal: 0 };
-    for (const p of allProjects) counts[p.type] += 1;
-    const filter = this.state.filter;
-    const shown = filter === 'all' ? allProjects : allProjects.filter((p) => p.type === filter);
+    const byType = (type) => {
+      const list = allProjects.filter((p) => p.type === type);
+      return gallery ? list : list.slice(0, HOME_PER_COLUMN);
+    };
+    const professionalProjects = byType('professional');
+    const personalProjects = byType('personal');
+    const count = (type) => allProjects.filter((p) => p.type === type).length;
 
     return {
       copy,
@@ -321,19 +277,10 @@ class Component extends DCLogic {
       contactLinks: copy.contactLinks,
       primaryContact: 'mailto:' + EMAIL,
       pillars: copy.pillars || [],
-      projects: withFeature(gallery ? shown : allProjects.slice(0, HOME_PROJECT_LIMIT)),
-      projectCount: allProjects.length,
-      professionalCount: counts.professional,
-      personalCount: counts.personal,
-      filterAllClass: filter === 'all' ? 'is-active' : '',
-      filterProClass: filter === 'professional' ? 'is-active' : '',
-      filterPersonalClass: filter === 'personal' ? 'is-active' : '',
-      filterIsAll: filter === 'all',
-      filterIsPro: filter === 'professional',
-      filterIsPersonal: filter === 'personal',
-      showAll: () => this.setFilter('all'),
-      showProfessional: () => this.setFilter('professional'),
-      showPersonal: () => this.setFilter('personal'),
+      professionalProjects,
+      personalProjects,
+      professionalCount: count('professional'),
+      personalCount: count('personal'),
       timeline: copy.timeline || [],
       toolbox: copy.toolbox || [],
       notes: copy.notes || [],

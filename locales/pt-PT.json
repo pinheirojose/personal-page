@@ -52,10 +52,6 @@
   "galleryDocTitle": "Projetos — José",
   "backHome": "← Início",
   "projectTypes": { "personal": "Pessoal", "professional": "Profissional" },
-  "filterAria": "Filtrar projetos por tipo",
-  "filterAll": "Todos",
-  "statPersonal": "pessoais",
-  "statProfessional": "profissionais",
   "privateWork": "Trabalho para cliente · sem demo pública",
   "projects": [
     {
