@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://josepinheiro.vercel.app/sitemap.xml
