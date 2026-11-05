@@ -56,6 +56,19 @@
   "projects": [
     {
       "number": "01",
+      "type": "professional",
+      "tags": ["Web", "WordPress", "Real estate"],
+      "title": "Imóveis Ana Morgado",
+      "image": "./images/imoveis-ana-morgado.webp",
+      "caption": "SCREENSHOT / IMÓVEIS ANA MORGADO",
+      "summary": "A website for a solo real estate agent, where clients can browse her listings, search by location and price, open a full property page and get in touch with her directly.",
+      "role": "Design, build, launch",
+      "areas": "WordPress · Houzez · MySQL · Docker",
+      "result": "Live since November 2026, with her listings and contacts in one place",
+      "url": "https://imoveisanamorgado.pt/"
+    },
+    {
+      "number": "02",
       "type": "personal",
       "tags": ["Web", "Platform", "Product"],
       "title": "Évora Serviços",
@@ -68,7 +81,7 @@
       "url": "https://www.evoraservicos.pt/"
     },
     {
-      "number": "02",
+      "number": "03",
       "type": "professional",
       "tags": ["Database", "Development", "Project delivery"],
       "title": "International University ERP Migration",
@@ -81,7 +94,7 @@
       "url": ""
     },
     {
-      "number": "03",
+      "number": "04",
       "type": "professional",
       "tags": ["DBA", "Linux", "Oracle"],
       "title": "Infrastructure Redesign",
@@ -94,7 +107,7 @@
       "url": ""
     },
     {
-      "number": "04",
+      "number": "05",
       "type": "personal",
       "tags": ["Web", "Design", "Bilingual"],
       "title": "Personal page",
@@ -107,7 +120,7 @@
       "url": "./index.html"
     },
     {
-      "number": "05",
+      "number": "06",
       "type": "personal",
       "tags": ["Web", "React", "Maps"],
       "title": "Travel map",

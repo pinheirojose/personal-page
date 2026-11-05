@@ -56,6 +56,19 @@
   "projects": [
     {
       "number": "01",
+      "type": "professional",
+      "tags": ["Web", "WordPress", "Imobiliário"],
+      "title": "Imóveis Ana Morgado",
+      "image": "./images/imoveis-ana-morgado.webp",
+      "caption": "CAPTURA / IMÓVEIS ANA MORGADO",
+      "summary": "Um site para uma agente imobiliária independente, onde os clientes podem ver os imóveis dela, pesquisar por localização e preço, abrir a ficha completa de cada imóvel e contactá-la diretamente.",
+      "role": "Design, desenvolvimento, lançamento",
+      "areas": "WordPress · Houzez · MySQL · Docker",
+      "result": "Online desde novembro de 2026, com os imóveis e contactos dela num só sítio",
+      "url": "https://imoveisanamorgado.pt/"
+    },
+    {
+      "number": "02",
       "type": "personal",
       "tags": ["Web", "Plataforma", "Produto"],
       "title": "Évora Serviços",
@@ -68,7 +81,7 @@
       "url": "https://www.evoraservicos.pt/"
     },
     {
-      "number": "02",
+      "number": "03",
       "type": "professional",
       "tags": ["Base de dados", "Desenvolvimento", "Entrega de projetos"],
       "title": "Migração ERP da Universidade Internacional",
@@ -81,7 +94,7 @@
       "url": ""
     },
     {
-      "number": "03",
+      "number": "04",
       "type": "professional",
       "tags": ["DBA", "Linux", "Oracle"],
       "title": "Redesenho da infraestrutura",
@@ -94,7 +107,7 @@
       "url": ""
     },
     {
-      "number": "04",
+      "number": "05",
       "type": "personal",
       "tags": ["Web", "Design", "Bilingue"],
       "title": "Página pessoal",
@@ -107,7 +120,7 @@
       "url": "./index.html"
     },
     {
-      "number": "05",
+      "number": "06",
       "type": "personal",
       "tags": ["Web", "React", "Mapas"],
       "title": "Mapa de viagens",
