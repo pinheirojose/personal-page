@@ -1,7 +1,6 @@
+import { RootShell } from '@/components/RootShell';
+export { viewport } from '@/components/RootShell';
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="pt-PT">
-      <body>{children}</body>
-    </html>
-  );
+  return <RootShell lang="pt">{children}</RootShell>;
 }
