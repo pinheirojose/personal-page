@@ -206,6 +206,27 @@ async def check_sections(browser):
     assert anim == 'none', f'reduced motion marquee {anim}'
 
 
+@check
+async def check_projects(browser):
+    for path, n in [('/', 2), ('/projects', 3), ('/en', 2), ('/en/projects', 3)]:
+        copy = copy_for(path)
+        ctx, page, _ = await open_page(browser, path)
+        cols = await page.eval_on_selector_all(
+            '.showcase__col', 'cs => cs.map(c => [...c.querySelectorAll(".work-card__index")].map(i => i.textContent.trim()))')
+        assert cols == [[f'{i + 1:02d}' for i in range(n)]] * 2, f'{path} columns {cols}'
+        imgs = await page.eval_on_selector_all('.work-card img', 'is => is.map(i => [i.alt, i.getAttribute("width"), i.getAttribute("height")])')
+        assert all(a.strip() and w and h for a, w, h in imgs), f'{path} imgs {imgs}'
+        rels = await page.eval_on_selector_all('.work-card a[target=_blank]', 'as => as.map(a => a.rel)')
+        assert rels and all('noopener' in r for r in rels), f'{path} rels {rels}'
+        assert await page.locator('.work-card', has_text=copy['privateWork']).count() >= 1, f'{path} private'
+        if path in ('/', '/en'):
+            more = await page.get_attribute('.projects__more a', 'href')
+            assert more == ('/projects' if path == '/' else '/en/projects'), more
+        else:
+            assert (await page.inner_text('h1')).strip() == copy['galleryTitle']
+        await ctx.close()
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:

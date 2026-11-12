@@ -5,6 +5,7 @@ import { Hero } from './Hero';
 import { About } from './About';
 import { Notes } from './Notes';
 import { Toolbox } from './Toolbox';
+import { Projects, Gallery } from './Projects';
 import '@/styles/sections.css';
 
 export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
@@ -18,13 +19,12 @@ export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
         <>
           <Hero copy={copy} />
           <About copy={copy} />
+          <Projects copy={copy} lang={lang} />
           <Toolbox copy={copy} />
           <Notes copy={copy} />
         </>
       ) : (
-        <div id="top" className="shell" style={{ minHeight: '120vh', paddingTop: 120 }}>
-          <h1>{copy.galleryTitle}</h1>
-        </div>
+        <Gallery copy={copy} lang={lang} />
       )}
     </Page>
   );
