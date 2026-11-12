@@ -21,7 +21,8 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
       <head>
         <ThemeScript />
       </head>
-      <body>{children}</body>
+      {/* Extensions (e.g. ColorZilla's cz-shortcut-listen) add attributes to <body> before hydration. */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
