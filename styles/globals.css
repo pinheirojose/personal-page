@@ -30,8 +30,8 @@ img { height: auto; }
 a { color: inherit; }
 button, input, textarea { font: inherit; color: inherit; }
 ul, ol { padding: 0; list-style: none; }
-h1, h2, h3, h4 { font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance; }
-p { text-wrap: pretty; }
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; text-wrap-style: balance; }
+p { text-wrap-style: pretty; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
 

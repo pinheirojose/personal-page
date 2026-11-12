@@ -126,6 +126,52 @@ async def check_legacy_redirects(browser):
     assert got == want, got
 
 
+@check
+async def check_keyboard_nav(browser):
+    for path in ['/', '/en/projects']:
+        ctx, page, _ = await open_page(browser, path, viewport=(390, 844))
+        await page.focus('.nav-toggle')
+        await page.keyboard.press('Enter')
+        await page.wait_for_selector('#mobile-menu.is-open')
+        assert await page.evaluate("!!document.activeElement.closest('#mobile-menu')"), f'{path} focus not in menu'
+        await page.keyboard.press('Escape')
+        await page.wait_for_selector('#mobile-menu:not(.is-open)', state='attached')
+        assert await page.evaluate("document.activeElement.classList.contains('nav-toggle')"), f'{path} focus not back'
+        assert await page.get_attribute('.nav-toggle', 'aria-expanded') == 'false'
+        await ctx.close()
+    ctx, page, _ = await open_page(browser, '/', viewport=(1280, 800))
+    await page.keyboard.press('Tab')
+    assert await page.evaluate("document.activeElement.classList.contains('skip-link')"), 'first tab not skip link'
+    assert await page.locator('main#main').count() == 1
+    links = await page.eval_on_selector_all('.header__controls .lang a', 'as => as.map(a => [a.getAttribute("href"), a.getAttribute("aria-current")])')
+    assert links == [['/', 'true'], ['/en', None]], links
+    await ctx.close()
+
+
+@check
+async def check_theme_switch(browser):
+    ctx, page, _ = await open_page(browser, '/', color_scheme='light')
+    assert await page.get_attribute('html', 'data-theme') == 'light', 'auto follows OS light'
+    await page.emulate_media(color_scheme='dark')
+    await page.wait_for_function("document.documentElement.dataset.theme === 'dark'")
+    await page.click('.header .switch__opt:has-text("Claro")')
+    assert await page.get_attribute('html', 'data-theme') == 'light'
+    await page.reload()
+    assert await page.get_attribute('html', 'data-theme') == 'light', 'manual choice remembered'
+    await ctx.close()
+    # storage blocked: page still renders in auto, no errors
+    ctx = await browser.new_context(color_scheme='dark')
+    await ctx.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new Error('denied')}})")
+    page = await ctx.new_page()
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
+    await page.goto(BASE + '/')
+    await page.click('.header .switch__opt:has-text("Claro")')
+    theme = await page.get_attribute('html', 'data-theme')
+    await ctx.close()
+    assert theme == 'light' and not errors, (theme, errors)
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:
