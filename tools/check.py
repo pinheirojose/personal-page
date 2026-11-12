@@ -285,6 +285,51 @@ async def check_form_states(browser):
     assert 'jbernardopinheiro@gmail.com' in strip and 'Évora' in strip, strip
 
 
+VISIBLE_SEL = '.reveal, article, .timeline__body, .hero__title, .schema-label'
+
+
+@check
+async def check_no_js_visible(browser):
+    ctx, page, _ = await open_page(browser, '/', java_script_enabled=False)
+    hidden = await page.eval_on_selector_all(VISIBLE_SEL, 'es => es.filter(e => getComputedStyle(e).opacity !== "1").length')
+    await ctx.close()
+    assert hidden == 0, f'{hidden} elements hidden without JS'
+
+
+@check
+async def check_reduced_motion(browser):
+    ctx, page, _ = await open_page(browser, '/', reduced_motion='reduce')
+    await page.wait_for_timeout(1500)
+    assert not await page.evaluate("document.documentElement.classList.contains('motion')"), 'motion class set'
+    assert await page.eval_on_selector('.schema-pulse', 'e => getComputedStyle(e).opacity') == '0'
+    offs = await page.eval_on_selector_all('.schema-route', 'rs => rs.map(r => parseFloat(getComputedStyle(r).strokeDashoffset))')
+    hidden = await page.eval_on_selector_all(VISIBLE_SEL, 'es => es.filter(e => getComputedStyle(e).opacity !== "1").length')
+    await ctx.close()
+    assert all(o == 0 for o in offs), offs
+    assert hidden == 0, f'{hidden} hidden with reduced motion'
+
+
+@check
+async def check_motion_runs(browser):
+    ctx, page, errors = await open_page(browser, '/')
+    await page.wait_for_timeout(2500)
+    assert await page.evaluate("document.documentElement.classList.contains('motion')"), 'no motion class'
+    labels = await page.eval_on_selector_all('.schema-label', 'ls => ls.map(l => getComputedStyle(l).opacity)')
+    assert labels == ['1'] * 5, labels
+    await page.wait_for_function(
+        "parseFloat(getComputedStyle(document.querySelector('.schema-pulse')).opacity) > 0", timeout=6000)
+    await page.evaluate("document.querySelector('#experience').scrollIntoView()")
+    await page.wait_for_timeout(1200)
+    lit = await page.locator('.timeline__badge.is-lit').count()
+    await page.evaluate("document.querySelector('#contact').scrollIntoView()")
+    await page.wait_for_timeout(800)
+    hidden = await page.eval_on_selector_all('#contact .reveal', 'es => es.filter(e => getComputedStyle(e).opacity !== "1").length')
+    await ctx.close()
+    assert lit >= 1, 'no timeline badge lit after scrolling'
+    assert hidden == 0, f'{hidden} contact reveals still hidden'
+    assert not errors, errors
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:

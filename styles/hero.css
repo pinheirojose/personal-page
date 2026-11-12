@@ -168,3 +168,6 @@ html.motion .schema-route--return { stroke-dasharray: 1; }
   }
   .readout__cell:first-child { border-left: 0; padding-left: 0; }
 }
+
+/* motion: hidden until GSAP takes over (html.motion is removed if it never does) */
+html.motion .hero-schema:not(.is-live) { visibility: hidden; }

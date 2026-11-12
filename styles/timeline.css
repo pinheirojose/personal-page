@@ -80,3 +80,8 @@ html.motion .timeline__badge:not(.is-lit) { background: var(--bg); color: var(--
   /* stagger the alternation so cards interlock instead of stacking */
   .timeline__item:nth-of-type(n + 2) { margin-top: -64px; }
 }
+
+html.motion .timeline__body {
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out);
+}
+html.motion .timeline__body:not(.is-in) { opacity: 0; transform: translateY(12px); }
