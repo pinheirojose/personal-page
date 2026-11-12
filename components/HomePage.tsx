@@ -6,6 +6,7 @@ import { About } from './About';
 import { Notes } from './Notes';
 import { Toolbox } from './Toolbox';
 import { Projects, Gallery } from './Projects';
+import { Timeline } from './Timeline';
 import '@/styles/sections.css';
 
 export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
@@ -20,6 +21,7 @@ export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
           <Hero copy={copy} />
           <About copy={copy} />
           <Projects copy={copy} lang={lang} />
+          <Timeline copy={copy} />
           <Toolbox copy={copy} />
           <Notes copy={copy} />
         </>

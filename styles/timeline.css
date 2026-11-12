@@ -1,0 +1,82 @@
+/* ---------- numbered experience route ---------- */
+.timeline {
+  --rail: 20px; /* x of the route on mobile */
+  position: relative;
+  display: grid;
+  gap: 48px;
+}
+.timeline__route {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--rail);
+  width: 1px;
+  background: var(--rule);
+}
+.timeline__route-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: top;
+}
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(var(--rail) * 2) 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.timeline__badge {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+}
+html.motion .timeline__badge:not(.is-lit) { background: var(--bg); color: var(--ink-muted); border-color: var(--rule); }
+
+.timeline__body {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+/* the short route stub from badge to card */
+.timeline__body::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 100%;
+  width: 20px;
+  height: 1px;
+  background: var(--rule);
+}
+.timeline__role { font-size: var(--fs-h3); letter-spacing: -0.025em; margin-top: 4px; }
+.timeline__org { font-size: 0.8125rem; color: var(--ink-muted); margin-bottom: 8px; }
+.timeline__body .prose { font-size: 1rem; }
+
+@media (min-width: 960px) {
+  .timeline { gap: 24px; }
+  .timeline__route { left: 50%; }
+  .timeline__item {
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0 40px;
+  }
+  .timeline__badge { grid-column: 2; grid-row: 1; }
+  .timeline__item:nth-of-type(odd) .timeline__body { grid-column: 1; grid-row: 1; }
+  .timeline__item:nth-of-type(even) .timeline__body { grid-column: 3; grid-row: 1; }
+  .timeline__item:nth-of-type(odd) .timeline__body::before { right: auto; left: 100%; width: 40px; }
+  .timeline__item:nth-of-type(even) .timeline__body::before { width: 40px; }
+  /* stagger the alternation so cards interlock instead of stacking */
+  .timeline__item:nth-of-type(n + 2) { margin-top: -64px; }
+}

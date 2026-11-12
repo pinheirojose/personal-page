@@ -227,6 +227,16 @@ async def check_projects(browser):
         await ctx.close()
 
 
+@check
+async def check_timeline(browser):
+    for path in ['/', '/en']:
+        n = len(copy_for(path)['timeline'])
+        ctx, page, _ = await open_page(browser, path)
+        badges = await page.eval_on_selector_all('#experience .timeline > li .timeline__badge', 'bs => bs.map(b => b.textContent.trim())')
+        await ctx.close()
+        assert badges == [f'{i + 1:02d}' for i in range(n)], f'{path} {badges}'
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:
