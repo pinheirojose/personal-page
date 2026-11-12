@@ -2,7 +2,7 @@
 
 Personal website built to showcase my work, skills, and projects.
 
-Live site: [https://josepinheiro.vercel.app/](https://josepinheiro.vercel.app/)
+Live site: [https://jose-pinheiro.pt/](https://jose-pinheiro.pt/)
 
 ## Files
 

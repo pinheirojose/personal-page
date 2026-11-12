@@ -90,7 +90,7 @@ async def check_locale_keys_identical(browser):
     assert pt == en, 'pt-PT and en differ in keys/shape'
 
 
-SITE = 'https://josepinheiro.vercel.app'
+SITE = 'https://jose-pinheiro.pt'
 PAGE_URL = {'/': SITE + '/', '/projects.html': SITE + '/projects.html'}
 
 
@@ -128,7 +128,7 @@ async def check_seo_head(browser):
     assert image_size('images/apple-touch-icon.png') == (180, 180)
     for f in ['robots.txt', 'sitemap.xml']:
         assert (ROOT / f).exists(), f
-    assert 'Sitemap: https://josepinheiro.vercel.app/sitemap.xml' in (ROOT / 'robots.txt').read_text()
+    assert 'Sitemap: https://jose-pinheiro.pt/sitemap.xml' in (ROOT / 'robots.txt').read_text()
     sm = (ROOT / 'sitemap.xml').read_text()
     assert all(f'<loc>{u}</loc>' in sm for u in PAGE_URL.values()), 'sitemap urls'
 
