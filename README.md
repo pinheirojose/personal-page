@@ -4,70 +4,57 @@ Personal website built to showcase my work, skills, and projects.
 
 Live site: [https://jose-pinheiro.pt/](https://jose-pinheiro.pt/)
 
-## Files
-
-| File | What it is |
-| --- | --- |
-| `index.html` | Page markup. |
-| `style.css` | All styling. Design tokens are custom properties on `:root`. |
-| `locales/pt-PT.json` | Portuguese copy (default). |
-| `locales/en.json` | English copy. |
-| `boot.js` | Loads locale files and `page.js`, then starts the runtime. |
-| `page.js` | Page behaviour (`Component`). |
-| `script.js` | Generated `dc-runtime` bundle. Do not edit by hand. |
-| `vendor/` | React and ReactDOM 18.3.1 production UMD builds, loaded by `boot.js` before `script.js` (the runtime then skips its own CDN load). Same files and SRI hashes as the unpkg URLs in `script.js`. |
-| `projects.html` | Full project gallery (same template structure as `index.html`). |
-| `images/og.png` | 1200×630 link-preview image (`og:image`). `apple-touch-icon.png` is the 180×180 home-screen icon. |
-| `robots.txt`, `sitemap.xml` | Crawl rules and the list of both pages. |
-| `tools/` | `check.py` (Playwright smoke checks) and `contrast.py` (token contrast table). Not deployed (`.vercelignore`). |
+Next.js (App Router, TypeScript) exported as a fully static site (`output: 'export'`).
+No server code: Vercel serves the files in `out/`.
 
 ## Running it
 
-The page needs to be served over HTTP (`boot.js` fetches the locale files and
-`page.js`), so opening the file directly with `file://` will not work:
-
 ```sh
-python3 -m http.server 8000
-# then open http://localhost:8000
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static site in out/
+npm test           # unit tests (lib/*.test.ts, Node's built-in runner)
+python3 tools/check.py      # Playwright smoke checks against out/ (build first)
+python3 tools/contrast.py   # WCAG contrast of the colour tokens, both themes
 ```
 
-## How `index.html` is put together
+`tools/` needs Python 3 with `playwright` installed. It isn't deployed.
 
-- `<head>` — metadata (canonical, Open Graph, hreflang, JSON-LD), Google Fonts,
-  `style.css` and preloads for the boot chain.
-- `<x-dc>` — the template. `sc-for` loops render the repeated sections and
-  `sc-if` gates the hero illustration and contact form.
-- `locales/*.json` — all user-facing copy, keyed by BCP 47 language tag
-  (`pt-PT`, `en`). The language comes from `?lang=en|pt`, then the stored
-  choice (`jose-lang`), then the browser language.
-- `boot.js` — fetches those catalogs onto `window.__I18N__`, then loads
-  `page.js` into `<script data-dc-script>` before `script.js` boots.
-- `page.js` — behaviour only (`Component`). The runtime evals it as
-  `class Component extends DCLogic` (it is not a normal browser script).
+## Where things live
 
-To change wording, edit the locale JSON rather than the markup. Styling is
-class-based, so the markup carries almost no inline styles.
+| Path | What it is |
+| --- | --- |
+| `locales/pt-PT.json`, `locales/en.json` | All copy. Same keys in both. Edit wording here, not in components. |
+| `app/(pt)/…` | Portuguese routes: `/` and `/projects`. |
+| `app/(en)/en/…` | English routes: `/en` and `/en/projects`. |
+| `app/sitemap.ts`, `app/robots.ts` | Generated `sitemap.xml` and `robots.txt`. |
+| `components/` | One file per section (Hero, About, Projects, Timeline, Toolbox, Notes, Contact) plus the header/footer chrome. |
+| `lib/i18n.ts` | Loads copy, splits projects into columns, builds URLs, contact links. Email and social links live here. |
+| `lib/seo.ts` | Per-page metadata (canonical, hreflang, Open Graph) and JSON-LD. |
+| `lib/theme.ts` | Auto / Light / Dark logic and the no-flash head script. |
+| `lib/motion/` | Hero schematic animation, timeline scroll drawing, section reveals. |
+| `styles/tokens.css` | Design tokens. Dark is the default; light overrides the same names. |
+| `public/images/` | Project images (WebP, about 1280px wide; cards show them at 640×400), favicons, `og.png`. |
+| `vercel.json` | Clean URLs and redirects from the old `?lang=` and `.html` links. |
 
-One runtime quirk: interpolated `{{ … }}` values render wrapped in an HTML
-`<span>`, so they cannot be used inside an SVG `<text>` element — they come out
-invisible.
+## Content notes
+
+- Projects sit in two columns, professional left and personal right, in file
+  order. Home shows the first 2 of each; `/projects` shows all. Each project
+  needs `"type"`, `areas` (shown as stack pills, split on ` · `) and a one-sentence `alt`.
+- The experience timeline renders every entry in `timeline`, numbered in order.
+- The readout strip's "10+" comes from `readout.yearsValue`; the project count is
+  counted from `projects`.
+- The contact form posts to [FormSubmit](https://formsubmit.co/). The first
+  submission from a new address needs the activation email confirmed.
+
+## Theme and motion
+
+- The theme follows the OS (`prefers-color-scheme`) and switches live; a manual
+  Light or Dark choice is stored in `localStorage` under `jose-theme`.
+- With `prefers-reduced-motion`, everything is shown static. If JavaScript or
+  GSAP fails, the page still shows everything.
 
 ## Deploying
 
-The site is static (no build step) and is hosted on Vercel. Pushing to `main`
-deploys it.
-
-## Notes
-
-- Contact details (`EMAIL`, `SOCIAL`) live at the top of `page.js`.
-- The contact form posts to [FormSubmit](https://formsubmit.co/), which forwards
-  messages to `EMAIL`. The first submission from a new address requires
-  confirming the activation email FormSubmit sends.
-- Projects, timeline and all other copy live in `locales/*.json`. Projects sit in two
-  columns, professional on the left and personal on the right, in the order
-  they appear in the file. The home page shows the first `HOME_PER_COLUMN` of
-  each; `projects.html` shows all of them. Each project needs
-  `"type": "personal"` or `"professional"`, a short `tags` list and a
-  one-sentence `alt` describing its image.
-- Project images go in `images/`. Use WebP around 1280px wide; the cards
-  display at 640×400.
+Hosted on Vercel; pushing to `main` deploys it.

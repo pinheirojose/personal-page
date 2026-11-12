@@ -157,7 +157,7 @@
       "title": "Página pessoal",
       "image": "./images/personal-page.webp",
       "caption": "CAPTURA / PÁGINA PESSOAL",
-      "alt": "O topo deste site: «Olá, sou o José.» ao lado de um mapa pontilhado que liga código, dados, infraestrutura, entrega e pessoas.",
+      "alt": "O topo deste site: «Olá, sou o José.» ao lado de um esquema técnico que liga código, dados, infraestrutura, entrega e pessoas.",
       "summary": "Este site. Bilingue, desenhado como uma planta técnica, feito em Next.js.",
       "role": "Conceber, construir",
       "areas": "Next.js · TypeScript · GSAP",

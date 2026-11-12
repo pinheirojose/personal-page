@@ -48,9 +48,13 @@ class CleanUrlHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+class Server(http.server.ThreadingHTTPServer):
+    request_queue_size = 64  # default 5 overflows when Chromium opens many parallel connections
+
+
 def serve():
     handler = functools.partial(CleanUrlHandler, directory=str(OUT))
-    srv = http.server.ThreadingHTTPServer(('localhost', PORT), handler)
+    srv = Server(('localhost', PORT), handler)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     return srv
 
@@ -328,6 +332,24 @@ async def check_motion_runs(browser):
     assert lit >= 1, 'no timeline badge lit after scrolling'
     assert hidden == 0, f'{hidden} contact reveals still hidden'
     assert not errors, errors
+
+
+@check
+async def check_no_overflow(browser):
+    bad = []
+    for path in PAGES:
+        for scheme in ['dark', 'light']:
+            ctx, page, _ = await open_page(browser, path, viewport=(360, 740), color_scheme=scheme)
+            await page.wait_for_timeout(300)
+            sw = await page.evaluate('document.documentElement.scrollWidth')
+            wide = await page.evaluate("""() => [...document.querySelectorAll('main *, header *, footer *')]
+                .filter(e => { const r = e.getBoundingClientRect(); return r.right > 361 && getComputedStyle(e).position !== 'fixed'
+                  && !e.closest('[aria-hidden=true], .marquee, .sr-only'); })
+                .slice(0, 3).map(e => e.className || e.tagName)""")
+            await ctx.close()
+            if sw > 360 or wide:
+                bad.append((path, scheme, sw, wide))
+    assert not bad, bad
 
 
 async def main(names):
