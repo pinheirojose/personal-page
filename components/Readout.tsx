@@ -6,7 +6,15 @@ export const BUILD_TAG = 'v2.0 · 2026';
 export function Readout({ copy }: { copy: Copy }) {
   const cells = [
     { k: copy.readout.years, v: copy.readout.yearsValue },
-    { k: copy.readout.projects, v: String(copy.projects.length).padStart(2, '0') },
+    {
+      k: copy.readout.projects,
+      v: (
+        <>
+          {String(copy.projects.length).padStart(2, '0')}
+          <span className="readout__note">{copy.readout.projectsNote}</span>
+        </>
+      ),
+    },
     {
       k: copy.readout.base,
       v: (

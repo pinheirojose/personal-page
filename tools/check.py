@@ -190,7 +190,7 @@ async def check_hero(browser):
         readout = await page.inner_text('.readout')
         n = f"{len(copy['projects']):02d}"
         assert 'Évora' in readout and '10+' in readout and n in readout, f'{path} readout {readout!r}'
-        assert copy['locationNote'] in readout, f'{path} readout note'
+        assert copy['locationNote'] in readout and copy['readout']['projectsNote'] in readout, f'{path} readout notes'
         await page.wait_for_timeout(1500)
         clock = (await page.inner_text('.readout time')).strip()
         assert __import__('re').fullmatch(r'\d{2}:\d{2}:\d{2}', clock), f'{path} clock {clock!r}'

@@ -374,6 +374,7 @@
     "years": "YEARS IN PRODUCTION",
     "yearsValue": "10+",
     "projects": "PROJECTS",
+    "projectsNote": "Shown here, plus many more as DevOps and DBA",
     "base": "BASE",
     "time": "LOCAL TIME",
     "build": "BUILD"
