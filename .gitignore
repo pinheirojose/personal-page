@@ -6,3 +6,7 @@ node_modules/
 docs/superpowers/
 tmp-audit/
 __pycache__/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
