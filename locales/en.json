@@ -13,11 +13,26 @@
   "talk": "Let’s talk →",
   "formHeading": "Send a message",
   "nav": [
-    { "label": "Home", "href": "#top" },
-    { "label": "About", "href": "#about" },
-    { "label": "Projects", "href": "#projects" },
-    { "label": "Experience", "href": "#experience" },
-    { "label": "Contact", "href": "#contact" }
+    {
+      "label": "Home",
+      "href": "#top"
+    },
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Experience",
+      "href": "#experience"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
   ],
   "heroEyebrow": "SOFTWARE ENGINEER · TECH LEAD",
   "heroTitle": "Hi, I’m José.",
@@ -31,9 +46,18 @@
   "aboutLede": "I like understanding how things work, and why they stopped working.",
   "aboutBody": "I’ve worked across code, databases, infrastructure and project management, so I don’t much mind where a problem lives. What I care about is fixing it properly, in a way the next person (often me) can follow.",
   "pillars": [
-    { "label": "BUILD", "text": "Applications and databases built to last, not just to demo." },
-    { "label": "SOLVE", "text": "Troubleshooting, integrations and performance, especially when nobody’s sure where to start." },
-    { "label": "DELIVER", "text": "Coordinating teams and talking to clients, so what ships is what they actually needed." }
+    {
+      "label": "BUILD",
+      "text": "Applications and databases built to last, not just to demo."
+    },
+    {
+      "label": "SOLVE",
+      "text": "Troubleshooting, integrations and performance, especially when nobody’s sure where to start."
+    },
+    {
+      "label": "DELIVER",
+      "text": "Coordinating teams and talking to clients, so what ships is what they actually needed."
+    }
   ],
   "projectsEyebrow": "PROJECTS / 02",
   "projectsTitle": "Things I’ve built.",
@@ -49,12 +73,19 @@
   "galleryLead": "It’s all here, including what didn’t fit on the home page.",
   "galleryDocTitle": "Projects — José Pinheiro",
   "backHome": "← Home",
-  "projectTypes": { "personal": "Personal", "professional": "Professional" },
+  "projectTypes": {
+    "personal": "Personal",
+    "professional": "Professional"
+  },
   "privateWork": "Client work · no public demo",
   "projects": [
     {
       "type": "professional",
-      "tags": ["Web", "WordPress", "Real estate"],
+      "tags": [
+        "Web",
+        "WordPress",
+        "Real estate"
+      ],
       "title": "Imóveis Ana Morgado",
       "image": "./images/imoveis-ana-morgado.webp",
       "caption": "SCREENSHOT / IMÓVEIS ANA MORGADO",
@@ -67,7 +98,11 @@
     },
     {
       "type": "personal",
-      "tags": ["Web", "Platform", "Product"],
+      "tags": [
+        "Web",
+        "Platform",
+        "Product"
+      ],
       "title": "Évora Serviços",
       "image": "./images/evora-services.webp",
       "caption": "SCREENSHOT / ÉVORA SERVIÇOS",
@@ -80,7 +115,11 @@
     },
     {
       "type": "professional",
-      "tags": ["Database", "Development", "Project delivery"],
+      "tags": [
+        "Database",
+        "Development",
+        "Project delivery"
+      ],
       "title": "International University ERP Migration",
       "image": "./images/migration.webp",
       "caption": "DIAGRAM / MIGRATION PATH",
@@ -93,7 +132,11 @@
     },
     {
       "type": "professional",
-      "tags": ["DBA", "Linux", "Oracle"],
+      "tags": [
+        "DBA",
+        "Linux",
+        "Oracle"
+      ],
       "title": "Infrastructure Redesign",
       "image": "./images/database.webp",
       "caption": "DIAGRAM / DBA",
@@ -106,20 +149,28 @@
     },
     {
       "type": "personal",
-      "tags": ["Web", "Design", "Bilingual"],
+      "tags": [
+        "Web",
+        "Design",
+        "Bilingual"
+      ],
       "title": "Personal page",
       "image": "./images/personal-page.webp",
       "caption": "SCREENSHOT / PERSONAL PAGE",
       "alt": "The top of this site: “Hi, I’m José.” next to a dotted map linking code, data, infra, delivery and people.",
-      "summary": "This site. Bilingual, handmade, no framework.",
+      "summary": "This site. Bilingual, drawn like a blueprint, built with Next.js.",
       "role": "Design, build",
-      "areas": "HTML · CSS · JavaScript",
+      "areas": "Next.js · TypeScript · GSAP",
       "result": "You’re reading it",
       "url": "https://github.com/pinheirojose/personal-page"
     },
     {
       "type": "personal",
-      "tags": ["Web", "React", "Maps"],
+      "tags": [
+        "Web",
+        "React",
+        "Maps"
+      ],
       "title": "Travel map",
       "image": "./images/travel-map.webp",
       "caption": "SCREENSHOT / TRAVEL MAP",
@@ -162,27 +213,91 @@
   "toolboxEyebrow": "TOOLBOX / 04",
   "toolboxTitle": "Everyday tools.",
   "toolbox": [
-    { "label": "DEVELOPMENT", "items": ["Java", "TypeScript", "JavaScript", "React", "Python", "Bash"] },
-    { "label": "DATABASES", "items": ["Oracle", "PostgreSQL", "MySQL", "SQL", "Database administration"] },
-    { "label": "DEVOPS", "items": ["Docker", "Linux", "GitLab CI/CD", "Jenkins"] },
-    { "label": "OTHER", "items": ["WordPress", "Vite", "Vercel", "Git"] }
+    {
+      "label": "DEVELOPMENT",
+      "items": [
+        "Java",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Python",
+        "Bash"
+      ]
+    },
+    {
+      "label": "DATABASES",
+      "items": [
+        "Oracle",
+        "PostgreSQL",
+        "MySQL",
+        "SQL",
+        "Database administration"
+      ]
+    },
+    {
+      "label": "DEVOPS",
+      "items": [
+        "Docker",
+        "Linux",
+        "GitLab CI/CD",
+        "Jenkins"
+      ]
+    },
+    {
+      "label": "OTHER",
+      "items": [
+        "WordPress",
+        "Vite",
+        "Vercel",
+        "Git"
+      ]
+    }
   ],
   "notesEyebrow": "NOTES / 05",
   "notesTitle": "Things I’ve picked up along the way.",
   "notes": [
-    { "text": "Most problems are simpler than they look.", "aside": "", "className": "note" },
-    { "text": "“Quick fixes” tend to get expensive.", "aside": "", "className": "note" },
-    { "text": "A good log saves hours of guessing.", "aside": "", "className": "note" },
-    { "text": "“It works on my machine.”", "aside": " …which is why Docker exists.", "className": "note note--interactive" }
+    {
+      "text": "Most problems are simpler than they look.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "“Quick fixes” tend to get expensive.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "A good log saves hours of guessing.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "“It works on my machine.”",
+      "aside": " …which is why Docker exists.",
+      "className": "note note--interactive"
+    }
   ],
   "contactEyebrow": "CONTACT / 06",
   "contactTitle": "Got a project in mind?",
   "contactLead": "Whether it’s a new project, an opportunity or that bug nobody can pin down, drop me a line. I always reply.",
   "contactLinks": [
-    { "id": "email", "label": "EMAIL" },
-    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose-pinheiro" },
-    { "id": "github", "label": "GITHUB", "text": "@pinheirojose" }
+    {
+      "id": "email",
+      "label": "EMAIL"
+    },
+    {
+      "id": "linkedin",
+      "label": "LINKEDIN",
+      "text": "/in/jose-pinheiro"
+    },
+    {
+      "id": "github",
+      "label": "GITHUB",
+      "text": "@pinheirojose"
+    }
   ],
+  "locationLabel": "LOCATION",
+  "location": "Évora",
   "formName": "NAME",
   "formEmail": "EMAIL",
   "formMessage": "MESSAGE",
@@ -191,5 +306,19 @@
   "sent": "Message sent ✓",
   "sentThanks": "Thanks! I’ll get back to you soon.",
   "sendFail": "Something went wrong. Try again or send me an email.",
-  "footerRole": "SOFTWARE ENGINEER · TECH LEAD"
+  "footerRole": "SOFTWARE ENGINEER · TECH LEAD",
+  "readout": {
+    "years": "YEARS IN PRODUCTION",
+    "yearsValue": "10+",
+    "projects": "PROJECTS",
+    "base": "BASE",
+    "time": "LOCAL TIME",
+    "build": "BUILD"
+  },
+  "theme": {
+    "label": "Theme",
+    "auto": "Auto",
+    "light": "Light",
+    "dark": "Dark"
+  }
 }

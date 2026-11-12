@@ -13,11 +13,26 @@
   "talk": "Vamos falar →",
   "formHeading": "Enviar mensagem",
   "nav": [
-    { "label": "Início", "href": "#top" },
-    { "label": "Sobre", "href": "#about" },
-    { "label": "Projetos", "href": "#projects" },
-    { "label": "Experiência", "href": "#experience" },
-    { "label": "Contacto", "href": "#contact" }
+    {
+      "label": "Início",
+      "href": "#top"
+    },
+    {
+      "label": "Sobre",
+      "href": "#about"
+    },
+    {
+      "label": "Projetos",
+      "href": "#projects"
+    },
+    {
+      "label": "Experiência",
+      "href": "#experience"
+    },
+    {
+      "label": "Contacto",
+      "href": "#contact"
+    }
   ],
   "heroEyebrow": "ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO",
   "heroTitle": "Olá, sou o José.",
@@ -31,9 +46,18 @@
   "aboutLede": "Gosto de perceber como as coisas funcionam, e porque é que deixaram de funcionar.",
   "aboutBody": "Já passei pelo código, pelas bases de dados, pela infraestrutura e pela gestão de projetos, por isso não importa onde está o problema. Importa resolvê-lo bem, de forma que quem vem a seguir (muitas vezes eu próprio) perceba o que foi feito.",
   "pillars": [
-    { "label": "CONSTRUIR", "text": "Aplicações e bases de dados feitas para durar, não só para a demo." },
-    { "label": "RESOLVER", "text": "Diagnóstico, integrações e desempenho, sobretudo quando ninguém sabe bem por onde começar." },
-    { "label": "ENTREGAR", "text": "Coordenar equipas e falar com os clientes, para que o que sai seja aquilo de que precisavam." }
+    {
+      "label": "CONSTRUIR",
+      "text": "Aplicações e bases de dados feitas para durar, não só para a demo."
+    },
+    {
+      "label": "RESOLVER",
+      "text": "Diagnóstico, integrações e desempenho, sobretudo quando ninguém sabe bem por onde começar."
+    },
+    {
+      "label": "ENTREGAR",
+      "text": "Coordenar equipas e falar com os clientes, para que o que sai seja aquilo de que precisavam."
+    }
   ],
   "projectsEyebrow": "PROJETOS / 02",
   "projectsTitle": "Coisas que construí.",
@@ -49,12 +73,19 @@
   "galleryLead": "Está tudo aqui, incluindo o que não coube na página inicial.",
   "galleryDocTitle": "Projetos — José Pinheiro",
   "backHome": "← Início",
-  "projectTypes": { "personal": "Pessoal", "professional": "Profissional" },
+  "projectTypes": {
+    "personal": "Pessoal",
+    "professional": "Profissional"
+  },
   "privateWork": "Trabalho para cliente · sem demo pública",
   "projects": [
     {
       "type": "professional",
-      "tags": ["Web", "WordPress", "Imobiliário"],
+      "tags": [
+        "Web",
+        "WordPress",
+        "Imobiliário"
+      ],
       "title": "Imóveis Ana Morgado",
       "image": "./images/imoveis-ana-morgado.webp",
       "caption": "CAPTURA / IMÓVEIS ANA MORGADO",
@@ -67,7 +98,11 @@
     },
     {
       "type": "personal",
-      "tags": ["Web", "Plataforma", "Produto"],
+      "tags": [
+        "Web",
+        "Plataforma",
+        "Produto"
+      ],
       "title": "Évora Serviços",
       "image": "./images/evora-services.webp",
       "caption": "CAPTURA / ÉVORA SERVIÇOS",
@@ -80,7 +115,11 @@
     },
     {
       "type": "professional",
-      "tags": ["Base de dados", "Desenvolvimento", "Entrega de projetos"],
+      "tags": [
+        "Base de dados",
+        "Desenvolvimento",
+        "Entrega de projetos"
+      ],
       "title": "Migração ERP da Universidade Internacional",
       "image": "./images/migration.webp",
       "caption": "DIAGRAMA / PERCURSO DE MIGRAÇÃO",
@@ -93,7 +132,11 @@
     },
     {
       "type": "professional",
-      "tags": ["DBA", "Linux", "Oracle"],
+      "tags": [
+        "DBA",
+        "Linux",
+        "Oracle"
+      ],
       "title": "Redesenho da infraestrutura",
       "image": "./images/database.webp",
       "caption": "DIAGRAMA / DBA",
@@ -106,20 +149,28 @@
     },
     {
       "type": "personal",
-      "tags": ["Web", "Design", "Bilingue"],
+      "tags": [
+        "Web",
+        "Design",
+        "Bilingue"
+      ],
       "title": "Página pessoal",
       "image": "./images/personal-page.webp",
       "caption": "CAPTURA / PÁGINA PESSOAL",
       "alt": "O topo deste site: «Olá, sou o José.» ao lado de um mapa pontilhado que liga código, dados, infraestrutura, entrega e pessoas.",
-      "summary": "Este site. Bilingue, feito à mão e sem frameworks.",
+      "summary": "Este site. Bilingue, desenhado como uma planta técnica, feito em Next.js.",
       "role": "Conceber, construir",
-      "areas": "HTML · CSS · JavaScript",
+      "areas": "Next.js · TypeScript · GSAP",
       "result": "Está a lê-la agora",
       "url": "https://github.com/pinheirojose/personal-page"
     },
     {
       "type": "personal",
-      "tags": ["Web", "React", "Mapas"],
+      "tags": [
+        "Web",
+        "React",
+        "Mapas"
+      ],
       "title": "Mapa de viagens",
       "image": "./images/travel-map.webp",
       "caption": "CAPTURA / MAPA DE VIAGENS",
@@ -162,27 +213,91 @@
   "toolboxEyebrow": "FERRAMENTAS / 04",
   "toolboxTitle": "Ferramentas do dia a dia.",
   "toolbox": [
-    { "label": "DESENVOLVIMENTO", "items": ["Java", "TypeScript", "JavaScript", "React", "Python", "Bash"] },
-    { "label": "BASES DE DADOS", "items": ["Oracle", "PostgreSQL", "MySQL", "SQL", "Administração de bases de dados"] },
-    { "label": "DEVOPS", "items": ["Docker", "Linux", "GitLab CI/CD", "Jenkins"] },
-    { "label": "OUTROS", "items": ["WordPress", "Vite", "Vercel", "Git"] }
+    {
+      "label": "DESENVOLVIMENTO",
+      "items": [
+        "Java",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Python",
+        "Bash"
+      ]
+    },
+    {
+      "label": "BASES DE DADOS",
+      "items": [
+        "Oracle",
+        "PostgreSQL",
+        "MySQL",
+        "SQL",
+        "Administração de bases de dados"
+      ]
+    },
+    {
+      "label": "DEVOPS",
+      "items": [
+        "Docker",
+        "Linux",
+        "GitLab CI/CD",
+        "Jenkins"
+      ]
+    },
+    {
+      "label": "OUTROS",
+      "items": [
+        "WordPress",
+        "Vite",
+        "Vercel",
+        "Git"
+      ]
+    }
   ],
   "notesEyebrow": "NOTAS / 05",
   "notesTitle": "Coisas que aprendi pelo caminho.",
   "notes": [
-    { "text": "A maior parte dos problemas é mais simples do que parece.", "aside": "", "className": "note" },
-    { "text": "As «soluções rápidas» costumam sair caras.", "aside": "", "className": "note" },
-    { "text": "Um bom log poupa horas de adivinhação.", "aside": "", "className": "note" },
-    { "text": "«No meu computador funciona.»", "aside": " …e foi assim que nasceu o Docker.", "className": "note note--interactive" }
+    {
+      "text": "A maior parte dos problemas é mais simples do que parece.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "As «soluções rápidas» costumam sair caras.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "Um bom log poupa horas de adivinhação.",
+      "aside": "",
+      "className": "note"
+    },
+    {
+      "text": "«No meu computador funciona.»",
+      "aside": " …e foi assim que nasceu o Docker.",
+      "className": "note note--interactive"
+    }
   ],
   "contactEyebrow": "CONTACTO / 06",
   "contactTitle": "Tem um projeto em mente?",
   "contactLead": "Seja um projeto novo, uma oportunidade ou aquele bug que ninguém consegue apanhar, escreva-me. Respondo sempre.",
   "contactLinks": [
-    { "id": "email", "label": "EMAIL" },
-    { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose-pinheiro" },
-    { "id": "github", "label": "GITHUB", "text": "@pinheirojose" }
+    {
+      "id": "email",
+      "label": "EMAIL"
+    },
+    {
+      "id": "linkedin",
+      "label": "LINKEDIN",
+      "text": "/in/jose-pinheiro"
+    },
+    {
+      "id": "github",
+      "label": "GITHUB",
+      "text": "@pinheirojose"
+    }
   ],
+  "locationLabel": "LOCALIZAÇÃO",
+  "location": "Évora",
   "formName": "NOME",
   "formEmail": "EMAIL",
   "formMessage": "MENSAGEM",
@@ -191,5 +306,19 @@
   "sent": "Mensagem enviada ✓",
   "sentThanks": "Obrigado! Respondo em breve.",
   "sendFail": "Algo correu mal. Tente outra vez ou envie-me um email.",
-  "footerRole": "ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO"
+  "footerRole": "ENGENHEIRO DE SOFTWARE · LÍDER TÉCNICO",
+  "readout": {
+    "years": "ANOS EM PRODUÇÃO",
+    "yearsValue": "10+",
+    "projects": "PROJETOS",
+    "base": "BASE",
+    "time": "HORA LOCAL",
+    "build": "BUILD"
+  },
+  "theme": {
+    "label": "Tema",
+    "auto": "Auto",
+    "light": "Claro",
+    "dark": "Escuro"
+  }
 }
