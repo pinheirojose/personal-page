@@ -23,28 +23,70 @@
 .pillar {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 28px;
   background: var(--surface);
   border: 1px solid var(--rule);
   transition: border-color var(--dur-2) var(--ease-out);
 }
-@media (hover: hover) { .pillar:hover { border-color: color-mix(in srgb, var(--ink-muted) 60%, var(--rule)); } }
-.pillar__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: auto; padding-bottom: 32px; }
-.pillar:first-child .pillar__head { padding-bottom: clamp(32px, 8vw, 120px); }
+@media (hover: hover) {
+  .pillar:hover { border-color: color-mix(in srgb, var(--ink-muted) 60%, var(--rule)); }
+  .pillar:hover .pillar__media img { transform: scale(1.03); }
+}
+.pillar__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--rule);
+}
+.pillar:first-child .pillar__media { aspect-ratio: 4 / 3; }
+@media (min-width: 960px) {
+  /* the tall card's photo takes whatever height the two small cards give it */
+  .pillar:first-child .pillar__media { aspect-ratio: auto; flex: 1; min-height: 280px; }
+}
+.pillar__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+/* fade the photo's bottom edge into the card so image and text read as one sheet */
+.pillar__media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--surface) 70%, transparent));
+  pointer-events: none;
+}
 .pillar__tile {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--rule);
+  width: 44px;
+  height: 44px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--rule));
   background: var(--bg);
   color: var(--accent);
 }
 .pillar__tile svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; }
-.pillar__id { font-size: 0.6875rem; letter-spacing: 0.12em; color: var(--ink-muted); }
-.pillar__text { font-size: var(--fs-h3); line-height: 1.3; letter-spacing: -0.02em; max-width: 28ch; }
-.pillar:not(:first-child) .pillar__text { font-size: 1.125rem; }
+.pillar__id {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 16px;
+  padding: 4px 7px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+}
+.pillar__body { display: grid; gap: 12px; padding: 24px 28px 28px; }
+.pillar__text { font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.015em; max-width: 34ch; }
+.pillar:first-child .pillar__text { font-size: var(--fs-h3); line-height: 1.3; letter-spacing: -0.02em; max-width: 28ch; }
 
 /* ---------- notes ---------- */
 .notes {
@@ -116,18 +158,3 @@
   .marquee__group + .marquee__group { display: none; }
   .marquee__set { white-space: normal; flex-wrap: wrap; border-right: 0; }
 }
-
-/* the lead bento card carries the hero's construction grid, fading toward its text */
-.pillar:first-child {
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: -1px -1px;
-  background-color: var(--surface);
-}
-.pillar:first-child::marker { content: none; }
-.pillar:first-child > * { position: relative; }
-.pillar:first-child .pillar__text,
-.pillar:first-child .pillar__label { background: var(--surface); box-shadow: 0 0 0 8px var(--surface); }
-.pillar:first-child .pillar__label { justify-self: start; align-self: flex-start; }
