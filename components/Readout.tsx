@@ -7,7 +7,15 @@ export function Readout({ copy }: { copy: Copy }) {
   const cells = [
     { k: copy.readout.years, v: copy.readout.yearsValue },
     { k: copy.readout.projects, v: String(copy.projects.length).padStart(2, '0') },
-    { k: copy.readout.base, v: copy.location },
+    {
+      k: copy.readout.base,
+      v: (
+        <>
+          {copy.location}
+          <span className="readout__note">{copy.locationNote}</span>
+        </>
+      ),
+    },
     { k: copy.readout.time, v: <Clock /> },
     { k: copy.readout.build, v: BUILD_TAG },
   ];

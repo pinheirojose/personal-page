@@ -341,7 +341,7 @@
   ],
   "contactEyebrow": "CONTACTO / 07",
   "contactTitle": "Tem um projeto em mente?",
-  "contactLead": "Seja um projeto novo, uma oportunidade ou aquele bug que ninguém consegue apanhar, escreva-me. Respondo sempre.",
+  "contactLead": "Seja um projeto novo, uma oportunidade ou aquele bug que ninguém consegue apanhar, fale comigo. Respondo sempre.",
   "contactLinks": [
     {
       "id": "email",
@@ -360,6 +360,7 @@
   ],
   "locationLabel": "LOCALIZAÇÃO",
   "location": "Évora",
+  "locationNote": "Remoto · a trabalhar com equipas de todo o mundo",
   "formName": "NOME",
   "formEmail": "EMAIL",
   "formMessage": "MENSAGEM",

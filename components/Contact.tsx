@@ -27,7 +27,10 @@ export function Contact({ copy }: { copy: Copy }) {
           ))}
           <div className="contact-strip__cell">
             <dt className="eyebrow">{copy.locationLabel}</dt>
-            <dd>{copy.location}</dd>
+            <dd>
+              {copy.location}, Portugal
+              <span className="contact-strip__note">{copy.locationNote}</span>
+            </dd>
           </div>
         </dl>
         <ContactForm labels={copy} />

@@ -157,6 +157,16 @@ html.motion .schema-ring { opacity: 0; animation-delay: 1.3s; }
   overflow-wrap: anywhere;
 }
 .clock { display: inline-block; min-width: 8ch; }
+.readout__note {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.35;
+  color: var(--ink-muted);
+}
 
 @media (min-width: 960px) {
   .readout__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
