@@ -2,6 +2,10 @@ import { getCopy, type Lang, type Page as PageKind } from '@/lib/i18n';
 import { personJsonLd } from '@/lib/seo';
 import { Page } from './Page';
 import { Hero } from './Hero';
+import { About } from './About';
+import { Notes } from './Notes';
+import { Toolbox } from './Toolbox';
+import '@/styles/sections.css';
 
 export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
   const copy = getCopy(lang);
@@ -11,7 +15,12 @@ export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }} />
       )}
       {page === 'home' ? (
-        <Hero copy={copy} />
+        <>
+          <Hero copy={copy} />
+          <About copy={copy} />
+          <Toolbox copy={copy} />
+          <Notes copy={copy} />
+        </>
       ) : (
         <div id="top" className="shell" style={{ minHeight: '120vh', paddingTop: 120 }}>
           <h1>{copy.galleryTitle}</h1>

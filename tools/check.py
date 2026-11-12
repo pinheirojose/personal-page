@@ -188,6 +188,24 @@ async def check_hero(browser):
         await ctx.close()
 
 
+@check
+async def check_sections(browser):
+    for path in ['/', '/en']:
+        copy = copy_for(path)
+        ctx, page, _ = await open_page(browser, path)
+        assert await page.locator('#about .pillars > li').count() == 3, f'{path} pillars'
+        assert await page.locator('#notes li').count() == 4, f'{path} notes'
+        assert await page.locator('#toolbox h3').count() == 4, f'{path} toolbox groups'
+        tools = await page.eval_on_selector_all('#toolbox .toolbox__list li', 'ls => ls.map(l => l.textContent.trim())')
+        assert tools == [t for g in copy['toolbox'] for t in g['items']], f'{path} tools {tools}'
+        assert await page.locator('#notes [tabindex="0"]').count() == 1, f'{path} focusable note'
+        await ctx.close()
+    ctx, page, _ = await open_page(browser, '/', reduced_motion='reduce')
+    anim = await page.eval_on_selector('.marquee__track', 'e => getComputedStyle(e).animationName')
+    await ctx.close()
+    assert anim == 'none', f'reduced motion marquee {anim}'
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:
