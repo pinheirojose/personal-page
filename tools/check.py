@@ -237,6 +237,54 @@ async def check_timeline(browser):
         assert badges == [f'{i + 1:02d}' for i in range(n)], f'{path} {badges}'
 
 
+async def fill_form(page):
+    await page.fill('#contact input[name=name]', 'Ana Test')
+    await page.fill('#contact input[name=email]', 'ana@example.com')
+    await page.fill('#contact textarea[name=message]', 'Hello there')
+
+
+@check
+async def check_form_states(browser):
+    copy = copy_for('/en')
+    ctx, page, _ = await open_page(browser, '/en')
+    hits, status = [], {'code': 500}
+
+    async def handle(route):
+        hits.append(route.request.post_data_json)
+        await asyncio.sleep(0.3)
+        body = '{"success":"true"}' if status['code'] == 200 else '{}'
+        await route.fulfill(status=status['code'], body=body, content_type='application/json')
+
+    await page.route('https://formsubmit.co/**', handle)
+    await fill_form(page)
+    submit = page.locator('#contact button[type=submit]')
+    await submit.dblclick()
+    await page.wait_for_selector(f'#contact .form__status:has-text("{copy["sendFail"]}")')
+    assert len(hits) == 1, f'{len(hits)} requests on double click'
+    assert hits[0]['email'] == 'ana@example.com' and hits[0]['_captcha'] == 'false', hits[0]
+    assert await submit.is_enabled(), 'button stays disabled after error'
+    status['code'] = 200
+    await submit.click()
+    await page.wait_for_selector(f'#contact .form__status:has-text("{copy["sentThanks"]}")')
+    assert await submit.is_disabled(), 'button enabled after success'
+    await ctx.close()
+    # honeypot filled: nothing sent
+    ctx, page, _ = await open_page(browser, '/en')
+    hits.clear()
+    await page.route('https://formsubmit.co/**', handle)
+    await fill_form(page)
+    await page.evaluate("document.querySelector('#contact input[name=_honey]').value = 'bot'")
+    await page.click('#contact button[type=submit]')
+    await page.wait_for_timeout(500)
+    await ctx.close()
+    assert hits == [], 'honeypot sent a request'
+    # contact strip
+    ctx, page, _ = await open_page(browser, '/')
+    strip = await page.inner_text('#contact .contact-strip')
+    await ctx.close()
+    assert 'jbernardopinheiro@gmail.com' in strip and 'Évora' in strip, strip
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:
