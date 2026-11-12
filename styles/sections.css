@@ -33,16 +33,19 @@
 }
 .pillar__media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 12 / 5; /* a short strip: the card stays text-first */
   overflow: hidden;
   background: var(--surface-2);
   border-bottom: 1px solid var(--rule);
 }
-.pillar:first-child .pillar__media { aspect-ratio: 4 / 3; }
 @media (min-width: 960px) {
+  .pillar__media { aspect-ratio: 3 / 1; }
   /* the tall card's photo takes whatever height the two small cards give it */
-  .pillar:first-child .pillar__media { aspect-ratio: auto; flex: 1; min-height: 280px; }
+  .pillar:first-child .pillar__media { aspect-ratio: auto; flex: 1; min-height: 200px; }
 }
+/* keep each photo's subject in the narrower frame */
+.pillar:nth-child(1) .pillar__media img { object-position: 50% 20%; }
+.pillar:nth-child(2) .pillar__media img { object-position: 50% 30%; }
 .pillar__media img {
   width: 100%;
   height: 100%;
@@ -61,12 +64,12 @@
 .pillar__tile {
   position: absolute;
   z-index: 1;
-  top: 16px;
-  left: 16px;
+  top: 12px;
+  left: 12px;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--rule));
   background: var(--bg);
   color: var(--accent);
@@ -75,8 +78,8 @@
 .pillar__id {
   position: absolute;
   z-index: 1;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   padding: 4px 7px;
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
@@ -84,7 +87,7 @@
   background: var(--bg);
   border: 1px solid var(--rule);
 }
-.pillar__body { display: grid; gap: 12px; padding: 24px 28px 28px; }
+.pillar__body { display: grid; gap: 10px; padding: 20px 24px 24px; }
 .pillar__text { font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.015em; max-width: 34ch; }
 .pillar:first-child .pillar__text { font-size: var(--fs-h3); line-height: 1.3; letter-spacing: -0.02em; max-width: 28ch; }
 
