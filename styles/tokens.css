@@ -1,0 +1,57 @@
+/* Design tokens. Dark is the lead theme; light is a token swap. */
+:root {
+  --bg: #0b0c0e;
+  --surface: #121418;
+  --surface-2: #171a1f;
+  --ink: #e8eaed;
+  --ink-muted: #8b929c;
+  --rule: #2a2e35;
+  --grid: color-mix(in srgb, var(--rule) 45%, transparent);
+  --accent: #4c94ff;
+  --accent-ink: #0b0c0e; /* text on a solid accent fill */
+  --accent-glow: color-mix(in srgb, var(--accent) 18%, transparent);
+  --ghost: color-mix(in srgb, var(--ink) 4%, transparent);
+  color-scheme: dark;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-display: clamp(2.75rem, 1.6rem + 5.2vw, 7rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.8vw, 4rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --fs-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.75rem;
+  --measure: 64ch;
+
+  --space-section: clamp(5rem, 3.5rem + 6vw, 10rem);
+  --gutter: 16px;
+  --shell: 1280px;
+  --header-h: 64px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 150ms;
+  --dur-2: 200ms;
+  --dur-3: 300ms;
+}
+
+:root[data-theme='light'] {
+  --bg: #f3f3ee;
+  --surface: #fafaf7;
+  --surface-2: #ecece6;
+  --ink: #1f2933;
+  --ink-muted: #5b6672;
+  --rule: #c9ccc4;
+  --grid: color-mix(in srgb, var(--rule) 55%, transparent);
+  --accent: #1d4ed8;
+  --accent-ink: #fafaf7;
+  --accent-glow: color-mix(in srgb, var(--accent) 10%, transparent);
+  --ghost: color-mix(in srgb, var(--ink) 5%, transparent);
+  color-scheme: light;
+}
+
+@media (min-width: 720px) {
+  :root { --gutter: 32px; }
+}
