@@ -116,18 +116,35 @@
     {
       "type": "professional",
       "tags": [
-        "Base de dados",
-        "Desenvolvimento",
-        "Entrega de projetos"
+        "Modernização",
+        "Java",
+        "Delivery"
       ],
-      "title": "Migração ERP da Universidade Internacional",
+      "title": "McGill University — Oracle Forms para Java",
       "image": "./images/migration.webp",
       "caption": "DIAGRAMA / PERCURSO DE MIGRAÇÃO",
       "alt": "Uma pessoa a escrever código num portátil, numa sala de aula vazia.",
-      "summary": "A migração do ERP de uma universidade, do início ao fim: base de dados, aplicação, planeamento, gestão do projeto e arranque em produção.",
-      "role": "Responsável técnico",
-      "areas": "Oracle · Java · SQL",
-      "result": "Sistemas mais fiáveis para milhares de estudantes e funcionários",
+      "summary": "Uma migração de grande escala dos sistemas legacy em Oracle Forms da McGill para uma arquitetura Java moderna. Defino a estratégia de migração, lidero a equipa e sou o principal ponto de contacto com o cliente.",
+      "role": "Líder técnico, delivery",
+      "areas": "Oracle Forms · Java · PL/SQL · Agile",
+      "result": "Em curso desde 2025",
+      "url": ""
+    },
+    {
+      "type": "professional",
+      "tags": [
+        "Modernização",
+        "Java",
+        "Liderança"
+      ],
+      "title": "ACU — Migração de Oracle Forms para Java",
+      "image": "./images/acu-migration.webp",
+      "caption": "DIAGRAMA / FORMS PARA JAVA",
+      "alt": "Um diagrama em estilo de planta técnica de módulos legacy em Oracle Forms a serem migrados para uma aplicação Java.",
+      "summary": "Módulos legacy em Oracle Forms reconstruídos como uma aplicação Java. Liderei a equipa de desenvolvimento e tomei as decisões técnicas da migração até à entrega.",
+      "role": "Líder técnico",
+      "areas": "Java · Git · Maven · Oracle Forms",
+      "result": "Entregue, 2017–2018",
       "url": ""
     },
     {
@@ -216,7 +233,33 @@
       "summary": "Onde tudo começou: migrar aplicações legacy em Oracle Forms para Java, em projetos de modernização para clientes internacionais."
     }
   ],
-  "toolboxEyebrow": "FERRAMENTAS / 04",
+  "trainingEyebrow": "FORMAÇÃO E COMUNIDADE / 04",
+  "trainingTitle": "Para além do código.",
+  "trainingLead": "Ensinar também faz parte do trabalho.",
+  "training": [
+    {
+      "value": "150+",
+      "label": "DEVELOPERS FORMADOS",
+      "title": "Formador técnico, global",
+      "period": "2016 — 2019",
+      "text": "Programas de três a cinco dias sobre boas práticas de Java e modernização Agile, para equipas internas e de clientes em Bangalore, Sydney, Boston e remotamente."
+    },
+    {
+      "value": "50+",
+      "label": "NOVOS COLABORADORES INTEGRADOS",
+      "title": "Formador técnico interno",
+      "period": "2016 — 2020",
+      "text": "Uma semana de onboarding para novos colaboradores e estagiários: as tecnologias da empresa, os standards de desenvolvimento e as boas práticas de engenharia."
+    },
+    {
+      "value": "GDG",
+      "label": "ÉVORA",
+      "title": "Co-organizador da comunidade",
+      "period": "2026 — PRESENTE",
+      "text": "Ajudo a organizar o Google Developer Group Évora: talks, workshops e encontros para que os developers da região partilhem o que sabem."
+    }
+  ],
+  "toolboxEyebrow": "FERRAMENTAS / 05",
   "toolboxTitle": "Ferramentas do dia a dia.",
   "toolbox": [
     {
@@ -259,7 +302,7 @@
       ]
     }
   ],
-  "notesEyebrow": "NOTAS / 05",
+  "notesEyebrow": "NOTAS / 06",
   "notesTitle": "Coisas que aprendi pelo caminho.",
   "notes": [
     {
@@ -283,7 +326,7 @@
       "className": "note note--interactive"
     }
   ],
-  "contactEyebrow": "CONTACTO / 06",
+  "contactEyebrow": "CONTACTO / 07",
   "contactTitle": "Tem um projeto em mente?",
   "contactLead": "Seja um projeto novo, uma oportunidade ou aquele bug que ninguém consegue apanhar, escreva-me. Respondo sempre.",
   "contactLinks": [

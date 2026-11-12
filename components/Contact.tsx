@@ -6,7 +6,7 @@ import '@/styles/contact.css';
 
 export function Contact({ copy }: { copy: Copy }) {
   return (
-    <Frame id="contact" coord="X 00 · Y 06" className="section--contact">
+    <Frame id="contact" coord="X 00 · Y 07" className="section--contact">
       <SectionHead id="contact" label={copy.contactEyebrow} title={copy.contactTitle} lead={copy.contactLead} />
       <div className="contact reveal">
         <dl className="contact-strip">

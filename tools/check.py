@@ -184,7 +184,8 @@ async def check_hero(browser):
         assert (await page.inner_text('h1')).strip() == copy['heroTitle'], f'{path} h1'
         assert await page.locator('svg.hero-schema[aria-hidden=true] .schema-node').count() == 5, f'{path} nodes'
         readout = await page.inner_text('.readout')
-        assert 'Évora' in readout and '10+' in readout and '06' in readout, f'{path} readout {readout!r}'
+        n = f"{len(copy['projects']):02d}"
+        assert 'Évora' in readout and '10+' in readout and n in readout, f'{path} readout {readout!r}'
         await page.wait_for_timeout(1500)
         clock = (await page.inner_text('.readout time')).strip()
         assert __import__('re').fullmatch(r'\d{2}:\d{2}:\d{2}', clock), f'{path} clock {clock!r}'
@@ -212,12 +213,15 @@ async def check_sections(browser):
 
 @check
 async def check_projects(browser):
-    for path, n in [('/', 2), ('/projects', 3), ('/en', 2), ('/en/projects', 3)]:
+    for path in PAGES:
         copy = copy_for(path)
         ctx, page, _ = await open_page(browser, path)
         cols = await page.eval_on_selector_all(
             '.showcase__col', 'cs => cs.map(c => [...c.querySelectorAll(".work-card__index")].map(i => i.textContent.trim()))')
-        assert cols == [[f'{i + 1:02d}' for i in range(n)]] * 2, f'{path} columns {cols}'
+        per = [sum(p['type'] == t for p in copy['projects']) for t in ('professional', 'personal')]
+        if path in ('/', '/en'):
+            per = [min(2, n) for n in per]
+        assert cols == [[f'{i + 1:02d}' for i in range(n)] for n in per], f'{path} columns {cols}'
         imgs = await page.eval_on_selector_all('.work-card img', 'is => is.map(i => [i.alt, i.getAttribute("width"), i.getAttribute("height")])')
         assert all(a.strip() and w and h for a, w, h in imgs), f'{path} imgs {imgs}'
         rels = await page.eval_on_selector_all('.work-card a[target=_blank]', 'as => as.map(a => a.rel)')
@@ -322,10 +326,10 @@ async def check_motion_runs(browser):
     assert labels == ['1'] * 5, labels
     await page.wait_for_function(
         "parseFloat(getComputedStyle(document.querySelector('.schema-pulse')).opacity) > 0", timeout=6000)
-    await page.evaluate("document.querySelector('#experience').scrollIntoView()")
+    await page.evaluate("document.querySelector('#experience').scrollIntoView({behavior: 'instant'})")
     await page.wait_for_timeout(1200)
     lit = await page.locator('.timeline__badge.is-lit').count()
-    await page.evaluate("document.querySelector('#contact').scrollIntoView()")
+    await page.evaluate("document.querySelector('#contact').scrollIntoView({behavior: 'instant'})")
     await page.wait_for_timeout(800)
     hidden = await page.eval_on_selector_all('#contact .reveal', 'es => es.filter(e => getComputedStyle(e).opacity !== "1").length')
     await ctx.close()
@@ -369,6 +373,18 @@ async def check_schema_grid_persists(browser):
     after = await page.evaluate(grid_opacity)
     await ctx.close()
     assert before > 0.95 and after > 0.95, f'grid opacity before={before:.2f} after scroll={after:.2f}'
+
+
+@check
+async def check_training(browser):
+    for path in ['/', '/en']:
+        copy = copy_for(path)
+        ctx, page, _ = await open_page(browser, path)
+        order = await page.eval_on_selector_all('main > section[id]', 'ss => ss.map(s => s.id)')
+        values = await page.eval_on_selector_all('#training .training__value', 'vs => vs.map(v => v.textContent.trim())')
+        await ctx.close()
+        assert order.index('training') == order.index('experience') + 1, order
+        assert values == [t['value'] for t in copy['training']], values
 
 
 async def main(names):

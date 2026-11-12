@@ -17,7 +17,7 @@ export function Toolbox({ copy }: { copy: Copy }) {
     </div>
   );
   return (
-    <Frame id="toolbox" coord="X 00 · Y 04" className="section--toolbox">
+    <Frame id="toolbox" coord="X 00 · Y 05" className="section--toolbox">
       <SectionHead id="toolbox" label={copy.toolboxEyebrow} title={copy.toolboxTitle} />
       {/* Readable, grouped list for assistive tech; the marquee below is decoration. */}
       <div className="sr-only">

@@ -116,18 +116,35 @@
     {
       "type": "professional",
       "tags": [
-        "Database",
-        "Development",
-        "Project delivery"
+        "Modernisation",
+        "Java",
+        "Delivery"
       ],
-      "title": "International University ERP Migration",
+      "title": "McGill University — Oracle Forms to Java",
       "image": "./images/migration.webp",
       "caption": "DIAGRAM / MIGRATION PATH",
       "alt": "A person typing code on a laptop in an empty classroom.",
-      "summary": "Moving a university’s ERP from start to finish: database, application, planning, project management and go-live.",
+      "summary": "A large-scale move of McGill’s legacy Oracle Forms systems to a modern Java architecture. I set the migration strategy, lead the team and am the client’s main point of contact.",
+      "role": "Technical lead, delivery",
+      "areas": "Oracle Forms · Java · PL/SQL · Agile",
+      "result": "Ongoing since 2025",
+      "url": ""
+    },
+    {
+      "type": "professional",
+      "tags": [
+        "Modernisation",
+        "Java",
+        "Team lead"
+      ],
+      "title": "ACU — Oracle Forms to Java migration",
+      "image": "./images/acu-migration.webp",
+      "caption": "DIAGRAM / FORMS TO JAVA",
+      "alt": "A blueprint-style diagram of legacy Oracle Forms modules being migrated into a Java application.",
+      "summary": "Legacy Oracle Forms modules rebuilt as a Java application. I led the development team and made the technical calls from migration through delivery.",
       "role": "Technical lead",
-      "areas": "Oracle · Java · SQL",
-      "result": "More reliable systems for thousands of students and staff",
+      "areas": "Java · Git · Maven · Oracle Forms",
+      "result": "Delivered, 2017–2018",
       "url": ""
     },
     {
@@ -216,7 +233,33 @@
       "summary": "Where it all started: migrating legacy Oracle Forms applications to Java for international clients’ modernisation projects."
     }
   ],
-  "toolboxEyebrow": "TOOLBOX / 04",
+  "trainingEyebrow": "TRAINING & COMMUNITY / 04",
+  "trainingTitle": "Beyond the code.",
+  "trainingLead": "Teaching is part of the job too.",
+  "training": [
+    {
+      "value": "150+",
+      "label": "DEVELOPERS TRAINED",
+      "title": "Technical trainer, global",
+      "period": "2016 — 2019",
+      "text": "Three-to-five-day programmes on Java best practices and Agile modernisation for client and internal teams in Bangalore, Sydney, Boston and remotely."
+    },
+    {
+      "value": "50+",
+      "label": "NEW HIRES ONBOARDED",
+      "title": "Internal technical trainer",
+      "period": "2016 — 2020",
+      "text": "Week-long onboarding for new hires and interns: the company’s technologies, development standards and engineering practices."
+    },
+    {
+      "value": "GDG",
+      "label": "ÉVORA",
+      "title": "Community co-organiser",
+      "period": "2026 — PRESENT",
+      "text": "I help run Google Developer Group Évora, planning talks, workshops and meetups so local developers can share what they know."
+    }
+  ],
+  "toolboxEyebrow": "TOOLBOX / 05",
   "toolboxTitle": "Everyday tools.",
   "toolbox": [
     {
@@ -259,7 +302,7 @@
       ]
     }
   ],
-  "notesEyebrow": "NOTES / 05",
+  "notesEyebrow": "NOTES / 06",
   "notesTitle": "Things I’ve picked up along the way.",
   "notes": [
     {
@@ -283,7 +326,7 @@
       "className": "note note--interactive"
     }
   ],
-  "contactEyebrow": "CONTACT / 06",
+  "contactEyebrow": "CONTACT / 07",
   "contactTitle": "Got a project in mind?",
   "contactLead": "Whether it’s a new project, an opportunity or that bug nobody can pin down, drop me a line. I always reply.",
   "contactLinks": [

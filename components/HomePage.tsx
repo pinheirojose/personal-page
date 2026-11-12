@@ -7,6 +7,7 @@ import { Notes } from './Notes';
 import { Toolbox } from './Toolbox';
 import { Projects, Gallery } from './Projects';
 import { Timeline } from './Timeline';
+import { Training } from './Training';
 import { Contact } from './Contact';
 import '@/styles/sections.css';
 
@@ -23,6 +24,7 @@ export function HomePage({ lang, page }: { lang: Lang; page: PageKind }) {
           <About copy={copy} />
           <Projects copy={copy} lang={lang} />
           <Timeline copy={copy} />
+          <Training copy={copy} />
           <Toolbox copy={copy} />
           <Notes copy={copy} />
           <Contact copy={copy} />

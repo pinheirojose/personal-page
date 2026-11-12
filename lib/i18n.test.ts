@@ -7,7 +7,7 @@ test('split keeps column order and numbering', () => {
   assert.deepEqual(s.professional.map((p) => p.number), ['01', '02']);
   assert.equal(s.professional[0].title, 'Imóveis Ana Morgado');
   assert.equal(s.personal[0].title, 'Évora Serviços');
-  assert.deepEqual(s.counts, { professional: 3, personal: 3 });
+  assert.deepEqual(s.counts, { professional: 4, personal: 3 });
   assert.equal(s.professional[1].isPrivate, true);
   assert.deepEqual(s.professional[0].stack, ['WordPress', 'Houzez', 'MySQL', 'Docker']);
 });
@@ -47,4 +47,23 @@ test('contact links resolve email', () => {
   const [email] = contactLinks(getCopy('en'));
   assert.equal(email.href, 'mailto:jbernardopinheiro@gmail.com');
   assert.equal(email.external, false);
+});
+
+test('CV projects: McGill named, ACU added, both languages', () => {
+  for (const lang of ['pt', 'en'] as const) {
+    const titles = getCopy(lang).projects.map((p) => p.title);
+    assert.ok(titles.some((t) => t.includes('McGill')), `${lang} McGill`);
+    assert.ok(titles.some((t) => t.includes('ACU')), `${lang} ACU`);
+    assert.ok(!titles.some((t) => t.includes('International University')), `${lang} old title`);
+  }
+});
+
+test('training section copy', () => {
+  for (const lang of ['pt', 'en'] as const) {
+    const c = getCopy(lang);
+    assert.deepEqual(c.training.map((t) => t.value), ['150+', '50+', 'GDG']);
+    assert.equal(eyebrow(c.trainingEyebrow).slice(0, 2), '04');
+    assert.equal(eyebrow(c.toolboxEyebrow).slice(0, 2), '05');
+    assert.equal(eyebrow(c.contactEyebrow).slice(0, 2), '07');
+  }
 });
