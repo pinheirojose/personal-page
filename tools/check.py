@@ -172,6 +172,22 @@ async def check_theme_switch(browser):
     assert theme == 'light' and not errors, (theme, errors)
 
 
+@check
+async def check_hero(browser):
+    for path in ['/', '/en']:
+        copy = copy_for(path)
+        ctx, page, _ = await open_page(browser, path)
+        assert (await page.inner_text('h1')).strip() == copy['heroTitle'], f'{path} h1'
+        assert await page.locator('svg.hero-schema[aria-hidden=true] .schema-node').count() == 5, f'{path} nodes'
+        readout = await page.inner_text('.readout')
+        assert 'Évora' in readout and '10+' in readout and '06' in readout, f'{path} readout {readout!r}'
+        await page.wait_for_timeout(1500)
+        clock = (await page.inner_text('.readout time')).strip()
+        assert __import__('re').fullmatch(r'\d{2}:\d{2}:\d{2}', clock), f'{path} clock {clock!r}'
+        assert 'open to work' not in readout.lower() and 'disponível' not in readout.lower()
+        await ctx.close()
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:

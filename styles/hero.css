@@ -1,0 +1,170 @@
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: clip;
+  padding-block: clamp(56px, 8vw, 120px) clamp(48px, 6vw, 96px);
+  isolation: isolate;
+}
+/* fine construction grid behind everything, fading out at the edges */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 30%, transparent 85%);
+}
+.hero__ghost {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: -0.16em;
+  transform: translateX(-50%);
+  font-size: clamp(9rem, 32vw, 30rem);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  color: var(--ghost);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.hero__inner {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero__inner { grid-template-columns: 7fr 5fr; gap: 32px; }
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.hero__eyebrow-node { width: 6px; height: 6px; background: var(--accent); }
+.hero__title {
+  font-size: var(--fs-display);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+.hero__tagline {
+  font-size: var(--fs-lede);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin-bottom: 20px;
+}
+.mark { font-style: normal; color: var(--accent); }
+.hero__lead { margin-bottom: 36px; max-width: 46ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.hero__visual {
+  justify-self: center;
+  width: 100%;
+  max-width: 420px;
+}
+@media (min-width: 960px) {
+  .hero__visual { max-width: 460px; justify-self: end; }
+}
+
+/* ---------- schematic ---------- */
+.hero-schema { width: 100%; height: auto; overflow: visible; }
+.hero-schema .g-minor { stroke: var(--grid); stroke-width: 1; }
+.hero-schema .g-major { stroke: var(--rule); stroke-width: 1; }
+.hero-schema .g-cross { stroke: var(--ink-muted); stroke-width: 1; opacity: 0.6; }
+.hero-schema .g-tick,
+.hero-schema .g-dim { stroke: var(--ink-muted); stroke-width: 1; opacity: 0.55; fill: none; }
+.hero-schema text {
+  font-family: var(--font-mono);
+  fill: var(--ink-muted);
+}
+.hero-schema .schema-meta { font-size: 7px; letter-spacing: 0.14em; }
+
+.schema-route {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-width: 1.25;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.schema-route--return { stroke-dasharray: none; opacity: 0.6; stroke-width: 1; }
+html.motion .schema-route--return { stroke-dasharray: 1; }
+
+.schema-node__frame { fill: var(--bg); stroke: var(--ink-muted); stroke-width: 1; }
+.schema-node__core { fill: var(--ink); transition: fill var(--dur-1) var(--ease-out); }
+.schema-node.is-accent .schema-node__core,
+.schema-node.is-near .schema-node__core { fill: var(--accent); }
+.schema-node.is-near .schema-node__frame { stroke: var(--accent); }
+
+.schema-label__name { font-size: 10px; letter-spacing: 0.16em; fill: var(--ink) !important; font-weight: 500; }
+.schema-label__meta { font-size: 7.5px; letter-spacing: 0.08em; opacity: 0.85; }
+
+.schema-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0.6;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .schema-ring { animation: ring 4s var(--ease-in-out) infinite; }
+}
+@keyframes ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.35); opacity: 0.15; }
+}
+
+.schema-pulse__dot { fill: var(--accent); }
+.schema-pulse__halo { fill: var(--accent); opacity: 0.22; }
+
+.schema-cursor line { stroke: var(--accent); stroke-width: 0.75; opacity: 0.45; }
+.schema-cursor text { font-size: 7px; fill: var(--accent) !important; letter-spacing: 0.1em; }
+
+/* ---------- readout strip ---------- */
+.readout {
+  border-block: 1px solid var(--rule);
+  background: var(--surface);
+}
+.readout__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.readout__cell {
+  padding: 18px 16px 16px;
+  border-left: 1px solid var(--rule);
+  min-width: 0;
+}
+.readout__cell:nth-child(odd) { border-left: 0; padding-left: 0; }
+.readout__cell:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+.readout__cell:last-child { grid-column: 1 / -1; border-left: 0; padding-left: 0; }
+.readout dt { margin-bottom: 8px; font-size: 0.625rem; }
+.readout dd {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.375rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.clock { display: inline-block; min-width: 8ch; }
+
+@media (min-width: 960px) {
+  .readout__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .readout__cell,
+  .readout__cell:nth-child(odd),
+  .readout__cell:last-child {
+    grid-column: auto;
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+    padding: 22px 24px 20px;
+  }
+  .readout__cell:first-child { border-left: 0; padding-left: 0; }
+}
