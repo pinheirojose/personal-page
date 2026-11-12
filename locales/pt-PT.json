@@ -266,10 +266,10 @@
       "label": "DESENVOLVIMENTO",
       "items": [
         "Java",
+        "PL/SQL",
+        "Oracle Forms",
         "TypeScript",
-        "JavaScript",
         "React",
-        "Python",
         "Bash"
       ]
     },
@@ -284,21 +284,34 @@
       ]
     },
     {
-      "label": "DEVOPS",
+      "label": "DEVOPS E RELEASES",
       "items": [
         "Docker",
         "Linux",
-        "GitLab CI/CD",
-        "Jenkins"
+        "Git",
+        "Jenkins",
+        "Maven",
+        "GitLab CI/CD"
+      ]
+    },
+    {
+      "label": "DELIVERY",
+      "items": [
+        "Agile / Scrum",
+        "Planeamento de releases",
+        "Gestão de stakeholders",
+        "Liderança de equipas",
+        "Formação técnica"
       ]
     },
     {
       "label": "OUTROS",
       "items": [
         "WordPress",
+        "Next.js",
         "Vite",
         "Vercel",
-        "Git"
+        "Eclipse"
       ]
     }
   ],

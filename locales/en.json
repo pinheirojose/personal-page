@@ -266,10 +266,10 @@
       "label": "DEVELOPMENT",
       "items": [
         "Java",
+        "PL/SQL",
+        "Oracle Forms",
         "TypeScript",
-        "JavaScript",
         "React",
-        "Python",
         "Bash"
       ]
     },
@@ -284,21 +284,34 @@
       ]
     },
     {
-      "label": "DEVOPS",
+      "label": "DEVOPS & RELEASES",
       "items": [
         "Docker",
         "Linux",
-        "GitLab CI/CD",
-        "Jenkins"
+        "Git",
+        "Jenkins",
+        "Maven",
+        "GitLab CI/CD"
+      ]
+    },
+    {
+      "label": "DELIVERY",
+      "items": [
+        "Agile / Scrum",
+        "Release planning",
+        "Stakeholder management",
+        "Team leadership",
+        "Technical training"
       ]
     },
     {
       "label": "OTHER",
       "items": [
         "WordPress",
+        "Next.js",
         "Vite",
         "Vercel",
-        "Git"
+        "Eclipse"
       ]
     }
   ],

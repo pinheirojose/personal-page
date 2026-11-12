@@ -78,6 +78,10 @@ def locale_json(tag):
     return json.loads((ROOT / 'locales' / f'{tag}.json').read_text())
 
 
+def tools_text(copy):
+    return ' '.join(t for g in copy['toolbox'] for t in g['items'])
+
+
 def copy_for(path):
     return locale_json(LANG_OF[path])
 
@@ -200,7 +204,8 @@ async def check_sections(browser):
         ctx, page, _ = await open_page(browser, path)
         assert await page.locator('#about .pillars > li').count() == 3, f'{path} pillars'
         assert await page.locator('#notes li').count() == 4, f'{path} notes'
-        assert await page.locator('#toolbox h3').count() == 4, f'{path} toolbox groups'
+        assert await page.locator('#toolbox h3').count() == len(copy['toolbox']), f'{path} toolbox groups'
+        assert 'Oracle Forms' in tools_text(copy) and 'Maven' in tools_text(copy), f'{path} CV tools missing'
         tools = await page.eval_on_selector_all('#toolbox .toolbox__list li', 'ls => ls.map(l => l.textContent.trim())')
         assert tools == [t for g in copy['toolbox'] for t in g['items']], f'{path} tools {tools}'
         assert await page.locator('#notes [tabindex="0"]').count() == 1, f'{path} focusable note'
