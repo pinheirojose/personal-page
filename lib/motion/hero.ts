@@ -78,7 +78,7 @@ export function heroMotion(hero: HTMLElement, gsap: typeof GSAP, ScrollTrigger: 
     // ---- 3. scroll: drift and recompose as the hero leaves
     const scrub = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
     gsap.to(hero.querySelector('.hero__visual'), { y: 80, ease: 'none', scrollTrigger: scrub });
-    gsap.to('.schema-grid', { y: 30, opacity: 0.4, ease: 'none', scrollTrigger: { ...scrub } });
+    gsap.to('.schema-grid-wrap', { y: 30, opacity: 0.4, ease: 'none', scrollTrigger: { ...scrub } });
   }, svg);
 
   // ---- 4. pointer: crosshair + nearby nodes brighten (fine pointers only)

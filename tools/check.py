@@ -352,6 +352,25 @@ async def check_no_overflow(browser):
     assert not bad, bad
 
 
+@check
+async def check_schema_grid_persists(browser):
+    """The schematic's grid must stay visible after scrolling away and back."""
+    ctx, page, _ = await open_page(browser, '/')
+    await page.wait_for_timeout(2000)  # draw finished
+    grid_opacity = """() => { let e = document.querySelector('.schema-grid'), o = 1;
+        for (; e && e.tagName !== 'svg'; e = e.parentElement) o *= parseFloat(getComputedStyle(e).opacity);
+        return o; }"""
+    before = await page.evaluate(grid_opacity)
+    for y in (200, 600, 0):
+        await page.mouse.wheel(0, y - await page.evaluate('scrollY'))
+        await page.wait_for_timeout(400)
+    await page.evaluate('scrollTo(0, 0)')
+    await page.wait_for_timeout(600)
+    after = await page.evaluate(grid_opacity)
+    await ctx.close()
+    assert before > 0.95 and after > 0.95, f'grid opacity before={before:.2f} after scroll={after:.2f}'
+
+
 async def main(names):
     unknown = [n for n in names if n not in CHECKS]
     if unknown:

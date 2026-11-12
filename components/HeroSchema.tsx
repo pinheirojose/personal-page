@@ -34,6 +34,8 @@ export function HeroSchema() {
       focusable="false"
       xmlns="http://www.w3.org/2000/svg"
     >
+      {/* outer group: scroll parallax; inner group: load fade. Separate so the two never fight over opacity. */}
+      <g className="schema-grid-wrap">
       <g className="schema-grid">
         {range(20, W - 20, 20).map((x) => (
           <line key={`vx${x}`} x1={x} y1={20} x2={x} y2={H - 20} className={x % 100 === 0 ? 'g-major' : 'g-minor'} />
@@ -56,6 +58,7 @@ export function HeroSchema() {
         {/* dimension line across the top */}
         <path className="g-dim" d={`M20 8V16M20 12H140M280 12H${W - 20}M${W - 20} 8V16`} />
         <text className="schema-meta" x={W / 2} y={14.5} textAnchor="middle">SCHEMA · 420 × 520</text>
+      </g>
       </g>
 
       <g className="schema-routes">
