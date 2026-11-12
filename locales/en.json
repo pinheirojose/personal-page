@@ -371,7 +371,7 @@
   "sendFail": "Something went wrong. Try again or send me an email.",
   "footerRole": "SOFTWARE ENGINEER · TECH LEAD",
   "readout": {
-    "years": "YEARS IN PRODUCTION",
+    "years": "YEARS OF EXPERIENCE",
     "yearsValue": "10+",
     "projects": "PROJECTS",
     "projectsNote": "Shown here, plus many more as DevOps and DBA",
