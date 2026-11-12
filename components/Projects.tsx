@@ -24,8 +24,8 @@ export function Gallery({ copy, lang }: { copy: Copy; lang: Lang }) {
         <p className="gallery__back">
           <a className="link eyebrow" href={pathFor(lang, 'home')}>{copy.backHome}</a>
         </p>
-        <SectionHead id="gallery" label={copy.galleryEyebrow} title={copy.galleryTitle} lead={copy.galleryLead} as="h1" />
-        <ProjectGrid copy={copy} level={2} />
+        <SectionHead id="gallery" label={copy.galleryEyebrow} title={copy.galleryTitle} lead={copy.galleryLead} as="h1" reveal={false} />
+        <ProjectGrid copy={copy} level={2} priorityFirst />
       </div>
     </section>
   );

@@ -1,13 +1,23 @@
 import type { Copy, Project } from '@/lib/i18n';
 
-type Props = { project: Project; copy: Copy; level: 3 | 4 };
+type Props = { project: Project; copy: Copy; level: 3 | 4; priority?: boolean; lcp?: boolean };
 
-export function ProjectCard({ project: p, copy, level }: Props) {
+export function ProjectCard({ project: p, copy, level, priority = false, lcp = false }: Props) {
   const Title = `h${level}` as 'h3' | 'h4';
   return (
-    <article className="work-card crop reveal">
+    <article className={priority ? 'work-card crop' : 'work-card crop reveal'}>
       <div className="work-card__media">
-        <img src={p.image} alt={p.alt} width={640} height={400} loading="lazy" decoding="async" />
+        <img
+          src={p.image}
+          srcSet={`${p.image.replace(/\.webp$/, '-800.webp')} 800w, ${p.image} 1280w`}
+          sizes="(min-width: 1280px) 620px, (min-width: 960px) 48vw, 100vw"
+          alt={p.alt}
+          width={640}
+          height={400}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={lcp ? 'high' : 'auto'}
+          decoding="async"
+        />
         <span className="work-card__index mono" aria-hidden="true">{p.number}</span>
       </div>
       <div className="work-card__body">
