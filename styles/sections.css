@@ -116,3 +116,18 @@
   .marquee__group + .marquee__group { display: none; }
   .marquee__set { white-space: normal; flex-wrap: wrap; border-right: 0; }
 }
+
+/* the lead bento card carries the hero's construction grid, fading toward its text */
+.pillar:first-child {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+  background-color: var(--surface);
+}
+.pillar:first-child::marker { content: none; }
+.pillar:first-child > * { position: relative; }
+.pillar:first-child .pillar__text,
+.pillar:first-child .pillar__label { background: var(--surface); box-shadow: 0 0 0 8px var(--surface); }
+.pillar:first-child .pillar__label { justify-self: start; align-self: flex-start; }

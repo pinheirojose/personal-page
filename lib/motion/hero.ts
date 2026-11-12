@@ -19,7 +19,7 @@ export function heroMotion(hero: HTMLElement, gsap: typeof GSAP, ScrollTrigger: 
     // ---- 1. draw (≤1.6s): grid → routes → nodes → labels
     gsap.set('.schema-route', { strokeDashoffset: 1 });
     gsap.set('.schema-node', { scale: 0.6, opacity: 0, transformOrigin: '50% 50%', transformBox: 'fill-box' });
-    gsap.set(['.schema-grid', '.schema-label', '.schema-ring'], { opacity: 0 });
+    gsap.set(['.schema-grid', '.schema-label'], { opacity: 0 });
     svg.classList.add('is-live');
 
     const draw = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -27,8 +27,8 @@ export function heroMotion(hero: HTMLElement, gsap: typeof GSAP, ScrollTrigger: 
       .to('.schema-grid', { opacity: 1, duration: 0.4, ease: 'power1.out' }, 0)
       .to('.schema-route', { strokeDashoffset: 0, duration: 0.55, stagger: 0.1, ease: 'power2.inOut' }, 0.3)
       .to('.schema-node', { scale: 1, opacity: 1, duration: 0.35, stagger: 0.06 }, 0.9)
-      .to('.schema-label', { opacity: 1, duration: 0.3, stagger: 0.05 }, 1.1)
-      .to('.schema-ring', { opacity: 0.6, duration: 0.3 }, 1.3);
+      .to('.schema-label', { opacity: 1, duration: 0.3, stagger: 0.05 }, 1.1);
+    // The INFRA ring is a CSS animation, delayed to 1.3s under html.motion (hero.css).
 
     // ---- 2. pulses: one at a time, along a random route, with a pause between trips
     let current: gsap.core.Animation | null = null;

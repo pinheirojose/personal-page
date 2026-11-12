@@ -117,6 +117,8 @@ html.motion .schema-route--return { stroke-dasharray: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .schema-ring { animation: ring 4s var(--ease-in-out) infinite; }
 }
+/* while the schematic draws itself, the ring waits (opacity 0 during the delay) */
+html.motion .schema-ring { opacity: 0; animation-delay: 1.3s; }
 @keyframes ring {
   0%, 100% { transform: scale(1); opacity: 0.6; }
   50% { transform: scale(1.35); opacity: 0.15; }
