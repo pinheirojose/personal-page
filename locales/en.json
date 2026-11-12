@@ -44,7 +44,7 @@
   "aboutEyebrow": "ABOUT / 01",
   "aboutTitle": "In a nutshell.",
   "aboutLede": "I like understanding how things work, and why they stopped working.",
-  "aboutBody": "I’ve worked across code, databases, infrastructure and project management, so I don’t much mind where a problem lives. What I care about is fixing it properly, in a way the next person (often me) can follow.",
+  "aboutBody": "I’ve worked across code, databases, infrastructure and project management, so I don’t mind much where a problem lives. What I care about is fixing it properly, in a way the next person (often me) can follow.",
   "pillars": [
     {
       "label": "BUILD",
