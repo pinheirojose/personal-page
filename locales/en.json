@@ -2,7 +2,7 @@
   "htmlLang": "en",
   "ogLocale": "en_GB",
   "docTitle": "José Pinheiro — Software Engineer",
-  "docDescription": "Software engineer and tech lead. Ten years and counting of taking software from the first line of code to production, and keeping it there.",
+  "docDescription": "Software engineer and tech lead. Over ten years of getting software into production and keeping it there.",
   "skip": "Skip to content",
   "backToTop": "Back to top",
   "navAria": "Primary",
@@ -21,23 +21,23 @@
   ],
   "heroEyebrow": "SOFTWARE ENGINEER · TECH LEAD",
   "heroTitle": "Hi, I’m José.",
-  "taglineBefore": "I build things, fix others, and occasionally",
+  "taglineBefore": "I build software, fix what breaks and, now and then,",
   "taglineMark": "argue with databases",
   "taglineAfter": ".",
-  "heroLead": "Ten years and counting of taking software from the first line of code to production, and keeping it there.",
+  "heroLead": "Over ten years of getting software into production. And, the harder part, keeping it there.",
   "seeWork": "See my work →",
   "aboutEyebrow": "ABOUT / 01",
-  "aboutTitle": "More than a job title.",
-  "aboutLede": "Engineer by trade, problem solver by habit.",
-  "aboutBody": "I care less about which layer the trouble lives in and more about getting it sorted. I like turning messy situations into practical solutions — preferably ones that still make sense six months later.",
+  "aboutTitle": "In a nutshell.",
+  "aboutLede": "I like understanding how things work, and why they stopped working.",
+  "aboutBody": "I’ve worked across code, databases, infrastructure and project management, so I don’t much mind where a problem lives. What I care about is fixing it properly, in a way the next person (often me) can follow.",
   "pillars": [
-    { "label": "BUILD", "text": "Software and applications, from the database up." },
-    { "label": "SOLVE", "text": "Troubleshooting, integrations, performance and the occasional mystery in production." },
-    { "label": "DELIVER", "text": "Leading teams and staying close to clients, so what ships is useful to someone, not just technically interesting." }
+    { "label": "BUILD", "text": "Applications and databases built to last, not just to demo." },
+    { "label": "SOLVE", "text": "Troubleshooting, integrations and performance, especially when nobody’s sure where to start." },
+    { "label": "DELIVER", "text": "Coordinating teams and talking to clients, so what ships is what they actually needed." }
   ],
   "projectsEyebrow": "PROJECTS / 02",
   "projectsTitle": "Things I’ve built.",
-  "projectsLead": "Some for clients, some for me, all of them out in the world.",
+  "projectsLead": "Some built for clients, some just because.",
   "projectLabel": "PROJECT",
   "roleLabel": "ROLE",
   "areasLabel": "AREAS",
@@ -46,7 +46,7 @@
   "allProjects": "See all projects",
   "galleryEyebrow": "PROJECTS",
   "galleryTitle": "All projects.",
-  "galleryLead": "Everything in one place, including the ones that didn’t fit on the home page.",
+  "galleryLead": "It’s all here, including what didn’t fit on the home page.",
   "galleryDocTitle": "Projects — José Pinheiro",
   "backHome": "← Home",
   "projectTypes": { "personal": "Personal", "professional": "Professional" },
@@ -59,10 +59,10 @@
       "image": "./images/imoveis-ana-morgado.webp",
       "caption": "SCREENSHOT / IMÓVEIS ANA MORGADO",
       "alt": "Home page of the Imóveis Ana Morgado website, with Ana’s photo, a button to explore listings and her years of experience and homes sold.",
-      "summary": "A website for a solo real estate agent, where clients can browse her listings, search by location and price, open a full property page and get in touch with her directly.",
+      "summary": "Ana’s website. She’s an independent estate agent, and clients can browse her listings, search by area and price and contact her directly.",
       "role": "Design, build, launch",
       "areas": "WordPress · Houzez · MySQL · Docker",
-      "result": "Live since November 2026, with her listings and contacts in one place",
+      "result": "Live since November 2026",
       "url": "https://imoveisanamorgado.pt/"
     },
     {
@@ -72,10 +72,10 @@
       "image": "./images/evora-services.webp",
       "caption": "SCREENSHOT / ÉVORA SERVIÇOS",
       "alt": "Évora Serviços banner with the Roman Temple of Évora and the tagline “A sua cidade. Os melhores serviços.”",
-      "summary": "Finding a reliable local professional in Évora meant asking around. I built a platform where residents can search local services and businesses can be found without maintaining a website of their own.",
+      "summary": "In Évora, finding a good plumber still meant asking the neighbours. I built a platform where residents find local services and businesses get found without a website of their own.",
       "role": "Design, build, run",
       "areas": "Web · Database · Hosting",
-      "result": "Live, growing listings",
+      "result": "Live and growing",
       "url": "https://www.evoraservicos.pt/"
     },
     {
@@ -85,10 +85,10 @@
       "image": "./images/migration.webp",
       "caption": "DIAGRAM / MIGRATION PATH",
       "alt": "A person typing code on a laptop in an empty classroom.",
-      "summary": "A university ERP migration where I covered the whole cycle: database and application development, technical planning, project management and the go-live.",
+      "summary": "Moving a university’s ERP from start to finish: database, application, planning, project management and go-live.",
       "role": "Technical lead",
       "areas": "Oracle · Java · SQL",
-      "result": "Better everyday systems for thousands of students and staff",
+      "result": "More reliable systems for thousands of students and staff",
       "url": ""
     },
     {
@@ -101,7 +101,7 @@
       "summary": "A shared database environment was getting harder to maintain with every new client. I redesigned it around dedicated instances per client on open-source Linux, supporting Oracle 11 through 19.",
       "role": "Oracle DBA, planning, standardisation",
       "areas": "Linux · Oracle · Infra · Docker",
-      "result": "Every client isolated, every Oracle version covered, far fewer surprises",
+      "result": "Every client in its own space, every Oracle version supported",
       "url": ""
     },
     {
@@ -111,10 +111,10 @@
       "image": "./images/personal-page.webp",
       "caption": "SCREENSHOT / PERSONAL PAGE",
       "alt": "The top of this site: “Hi, I’m José.” next to a dotted map linking code, data, infra, delivery and people.",
-      "summary": "A bilingual site to present the work — projects, experience and a way to get in touch — without a framework lock-in.",
+      "summary": "This site. Bilingual, handmade, no framework.",
       "role": "Design, build",
       "areas": "HTML · CSS · JavaScript",
-      "result": "You’re looking at it",
+      "result": "You’re reading it",
       "url": "https://github.com/pinheirojose/personal-page"
     },
     {
@@ -124,7 +124,7 @@
       "image": "./images/travel-map.webp",
       "caption": "SCREENSHOT / TRAVEL MAP",
       "alt": "The Travel Map app showing Europe and North Africa, with a sidebar for searching and filtering places.",
-      "summary": "A personal travel map: mark places visited or still on the list, filter by country and year, then download a high-resolution poster. Everything stays in this browser — export JSON so you don’t lose it.",
+      "summary": "A map to mark where I’ve been and where I want to go, filter by country and year, and export a poster for the wall. Data stays in your browser, so export the JSON now and then.",
       "role": "Design, build",
       "areas": "React · TypeScript · Vite",
       "result": "English and Portuguese, dark mode, no account",
@@ -138,29 +138,29 @@
       "period": "2021 — PRESENT",
       "title": "Technical Lead / Delivery",
       "org": "MorphisTech / Freelance client projects",
-      "summary": "End-to-end delivery for client projects: turning business needs into technical direction, keeping stakeholders aligned, setting priorities and guiding teams all the way to a reliable release."
+      "summary": "I bridge what the client needs and what the team builds: setting priorities, making the technical calls and seeing the project through until it’s stable in production."
     },
     {
       "period": "2018 — PRESENT",
       "title": "DevOps & Release Management",
       "org": "MorphisTech",
-      "summary": "Improved software delivery processes through containerisation, CI/CD automation and environment standardisation. Helped modernise legacy services, establish reproducible deployments and reduce single points of knowledge across development and operations."
+      "summary": "Containers, CI/CD pipelines and standard environments. I helped modernise legacy services and make deployments predictable, so going live stopped depending on the one person who knew how."
     },
     {
       "period": "2018 — PRESENT",
       "title": "Database Management",
       "org": "MorphisTech",
-      "summary": "Oracle and PostgreSQL engineering: infrastructure, performance, migrations, integrations and production support, with reliability first and the application never far from mind."
+      "summary": "Oracle and PostgreSQL: infrastructure, performance, migrations and production support. Reliability first, without losing sight of the applications that depend on them."
     },
     {
       "period": "2015 — 2018",
       "title": "Software Development",
       "org": "MorphisTech",
-      "summary": "Java applications, internal tools and client features."
+      "summary": "Where it all started: Java applications, internal tools and client features."
     }
   ],
   "toolboxEyebrow": "TOOLBOX / 04",
-  "toolboxTitle": "Tools of the trade.",
+  "toolboxTitle": "Everyday tools.",
   "toolbox": [
     { "label": "DEVELOPMENT", "items": ["Java", "TypeScript", "JavaScript", "React", "Python", "Bash"] },
     { "label": "DATABASES", "items": ["Oracle", "PostgreSQL", "MySQL", "SQL", "Database administration"] },
@@ -168,16 +168,16 @@
     { "label": "OTHER", "items": ["WordPress", "Vite", "Vercel", "Git"] }
   ],
   "notesEyebrow": "NOTES / 05",
-  "notesTitle": "A few things I’ve learned.",
+  "notesTitle": "Things I’ve picked up along the way.",
   "notes": [
-    { "text": "Most problems are simpler than they first appear.", "aside": "", "className": "note" },
-    { "text": "“Quick fixes” rarely are.", "aside": "", "className": "note" },
-    { "text": "One good log line beats an hour of guessing.", "aside": "", "className": "note" },
+    { "text": "Most problems are simpler than they look.", "aside": "", "className": "note" },
+    { "text": "“Quick fixes” tend to get expensive.", "aside": "", "className": "note" },
+    { "text": "A good log saves hours of guessing.", "aside": "", "className": "note" },
     { "text": "“It works on my machine.”", "aside": " …which is why Docker exists.", "className": "note note--interactive" }
   ],
   "contactEyebrow": "CONTACT / 06",
-  "contactTitle": "Got a problem worth solving?",
-  "contactLead": "Whether it’s a project, an opportunity or a bug that refuses to die, I’m always up for a chat.",
+  "contactTitle": "Got a project in mind?",
+  "contactLead": "Whether it’s a new project, an opportunity or that bug nobody can pin down, drop me a line. I always reply.",
   "contactLinks": [
     { "id": "email", "label": "EMAIL" },
     { "id": "linkedin", "label": "LINKEDIN", "text": "/in/jose-pinheiro" },
@@ -189,7 +189,7 @@
   "send": "Send message →",
   "sending": "Sending…",
   "sent": "Message sent ✓",
-  "sentThanks": "Thanks — I’ll get back to you.",
-  "sendFail": "Couldn’t send. Try again, or email me directly.",
+  "sentThanks": "Thanks! I’ll get back to you soon.",
+  "sendFail": "Something went wrong. Try again or send me an email.",
   "footerRole": "SOFTWARE ENGINEER · TECH LEAD"
 }
