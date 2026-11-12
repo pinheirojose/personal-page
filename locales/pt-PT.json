@@ -186,28 +186,34 @@
   "experienceTitle": "O percurso até aqui.",
   "timeline": [
     {
-      "period": "2021 — PRESENTE",
-      "title": "Líder técnico / Entrega",
-      "org": "MorphisTech / Projetos de clientes em freelance",
-      "summary": "Faço a ponte entre o que o cliente precisa e o que a equipa constrói: defino prioridades, tomo as decisões técnicas e acompanho o projeto até estar estável em produção."
+      "period": "2025 — PRESENTE",
+      "title": "Technical Lead / Delivery Coordinator / Scrum Master",
+      "org": "Morphis Tech · Évora, remoto",
+      "summary": "Lidero de ponta a ponta um grande programa de modernização de Oracle Forms para Java: planeamento, estratégia técnica e execução Agile. Sou o principal ponto de contacto com o cliente e coordeno o planeamento de sprints e releases de uma equipa multidisciplinar."
     },
     {
       "period": "2018 — PRESENTE",
-      "title": "DevOps e gestão de releases",
-      "org": "MorphisTech",
-      "summary": "Contentores, pipelines de CI/CD e ambientes padronizados. Ajudei a modernizar serviços antigos e a tornar as publicações previsíveis, para que pôr algo no ar deixasse de depender da única pessoa que sabia como."
+      "title": "Database Administrator",
+      "org": "Morphis Tech · Lisboa",
+      "summary": "Oracle e PostgreSQL para clientes empresariais: instalar, configurar e manter fiáveis os ambientes de produção e de teste. Quando algo falha sob pressão, encontro a causa e resolvo-a antes que chegue ao SLA do cliente."
     },
     {
       "period": "2018 — PRESENTE",
-      "title": "Administração de bases de dados",
-      "org": "MorphisTech",
-      "summary": "Oracle e PostgreSQL: infraestrutura, desempenho, migrações e suporte em produção. A fiabilidade vem primeiro, sem perder de vista as aplicações que dependem delas."
+      "title": "DevOps / Release & Delivery Management",
+      "org": "Morphis Tech · Lisboa",
+      "summary": "Coordeno os ciclos de release e delivery de vários projetos de clientes em simultâneo, da preparação dos ambientes ao deployment, com as equipas de desenvolvimento, QA e suporte, para que cada release saia como planeado."
     },
     {
-      "period": "2015 — 2018",
-      "title": "Desenvolvimento de software",
-      "org": "MorphisTech",
-      "summary": "Onde tudo começou: aplicações em Java, ferramentas internas e funcionalidades para clientes."
+      "period": "2016 — 2017",
+      "title": "Application Support Developer",
+      "org": "Morphis Tech · Lisboa",
+      "summary": "Suporte a projetos já entregues: diagnosticar problemas e manter os sistemas estáveis e os clientes satisfeitos."
+    },
+    {
+      "period": "2015 — 2016",
+      "title": "Java Application Developer – Migration",
+      "org": "Aubay / Morphis Tech · Lisboa",
+      "summary": "Onde tudo começou: migrar aplicações legacy em Oracle Forms para Java, em projetos de modernização para clientes internacionais."
     }
   ],
   "toolboxEyebrow": "FERRAMENTAS / 04",
