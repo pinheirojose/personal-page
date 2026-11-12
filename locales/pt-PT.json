@@ -29,7 +29,7 @@
   "aboutEyebrow": "SOBRE / 01",
   "aboutTitle": "Em poucas palavras.",
   "aboutLede": "Gosto de perceber como as coisas funcionam, e porque é que deixaram de funcionar.",
-  "aboutBody": "Já passei pelo código, pelas bases de dados, pela infraestrutura e pela gestão de projetos, por isso pouco me importa onde está o problema. Importa-me resolvê-lo bem, de forma que quem vem a seguir (muitas vezes eu próprio) perceba o que foi feito.",
+  "aboutBody": "Já passei pelo código, pelas bases de dados, pela infraestrutura e pela gestão de projetos, por isso não importa onde está o problema. Importa resolvê-lo bem, de forma que quem vem a seguir (muitas vezes eu próprio) perceba o que foi feito.",
   "pillars": [
     { "label": "CONSTRUIR", "text": "Aplicações e bases de dados feitas para durar, não só para a demo." },
     { "label": "RESOLVER", "text": "Diagnóstico, integrações e desempenho, sobretudo quando ninguém sabe bem por onde começar." },
@@ -148,7 +148,7 @@
     },
     {
       "period": "2018 — PRESENTE",
-      "title": "Gestão de bases de dados",
+      "title": "Administração de bases de dados",
       "org": "MorphisTech",
       "summary": "Oracle e PostgreSQL: infraestrutura, desempenho, migrações e suporte em produção. A fiabilidade vem primeiro, sem perder de vista as aplicações que dependem delas."
     },
