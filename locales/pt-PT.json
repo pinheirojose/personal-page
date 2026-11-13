@@ -375,9 +375,17 @@
     "yearsValue": "10+",
     "projects": "PROJETOS",
     "projectsNote": "Os que estão aqui, e muitos mais como DevOps e DBA",
+    "sectors": "SETORES",
+    "sectorsList": [
+      "Finanças",
+      "Educação",
+      "Administração pública",
+      "Petróleo e gás",
+      "Saúde",
+      "Banca"
+    ],
     "base": "BASE",
-    "time": "HORA LOCAL",
-    "build": "BUILD"
+    "time": "HORA LOCAL"
   },
   "theme": {
     "label": "Tema",

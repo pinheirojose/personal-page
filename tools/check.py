@@ -191,6 +191,10 @@ async def check_hero(browser):
         n = f"{len(copy['projects']):02d}"
         assert 'Évora' in readout and '10+' in readout and n in readout, f'{path} readout {readout!r}'
         assert copy['locationNote'] in readout and copy['readout']['projectsNote'] in readout, f'{path} readout notes'
+        labels = await page.eval_on_selector_all('.readout dt', 'ds => ds.map(d => d.textContent.trim())')
+        r = copy['readout']
+        assert labels == [r['years'], r['projects'], r['sectors'], r['base'], r['time']], f'{path} order {labels}'
+        assert all(x in readout for x in r['sectorsList']) and 'v2.0' not in readout, f'{path} sectors'
         await page.wait_for_timeout(1500)
         clock = (await page.inner_text('.readout time')).strip()
         assert __import__('re').fullmatch(r'\d{2}:\d{2}:\d{2}', clock), f'{path} clock {clock!r}'
