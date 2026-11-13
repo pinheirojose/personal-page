@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { getCopy, pathFor, SITE, SOCIAL, type Lang, type Page } from './i18n';
 
+// Link-preview image per language. Bump the file name when it changes:
+// WhatsApp, LinkedIn and Facebook cache previews by image URL.
+const ogImage = (lang: Lang) => `/images/og-${lang}.png`;
+
 export function pageMetadata(lang: Lang, page: Page): Metadata {
   const copy = getCopy(lang);
   const title = page === 'home' ? copy.docTitle : copy.galleryDocTitle;
@@ -22,9 +26,9 @@ export function pageMetadata(lang: Lang, page: Page): Metadata {
       siteName: 'José Pinheiro',
       locale: copy.ogLocale,
       alternateLocale: lang === 'en' ? 'pt_PT' : 'en_GB',
-      images: [{ url: '/images/og.png', width: 1200, height: 630 }],
+      images: [{ url: ogImage(lang), width: 1200, height: 630, alt: title }],
     },
-    twitter: { card: 'summary_large_image' },
+    twitter: { card: 'summary_large_image', images: [ogImage(lang)] },
     referrer: 'strict-origin-when-cross-origin',
     icons: {
       icon: [

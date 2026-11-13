@@ -34,7 +34,7 @@ python3 tools/contrast.py   # WCAG contrast of the colour tokens, both themes
 | `lib/theme.ts` | Auto / Light / Dark logic and the no-flash head script. |
 | `lib/motion/` | Hero schematic animation, timeline scroll drawing, section reveals. |
 | `styles/tokens.css` | Design tokens. Dark is the default; light overrides the same names. |
-| `public/images/` | Project images (WebP, about 1280px wide; cards show them at 640×400), favicons, `og.png`. |
+| `public/images/` | Project images (WebP, about 1280px wide; cards show them at 640×400), favicons, and the link-preview images `og-pt.png` / `og-en.png` (rename them when they change: chat apps cache previews by URL). |
 | `vercel.json` | Clean URLs and redirects from the old `?lang=` and `.html` links. |
 
 ## Content notes

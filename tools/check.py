@@ -111,7 +111,10 @@ async def check_seo_head(browser):
         want['x-default'] = want['pt-PT']
         assert alts == want, f'{path} hreflang {alts}'
         og = await page.eval_on_selector('meta[property="og:image"]', 'e => e.content')
-        assert og == SITE + '/images/og.png', f'{path} og:image {og}'
+        want_og = SITE + ('/images/og-en.png' if LANG_OF[path] == 'en' else '/images/og-pt.png')
+        assert og == want_og, f'{path} og:image {og}'
+        tw = await page.eval_on_selector('meta[name="twitter:image"]', 'e => e.content')
+        assert tw == want_og, f'{path} twitter:image {tw}'
         assert 'José Pinheiro' in await page.title(), f'{path} title'
         if home:
             ld = json.loads(await page.inner_text('script[type="application/ld+json"]'))
