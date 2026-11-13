@@ -128,6 +128,8 @@ async def check_legacy_redirects(browser):
     rules = json.loads((ROOT / 'vercel.json').read_text())['redirects']
     got = [(r['source'], (r.get('has') or [{}])[0].get('value'), r['destination'], r['permanent']) for r in rules]
     want = [('/', 'en', '/en', True),
+            # cleanUrls turns /projects.html into /projects before these run, so match both
+            ('/projects', 'en', '/en/projects', True),
             ('/projects.html', 'en', '/en/projects', True),
             ('/projects.html', None, '/projects', True),
             ('/index.html', None, '/', True)]

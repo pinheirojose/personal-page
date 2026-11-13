@@ -3,6 +3,7 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en", "permanent": true },
+    { "source": "/projects", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/projects", "permanent": true },
     { "source": "/projects.html", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/projects", "permanent": true },
     { "source": "/projects.html", "destination": "/projects", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true }
