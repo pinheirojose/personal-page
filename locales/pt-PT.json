@@ -178,7 +178,7 @@
       "summary": "Este site. Bilingue, desenhado como uma planta técnica, feito em Next.js.",
       "role": "Conceber, construir",
       "areas": "Next.js · TypeScript · GSAP",
-      "result": "Está a lê-la agora",
+      "result": "Está a lê-lo agora",
       "url": "https://github.com/pinheirojose/personal-page"
     },
     {
@@ -382,7 +382,8 @@
       "Administração pública",
       "Petróleo e gás",
       "Saúde",
-      "Banca"
+      "Banca",
+      "Imobiliário"
     ],
     "base": "BASE",
     "time": "HORA LOCAL"
