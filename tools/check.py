@@ -113,6 +113,8 @@ async def check_seo_head(browser):
         og = await page.eval_on_selector('meta[property="og:image"]', 'e => e.content')
         want_og = SITE + ('/images/og-en.png' if LANG_OF[path] == 'en' else '/images/og-pt.png')
         assert og == want_og, f'{path} og:image {og}'
+        icons = await page.eval_on_selector_all('link[rel~=icon]', 'ls => ls.map(l => [l.getAttribute("href"), l.getAttribute("sizes")])')
+        assert ['/favicon.ico', '48x48'] in icons and ['/images/icon-192.png', '192x192'] in icons, f'{path} icons {icons}'
         tw = await page.eval_on_selector('meta[name="twitter:image"]', 'e => e.content')
         assert tw == want_og, f'{path} twitter:image {tw}'
         assert 'José Pinheiro' in await page.title(), f'{path} title'
@@ -120,7 +122,7 @@ async def check_seo_head(browser):
             ld = json.loads(await page.inner_text('script[type="application/ld+json"]'))
             assert ld['@type'] == 'Person' and len(ld['sameAs']) == 2, ld
         await ctx.close()
-    for f in ['robots.txt', 'sitemap.xml']:
+    for f in ['robots.txt', 'sitemap.xml', 'favicon.ico', 'images/icon-192.png']:
         assert (OUT / f).exists(), f
     sm = (OUT / 'sitemap.xml').read_text()
     assert all(f'<loc>{SITE}{p}</loc>' in sm for p in PAGES), sm

@@ -31,8 +31,11 @@ export function pageMetadata(lang: Lang, page: Page): Metadata {
     twitter: { card: 'summary_large_image', images: [ogImage(lang)] },
     referrer: 'strict-origin-when-cross-origin',
     icons: {
+      // Google Search wants /favicon.ico or an icon sized in multiples of 48px.
       icon: [
+        { url: '/favicon.ico', sizes: '48x48' },
         { url: '/images/favicon.svg', type: 'image/svg+xml' },
+        { url: '/images/icon-192.png', type: 'image/png', sizes: '192x192' },
         { url: '/images/favicon.png', type: 'image/png', sizes: '32x32' },
       ],
       apple: '/images/apple-touch-icon.png',
