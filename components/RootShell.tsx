@@ -1,6 +1,7 @@
 import type { Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeScript } from './ThemeScript';
 import type { Lang } from '@/lib/i18n';
 import '@/styles/globals.css';
@@ -26,6 +27,7 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
       <body suppressHydrationWarning>
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
