@@ -1,5 +1,6 @@
 import type { Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { ThemeScript } from './ThemeScript';
 import type { Lang } from '@/lib/i18n';
 import '@/styles/globals.css';
@@ -22,7 +23,10 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
         <ThemeScript />
       </head>
       {/* Extensions (e.g. ColorZilla's cz-shortcut-listen) add attributes to <body> before hydration. */}
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
